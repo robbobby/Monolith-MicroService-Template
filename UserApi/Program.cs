@@ -1,4 +1,4 @@
-using UserApi;
+using UserApi.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 

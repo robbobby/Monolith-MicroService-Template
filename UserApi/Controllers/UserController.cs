@@ -1,6 +1,6 @@
 using AutoMapper;
-using Core;
 using Microsoft.AspNetCore.Mvc;
+using UserApi.Model;
 using UserApi.Service;
 
 namespace UserApi.Controllers;

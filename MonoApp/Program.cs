@@ -1,7 +1,7 @@
 using Core;
 using Core.Attributes;
-using MonoApp.Startup;
-using RepositoryLayer.Repository;
+using IdentityApi.Repository;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,15 +11,22 @@ builder.Services.AddControllers();
 InjectMicroServices();
 
 RepositoryLayer.Injection.Inject(builder.Services);
-ServiceLayer.Injection.Inject(builder.Services);
 
-SwaggerStartup.AddSwagger(builder.Services);
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
+builder.Services.AddAuthorization();
+
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<IdentityApiDbContext>();
+
 var app = builder.Build();
 
-SwaggerStartup.App(app);
+if (app.Environment.IsDevelopment()) {
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 MapMicroServices();
 
@@ -35,7 +42,8 @@ void MapMicroServices() {
         if (Activator.CreateInstance(service) is IServiceStartup startUp) {
             startUp.Configure(app);
         } else {
-            throw new Exception($"Error building monolith: Service {service.Name} from assembly {service.Assembly.GetName().Name} does not implement {nameof(IServiceStartup)}");
+            throw new Exception(
+                $"Error building monolith: Service {service.Name} from assembly {service.Assembly.GetName().Name} does not implement {nameof(IServiceStartup)}");
         }
     }
 }
@@ -45,7 +53,8 @@ void InjectMicroServices() {
         if (Activator.CreateInstance(service) is IStartupInjection startupInjection) {
             startupInjection.Inject(builder.Services);
         } else {
-            throw new Exception($"Error configuring monolith: Service {service.Name} from assembly {service.Assembly.GetName().Name} does not implement {nameof(IStartupInjection)}");
+            throw new Exception(
+                $"Error configuring monolith: Service {service.Name} from assembly {service.Assembly.GetName().Name} does not implement {nameof(IStartupInjection)}");
         }
     }
 }

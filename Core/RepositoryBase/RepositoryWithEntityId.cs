@@ -1,6 +1,6 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Core.Entity;
+using Core.Entity.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.RepositoryBase;

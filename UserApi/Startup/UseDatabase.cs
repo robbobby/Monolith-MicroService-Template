@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using UserApi.Repository;
 
-namespace UserApi;
+namespace UserApi.Startup;
 
 public static class UseDatabase {
     public static void AddDbContext(IServiceCollection services) {

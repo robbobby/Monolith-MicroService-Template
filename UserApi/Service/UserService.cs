@@ -1,4 +1,3 @@
-using RepositoryLayer.Repository;
 using UserApi.Repository;
 
 namespace UserApi.Service;

@@ -1,4 +1,4 @@
-namespace UserApi;
+namespace UserApi.Model;
 
 public class UserDto {
     public Guid Id { get; set; }

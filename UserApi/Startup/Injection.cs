@@ -2,7 +2,7 @@ using Core.Attributes;
 using UserApi.Repository;
 using UserApi.Service;
 
-namespace UserApi;
+namespace UserApi.Startup;
 
 [MonolithServiceRegister]
 public class Injection : IStartupInjection {

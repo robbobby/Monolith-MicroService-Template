@@ -1,6 +1,6 @@
 using Core.Attributes;
 
-namespace UserApi;
+namespace UserApi.Startup;
 
 [MonolithStartupRegister]
 public class ServiceStartup : IServiceStartup {

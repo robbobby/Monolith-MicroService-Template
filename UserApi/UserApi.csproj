@@ -18,8 +18,4 @@
       <ProjectReference Include="..\RepositoryLayer\RepositoryLayer.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include=".editor.config\template.json" />
-    </ItemGroup>
-
 </Project>

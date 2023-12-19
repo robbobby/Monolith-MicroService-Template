@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Attributes;
 
+[MeansImplicitUse]
 [BaseTypeRequired(typeof(IStartupInjection))] 
 public class MonolithServiceRegisterAttribute : Attribute;
 
