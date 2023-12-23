@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.RepositoryBase;
 
-public class RepositoryBase<T>(DbContext dbContext, IMapper mapper) where T : class {
-    protected readonly DbContext DbContext = dbContext;
+public class RepositoryBase<T>(IAppDbContext dbContext,
+                               IMapper mapper) where T : class {
+    protected readonly IAppDbContext DbContext = dbContext;
     protected IMapper Mapper { get; } = mapper;
 
     public IQueryable<TU> GetAll<TU>() where TU : class {

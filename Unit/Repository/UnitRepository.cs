@@ -4,5 +4,6 @@ using Core.RepositoryBase;
 
 namespace UnitApi.Repository;
 
-public class UnitRepository(UnitApiDbContext dbContext, IMapper mapper)
+public class UnitRepository(UnitApiDbContext dbContext,
+                            IMapper mapper)
     : RepositoryWithEntityId<UnitEntity>(dbContext, mapper);

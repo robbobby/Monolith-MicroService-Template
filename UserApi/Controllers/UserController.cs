@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserApi.Model;
 using UserApi.Service;
@@ -7,10 +8,12 @@ namespace UserApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController(UserService userService, IMapper mapper)
+public class UserController(UserService userService,
+                            IMapper mapper)
     : ControllerBase {
     private IMapper _mapper { get; } = mapper;
 
+    [Authorize]
     [HttpGet]
     [Route("users")]
     public Task<IActionResult> GetUsers() {

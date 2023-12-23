@@ -1,17 +1,17 @@
+using Core.Attributes;
 using UnitApi.Repository;
 using UnitApi.Service;
-using Core.Attributes;
 
 namespace UnitApi.Startup;
 
 [MonolithServiceRegister]
 public class Injection : IStartupInjection {
-    public void Inject(IServiceCollection builderServices) {
-        UseDatabase.AddDbContext(builderServices);
+    public void Inject(IServiceCollection services) {
+        UseDatabase.AddDbContext(services);
 
-        builderServices.AddAutoMapper(typeof(UnitApiMapperProfile));
+        services.AddAutoMapper(typeof(UnitApiMapperProfile));
 
-        builderServices.AddScoped<UnitService>();
-        builderServices.AddScoped<UnitRepository>();
+        services.AddScoped<UnitService>();
+        services.AddScoped<UnitRepository>();
     }
 }

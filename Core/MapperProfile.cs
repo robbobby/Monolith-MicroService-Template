@@ -2,10 +2,6 @@ using AutoMapper;
 
 namespace Core;
 
-public class MapperProfile : Profile {
-    public MapperProfile() {
-    }
-}
+public class MapperProfile : Profile { }
 
-public class UnitDto {
-}
+public class UnitDto { }

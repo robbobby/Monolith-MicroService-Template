@@ -1,7 +1,6 @@
-using UnitApi.Model;
-using UnitApi.Repository;
 using AutoMapper;
 using Core.Entity;
+using UnitApi.Model;
 
 namespace UnitApi;
 

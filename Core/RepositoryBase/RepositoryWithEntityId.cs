@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.RepositoryBase;
 
-public class RepositoryWithEntityId<T>(DbContext dbContext, IMapper mapper) :
+public class RepositoryWithEntityId<T>(IAppDbContext dbContext,
+                                       IMapper mapper) :
     RepositoryBase<T>(dbContext, mapper) where T : class, IEntityId {
     public IQueryable<T> Get(Guid id) {
         return DbContext.Set<T>().Where(e => e.Id == id);
@@ -15,4 +16,10 @@ public class RepositoryWithEntityId<T>(DbContext dbContext, IMapper mapper) :
         return DbContext.Set<T>().Where(e => e.Id == id)
             .ProjectTo<TU>(Mapper.ConfigurationProvider);
     }
+}
+
+public interface IAppDbContext {
+    DbSet<T> Set<T>() where T : class;
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    int SaveChanges();
 }

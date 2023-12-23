@@ -1,6 +1,3 @@
-using AutoMapper;
-using Core.RepositoryBase;
-using Microsoft.EntityFrameworkCore;
 using UnitApi.Repository;
 
 namespace UnitApi.Service;

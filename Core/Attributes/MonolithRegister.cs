@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Core.Attributes;
 
 [MeansImplicitUse]
-[BaseTypeRequired(typeof(IStartupInjection))] 
+[BaseTypeRequired(typeof(IStartupInjection))]
 public class MonolithServiceRegisterAttribute : Attribute;
 
 [MeansImplicitUse]
@@ -13,7 +13,7 @@ public class MonolithServiceRegisterAttribute : Attribute;
 public class MonolithStartupRegisterAttribute : Attribute;
 
 public interface IStartupInjection {
-    void Inject(IServiceCollection builderServices);
+    void Inject(IServiceCollection services);
 }
 
 public interface IServiceStartup {

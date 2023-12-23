@@ -1,3 +1,4 @@
+using Core;
 using Microsoft.EntityFrameworkCore;
 using UserApi.Repository;
 
@@ -6,7 +7,8 @@ namespace UserApi.Startup;
 public static class UseDatabase {
     public static void AddDbContext(IServiceCollection services) {
         var connectionString = GetConnectionString();
-        services.AddDbContext<UserApiDbContext>(options => {
+
+        services.AddDbContext<IUserDbContext, UserApiDbContext>(options => {
             options.UseNpgsql(connectionString);
         });
     }
