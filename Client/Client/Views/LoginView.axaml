@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Client.ViewModels"
+             xmlns:common="clr-namespace:Common.Model;assembly=Common"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.LoginView"
+             x:DataType="viewModels:LoginViewModel"
+             >
+    <DockPanel>
+        <Panel.Styles>
+            <Style Selector="ContentControl">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Border Width="250"
+                                Height="300"
+                                Background="{ReflectionBinding Source={StaticResource Colour}, Path=BackgroundContrast}"
+                                CornerRadius="6">
+                            <StackPanel Width="200"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <ContentPresenter Content="{TemplateBinding Content}" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+        </Panel.Styles>
+        <ContentControl>
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        MaxWidth="300"
+                        Spacing="0,0,0,10">
+                <TextBox Watermark="Username or Email"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Stretch"
+                         HorizontalContentAlignment="Center" />
+                <TextBox Watermark="Password"
+                         PasswordChar="*"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Stretch"
+                         HorizontalContentAlignment="Center" />
+                <Button Content="Login with Microsoft"
+                        Classes="Primary Small"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{x:Static common:LoginProvider.Microsoft}"
+                        IsEnabled="{Binding !IsLoading}" />
+                <Button Content="Login with Google"
+                        Classes="Primary Small"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{x:Static common:LoginProvider.Google}"
+                        IsEnabled="{Binding !IsLoading}" />
+
+                <Button Classes="Link Small"
+                        Command="{Binding SwitchToRegisterViewCommand}"
+                        CommandParameter="{x:Static common:LoginProvider.Microsoft}">
+                    Not registered yet? Click here!
+                </Button>
+                <Button Classes="Link Small"
+                        Command="{Binding ForgotPasswordCommand}"
+                        CommandParameter="{x:Static common:LoginProvider.Microsoft}">
+                    Forgot your password?
+                </Button>
+
+                <ButtonSpinner
+                    IsVisible="{Binding IsLoading}" />
+            </StackPanel>
+        </ContentControl>
+    </DockPanel>
+
+</UserControl>

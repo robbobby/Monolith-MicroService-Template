@@ -14,8 +14,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {
-        options.Authority = builder.Configuration["IdentityServer:Authority"];
-        options.Audience = builder.Configuration["IdentityServer:Audience"];
+        options.Authority = builder.Configuration["Identity:Authority"];
+        options.Audience = builder.Configuration["Identity:Audience"];
 
         options.TokenValidationParameters = new TokenValidationParameters {
             ValidateAudience = true,

@@ -1,6 +1,6 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using MicroServiceTemplateApi.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MicroServiceTemplateApi.Controllers;
 

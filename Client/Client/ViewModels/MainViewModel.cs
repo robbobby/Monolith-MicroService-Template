@@ -1,45 +1,25 @@
 ﻿using System;
-using System.Reactive;
-using System.Threading.Tasks;
-using Client.Models.Api;
-using Common.Model;
 using ReactiveUI;
 
 namespace Client.ViewModels;
 
 public class MainViewModel : ViewModelBase {
-    private bool _isLoading;
+
+    private ViewModelBase _contentViewModel;
 
     public MainViewModel() {
-        LoginCommand = ReactiveCommand.CreateFromTask<LoginProvider>(ExecuteLoginCommand);
+        _contentViewModel = new LoginViewModel();
+        Console.WriteLine("MainWindowViewModel");
     }
 
-    public string Greeting => "Welcome to Avalonia!";
-    public ReactiveCommand<LoginProvider, Unit> LoginCommand { get; }
+    public LoginViewModel LoginView { get; }
+    public RegisterViewModel RegisterView { get; }
 
-    public bool IsLoading {
-        get => _isLoading;
-        set => this.RaiseAndSetIfChanged(ref _isLoading, value);
-    }
-
-
-    private Task ExecuteLoginCommand(LoginProvider provider) {
-        IsLoading = true;
-        switch (provider) {
-            case LoginProvider.Google:
-                Console.WriteLine("Google");
-                IsLoading = false;
-                break;
-            case LoginProvider.Microsoft:
-                Apis.Identity.Test().ContinueWith(task => {
-                    Console.WriteLine(task.Result);
-                    IsLoading = false;
-                }, TaskContinuationOptions.ExecuteSynchronously);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(provider), provider, null);
+    public ViewModelBase ContentViewModel {
+        get {
+            Console.WriteLine("ContentViewModel");
+            return _contentViewModel;
         }
-
-        return Task.CompletedTask;
+        private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
     }
 }

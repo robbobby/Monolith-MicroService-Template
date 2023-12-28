@@ -1,12 +1,12 @@
-using MicroServiceTemplateApi.Repository;
+using AuthServiceApi.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace MicroServiceTemplateApi.Startup;
+namespace AuthServiceApi.Startup;
 
 public static class UseDatabase {
     public static void AddDbContext(IServiceCollection services) {
         var connectionString = GetConnectionString();
-        services.AddDbContext<MicroServiceTemplateApiDbContext>(options => {
+        services.AddDbContext<AuthServiceApiDbContext>(options => {
             options.UseNpgsql(connectionString);
         });
     }

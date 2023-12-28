@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Client.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.RegisterView">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:RegisterViewModel />
+    </Design.DataContext>
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="300"
+                    Spacing="5">
+            <TextBox Watermark="Email"
+                     HorizontalContentAlignment="Center" />
+            <TextBox Watermark="Username"
+                     HorizontalContentAlignment="Center" />
+            <TextBox Watermark="Password"
+                     HorizontalContentAlignment="Center" />
+            <TextBox Watermark="Confirm Password"
+                     HorizontalContentAlignment="Center" />
+            <Button Content="Register"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="100" />
+
+            <Button Classes="Link Small"
+                    Content="Already have an account? Login"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+
+        </StackPanel>
+    </DockPanel>
+</UserControl>

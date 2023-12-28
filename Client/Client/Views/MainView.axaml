@@ -3,7 +3,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Client.ViewModels"
-             xmlns:common="clr-namespace:Common.Model;assembly=Common"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.MainView"
              x:DataType="vm:MainViewModel">
@@ -12,37 +11,10 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainViewModel />
     </Design.DataContext>
+    <UserControl.Background>
+        <SolidColorBrush Color="#23272B" />
+    </UserControl.Background>
+    
+    <TransitioningContentControl Content="{Binding ContentViewModel}" />
 
-    <Panel>
-        <ExperimentalAcrylicBorder IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial
-                    BackgroundSource="Digger"
-                    TintColor="Black"
-                    TintOpacity="1"
-                    MaterialOpacity="0.65" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
-        <StackPanel>
-            <TextBlock Text="Hello World!" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-            <Button Content="Login with Microsoft"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Command="{Binding LoginCommand}"
-                    CommandParameter="{x:Static common:LoginProvider.Microsoft}"
-                    IsEnabled="{Binding !IsLoading}" />
-            <Button Content="Login with Google"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Command="{Binding LoginCommand}"
-                    CommandParameter="{x:Static common:LoginProvider.Google}"
-                    IsEnabled="{Binding !IsLoading}" />
-
-            <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-            <ButtonSpinner
-                IsVisible="{Binding IsLoading}" />
-        </StackPanel>
-    </Panel>
 </UserControl>

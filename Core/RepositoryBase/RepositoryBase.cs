@@ -15,6 +15,10 @@ public class RepositoryBase<T>(IAppDbContext dbContext,
             .ProjectTo<TU>(Mapper.ConfigurationProvider);
     }
 
+    public IQueryable<T> Get(Func<T, bool> condition) {
+        return DbContext.Set<T>().Where(condition).AsQueryable();
+    }
+
     public IQueryable<T> GetAll() {
         return DbContext.Set<T>();
     }
@@ -22,6 +26,12 @@ public class RepositoryBase<T>(IAppDbContext dbContext,
     public void Add(T entity) {
         DbContext.Set<T>().Add(entity);
         SaveChanges();
+    }
+
+    public async Task<T> AddAsync(T user) {
+        var entity = await DbContext.Set<T>().AddAsync(user);
+        await SaveChangesAsync();
+        return entity.Entity;
     }
 
     public void Update(T entity) {
