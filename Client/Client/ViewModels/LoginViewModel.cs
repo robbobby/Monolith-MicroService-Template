@@ -1,43 +1,39 @@
 using System;
-using System.Reactive;
 using System.Threading.Tasks;
 using Client.Models.Api;
 using Common.Model;
-using ReactiveUI;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-public class LoginViewModel : ViewModelBase {
+public partial class LoginViewModel : ViewModelBase {
+    [ObservableProperty]
     private bool _isLoading;
-    public bool IsLoading {
-        get => _isLoading;
-        set => this.RaiseAndSetIfChanged(ref _isLoading, value);
+
+    [ObservableProperty] public string _username;
+    [ObservableProperty] public string _password;
+
+    [RelayCommand]
+    public void ForgotPasswordCommand() {
+        Console.WriteLine("ForgotPasswordCommand");
     }
 
-    public ReactiveCommand<LoginProvider, Unit> LoginCommand { get; }
-    public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
-    public ReactiveCommand<Unit, Unit> SwitchToRegisterViewCommand { get; }
-    public ReactiveCommand<Unit, Unit> ForgotPasswordCommand { get; }
-    
-    public LoginViewModel() {
-        LoginCommand = ReactiveCommand.CreateFromTask<LoginProvider>(ExecuteLoginCommand);
-        SwitchToRegisterViewCommand = ReactiveCommand.Create(ExecuteSwitchToRegisterViewCommand);
+    [RelayCommand]
+    public void SwitchToRegisterViewCommand() {
+        Console.WriteLine(_username);
+        Router.NavigateTo<RegisterViewModel>();
     }
-    
-    private void ExecuteSwitchToRegisterViewCommand() {
-    }
-    
-    private Task ExecuteLoginCommand(LoginProvider provider) {
-        IsLoading = true;
+
+    [RelayCommand]
+    private Task LoginCommand(LoginProvider provider) {
         switch (provider) {
             case LoginProvider.Google:
                 Console.WriteLine("Google");
-                IsLoading = false;
                 break;
             case LoginProvider.Microsoft:
                 Apis.Identity.Test().ContinueWith(task => {
                     Console.WriteLine(task.Result);
-                    IsLoading = false;
                 }, TaskContinuationOptions.ExecuteSynchronously);
                 break;
             default:

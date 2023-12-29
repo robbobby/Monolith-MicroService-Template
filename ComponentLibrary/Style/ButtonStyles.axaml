@@ -1,0 +1,167 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <Grid RowDefinitions="Auto Auto Auto Auto Auto Auto Auto Auto Auto Auto">
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto">
+                    <Button Content="No Class" Classes="Small" />
+                    <Button Grid.Column="1" Content="No Class" Classes="Medium" />
+                    <Button Grid.Column="2" Content="No Class" Classes="Large" />
+                    <Button Grid.Column="3" Content="No Class" Classes="XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="1">
+                    <Button Content="Primary" Classes="Primary Small" />
+                    <Button Grid.Column="1" Content="Primary" Classes="Primary Medium " />
+                    <Button Grid.Column="2" Content="Primary" Classes="Primary Large" />
+                    <Button Grid.Column="3" Content="Primary" Classes="Primary XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="2">
+                    <Button Content="Warning" Classes="Warning Small" />
+                    <Button Grid.Column="1" Content="Warning" Classes="Warning Medium" />
+                    <Button Grid.Column="2" Content="Warning" Classes="Warning Large" />
+                    <Button Grid.Column="3" Content="Warning" Classes="Warning XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="3">
+                    <Button Content="Default" Classes="Default Small" />
+                    <Button Grid.Column="1" Content="Default" Classes="Default Medium" />
+                    <Button Grid.Column="2" Content="Default" Classes="Default Large" />
+                    <Button Grid.Column="3" Content="Default" Classes="Default XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="4">
+                    <Button Content="Danger" Classes="Danger Small" />
+                    <Button Grid.Column="1" Content="Danger" Classes="Danger  Medium" />
+                    <Button Grid.Column="2" Content="Danger" Classes="Danger  Large" />
+                    <Button Grid.Column="3" Content="Danger" Classes="Danger  XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="5">
+                    <Button Content="Success" Classes="Success Small" />
+                    <Button Grid.Column="1" Content="Success" Classes="Success Medium" />
+                    <Button Grid.Column="2" Content="Success" Classes="Success Large" />
+                    <Button Grid.Column="3" Content="Success" Classes="Success XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="6">
+                    <Button Content="Inverse" Classes="Inverse Small" />
+                    <Button Grid.Column="1" Content="Inverse" Classes="Inverse Medium" />
+                    <Button Grid.Column="2" Content="Inverse" Classes="Inverse Large" />
+                    <Button Grid.Column="3" Content="Inverse" Classes="Inverse XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="7">
+                    <Button Content="Info" Classes="Info Small" />
+                    <Button Grid.Column="1" Content="Info" Classes="Info Medium" />
+                    <Button Grid.Column="2" Content="Info" Classes="Info Large" />
+                    <Button Grid.Column="3" Content="Info" Classes="Info XLarge" />
+                </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="9">
+                    <Button Content="Link" Classes="Link Small" />
+                    <Button Grid.Column="1" Content="Link" Classes="Link Medium" />
+                    <Button Grid.Column="2" Content="Link" Classes="Link Large" />
+                    <Button Grid.Column="3" Content="Link" Classes="Link XLarge" />
+                </Grid>
+            </Grid>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="Button.Primary">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Primary}" />
+        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=TextLight}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="transparent" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Margin" Value="0, 0, 0, 0" />
+        <Setter Property="CornerRadius"
+                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Radius.Medium}" />
+    </Style>
+    <Style
+        Selector="Button.Primary:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=PrimaryHover}" />
+        <Setter Property="BorderBrush" Value="{ReflectionBinding Source={StaticResource Colour}, Path=PrimaryHover}" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+
+    <Style Selector="Button.Warning">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Warning}" />
+    </Style>
+    <Style Selector="Button.Warning:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=WarningHover}" />
+    </Style>
+
+    <Style Selector="Button.Default">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Default}" />
+    </Style>
+    <Style Selector="Button.Default:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=DefaultHover}" />
+    </Style>
+
+    <Style Selector="Button.Danger">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Danger}" />
+    </Style>
+    <Style Selector="Button.Danger:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=DangerHover}" />
+    </Style>
+
+    <Style Selector="Button.Success">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Success}" />
+    </Style>
+    <Style Selector="Button.Success:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=SuccessHover}" />
+    </Style>
+
+    <Style Selector="Button.Inverse">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Inverse}" />
+    </Style>
+    <Style Selector="Button.Inverse:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=InverseHover}" />
+    </Style>
+
+    <Style Selector="Button.Info">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Info}" />
+    </Style>
+    <Style Selector="Button.Info:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=InfoHover}" />
+    </Style>
+    
+    <Style Selector="Button.Link">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Link}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.Link:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=LinkHover}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <!-- Sizes -->
+    <Style Selector="Button.XLarge">
+        <Setter Property="FontSize"
+                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.XLarge}" />
+    </Style>
+    <Style Selector="Button.Large">
+        <Setter Property="FontSize"
+                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.Large}" />
+    </Style>
+    <Style Selector="Button.Medium">
+        <Setter Property="FontSize"
+                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.Medium}" />
+    </Style>
+    <Style Selector="Button.Small">
+        <Setter Property="FontSize"
+                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.Small}" />
+    </Style>
+
+</Styles>

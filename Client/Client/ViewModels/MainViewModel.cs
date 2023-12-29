@@ -1,25 +1,22 @@
 ﻿using System;
-using ReactiveUI;
+using System.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Client.ViewModels;
 
-public class MainViewModel : ViewModelBase {
-
-    private ViewModelBase _contentViewModel;
+public partial class MainViewModel : ViewModelBase {
+    [ObservableProperty] private ViewModelBase? _contentViewModel;
 
     public MainViewModel() {
-        _contentViewModel = new LoginViewModel();
-        Console.WriteLine("MainWindowViewModel");
+        _contentViewModel = LoginView;
+        Router.ViewChange += SetView;
     }
 
-    public LoginViewModel LoginView { get; }
+    private void SetView(object? sender, PropertyChangedEventArgs args) {
+        if (args.PropertyName != nameof(Router.ContentViewModel)) return;
+        ContentViewModel = Router.ContentViewModel;
+    }
+
+    public LoginViewModel LoginView { get; } = new();
     public RegisterViewModel RegisterView { get; }
-
-    public ViewModelBase ContentViewModel {
-        get {
-            Console.WriteLine("ContentViewModel");
-            return _contentViewModel;
-        }
-        private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
-    }
 }

@@ -6,8 +6,7 @@
              xmlns:common="clr-namespace:Common.Model;assembly=Common"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.LoginView"
-             x:DataType="viewModels:LoginViewModel"
-             >
+             x:DataType="viewModels:LoginViewModel">
     <DockPanel>
         <Panel.Styles>
             <Style Selector="ContentControl">
@@ -33,22 +32,25 @@
                         MaxWidth="300"
                         Spacing="0,0,0,10">
                 <TextBox Watermark="Username or Email"
+                         Text="{Binding Username}"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Stretch"
+
                          HorizontalContentAlignment="Center" />
                 <TextBox Watermark="Password"
                          PasswordChar="*"
+                         Text="{Binding Password}"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Stretch"
                          HorizontalContentAlignment="Center" />
                 <Button Content="Login with Microsoft"
-                        Classes="Primary Small"
+                        Classes="Small "
                         HorizontalAlignment="Stretch"
                         Command="{Binding LoginCommand}"
                         CommandParameter="{x:Static common:LoginProvider.Microsoft}"
                         IsEnabled="{Binding !IsLoading}" />
                 <Button Content="Login with Google"
-                        Classes="Primary Small"
+                        Classes="Small"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Command="{Binding LoginCommand}"

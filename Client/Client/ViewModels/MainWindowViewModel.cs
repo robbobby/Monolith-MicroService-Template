@@ -1,24 +1,9 @@
 using System;
-using ReactiveUI;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Client.ViewModels {
-    public class MainWindowViewModel : ViewModelBase {
-        private ViewModelBase _contentViewModel;
+    public partial class MainWindowViewModel : ViewModelBase {
+        [ObservableProperty] private static ViewModelBase _contentViewModel;
 
-        public MainWindowViewModel() {
-            _contentViewModel = new LoginViewModel();
-            Console.WriteLine("MainWindowViewModel");
-        }
-
-        public LoginViewModel LoginView { get; }
-        public RegisterViewModel RegisterView { get; }
-
-        public ViewModelBase ContentViewModel {
-            get {
-                Console.WriteLine("ContentViewModel");
-                return _contentViewModel;
-            }
-            private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
-        }
     }
 }
