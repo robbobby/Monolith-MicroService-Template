@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Client.Desktop;
 

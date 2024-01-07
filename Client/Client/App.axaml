@@ -13,7 +13,7 @@
         <StyleInclude Source="avares://ComponentLibrary/Style/InputBoxStyle.axaml"/>
     </Application.Styles>
     
-    <Application.DataTemplates>
-        <local:ViewLocator />
-    </Application.DataTemplates>
+    <!-- <Application.DataTemplates> -->
+        <!-- <local:ViewLocator /> -->
+    <!-- </Application.DataTemplates> -->
 </Application>

@@ -1,4 +1,5 @@
 using System;
+using Client.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -13,6 +14,6 @@ public partial class RegisterViewModel : ViewModelBase {
 
     [RelayCommand]
     public void SwitchToLoginViewCommand() {
-        Router.NavigateTo<LoginViewModel>();
+        Router.NavigateTo<LoginView>();
     }
 }

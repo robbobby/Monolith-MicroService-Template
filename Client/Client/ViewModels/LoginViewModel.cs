@@ -1,18 +1,20 @@
 using System;
 using System.Threading.Tasks;
 using Client.Models.Api;
+using Client.Views;
 using Common.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-public partial class LoginViewModel : ViewModelBase {
+public partial class LoginViewModel() : ViewModelBase {
+
     [ObservableProperty]
     private bool _isLoading;
 
-    [ObservableProperty] public string _username;
-    [ObservableProperty] public string _password;
+    [ObservableProperty] private string _username;
+    [ObservableProperty] [NonePersistent] private string _password;
 
     [RelayCommand]
     public void ForgotPasswordCommand() {
@@ -21,8 +23,7 @@ public partial class LoginViewModel : ViewModelBase {
 
     [RelayCommand]
     public void SwitchToRegisterViewCommand() {
-        Console.WriteLine(_username);
-        Router.NavigateTo<RegisterViewModel>();
+        Router.NavigateTo<RegisterView>();
     }
 
     [RelayCommand]
@@ -42,6 +43,6 @@ public partial class LoginViewModel : ViewModelBase {
 
         return Task.CompletedTask;
     }
-
-    
 }
+
+public class NonePersistentAttribute : Attribute { }

@@ -10,5 +10,5 @@
     x:CompileBindings="True"
     Icon="/Assets/avalonia-logo.ico"
     Title="Messaging App">
-    <views:MainView />
+    <!-- <ContentPresenter Content="{Binding Content, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" /> -->
 </Window>
