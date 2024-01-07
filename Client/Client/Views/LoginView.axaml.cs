@@ -1,4 +1,3 @@
-using Avalonia.Controls;
 using Client.ViewModels;
 
 namespace Client.Views;
@@ -9,9 +8,7 @@ public partial class LoginView : ViewBase {
         DataContext = viewModel;
     }
 
-    public LoginView() : base(null!) {
+    public LoginView() : base(new LoginViewModel()) {
         InitializeComponent();
     }
-    
 }
-

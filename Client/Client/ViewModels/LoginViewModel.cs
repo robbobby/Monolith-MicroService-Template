@@ -13,8 +13,8 @@ public partial class LoginViewModel() : ViewModelBase {
     [ObservableProperty]
     private bool _isLoading;
 
-    [ObservableProperty] private string _username;
-    [ObservableProperty] [NonePersistent] private string _password;
+    [ObservableProperty] private string _username = "";
+    [ObservableProperty] [NonePersistent] private string _password = "";
 
     [RelayCommand]
     public void ForgotPasswordCommand() {

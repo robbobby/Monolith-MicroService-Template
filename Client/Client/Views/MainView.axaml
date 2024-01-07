@@ -3,15 +3,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Client.ViewModels"
+             xmlns:views="clr-namespace:Client.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.MainView"
              x:DataType="vm:MainViewModel">
     <Design.DataContext>
-        <vm:MainViewModel />
+        <views:LoginView />
     </Design.DataContext>
     <UserControl.Background>
         <SolidColorBrush Color="#23272B" />
     </UserControl.Background>
-    
+
     <TransitioningContentControl Content="{Binding ContentViewModel}" />
 </UserControl>

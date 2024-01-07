@@ -1,4 +1,3 @@
-using Avalonia.Controls;
 using Client.ViewModels;
 
 namespace Client.Views;

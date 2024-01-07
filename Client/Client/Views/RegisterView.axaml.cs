@@ -1,4 +1,3 @@
-using Avalonia.Controls;
 using Client.ViewModels;
 
 namespace Client.Views;
@@ -9,7 +8,7 @@ public partial class RegisterView : ViewBase {
         DataContext = viewModel;
     }
     
-    private RegisterView() : base(null!) {
+    public RegisterView() : base(new RegisterViewModel()) {
         InitializeComponent();
     }
 }
