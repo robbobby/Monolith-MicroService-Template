@@ -14,6 +14,5 @@ public class UserEntity : IdentityUser<Guid>, IEntityId {
 }
 
 public class UserToken : IdentityUserToken<Guid> {
-    [Key]
-    public Guid Id { get; set; }
-};
+    [Key] public Guid Id { get; set; }
+}

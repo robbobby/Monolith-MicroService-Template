@@ -1,6 +1,7 @@
 # Setup
 
 ### .Net 8
+
 Install .net 8 onto your computer, either through rider or through the command line.
 
 Install Docker Desktop onto your computer via https://docs.docker.com/desktop/install/mac-install/
@@ -16,7 +17,6 @@ Run the following commands to install the sdks for the client.
 `sudo dotnet workload install ios` This will install the ios sdk
 `sudo dotnet workload install android` This will install the android sdk
 `sudo dotnet workload install wasm-tools` This will install the wasm sdk for the browser client
-
 
 # Running the Web App
 

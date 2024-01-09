@@ -7,35 +7,53 @@
              x:Class="Client.Views.RegisterView"
              x:DataType="vm:RegisterViewModel">
     <DockPanel>
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Width="300"
-                    Spacing="5">
-            <TextBox Watermark="Email"
-                     Text="{Binding Email}"
-                     HorizontalContentAlignment="Center" />
-            <TextBox Watermark="Username"
-                     Text="{Binding Username}"
-                     HorizontalContentAlignment="Center" />
-            <TextBox Watermark="Password"
-                     Text="{Binding Password}"
-                     PasswordChar="*"
-                     HorizontalContentAlignment="Center" />
-            <TextBox Watermark="Confirm Password"
-                     Text="{Binding ConfirmPassword}"
-                     PasswordChar="*"
-                     HorizontalContentAlignment="Center" />
-            <Button Content="Register"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Width="100" />
+        <!-- TODO: Height and width of this should be auth with some padding -->
+        <Panel Height="300"
+               Width="300">
+            <Border Width="400">
+                <StackPanel Spacing="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBox Watermark="Email"
+                             IsEnabled="{Binding !IsLoading}"
+                             Text="{Binding Email}"
+                             HorizontalContentAlignment="Center" />
+                    <TextBox Watermark="Username"
+                             IsEnabled="{Binding !IsLoading}"
+                             Text="{Binding Username}"
+                             HorizontalContentAlignment="Center" />
+                    <TextBox Watermark="First Name"
+                             IsEnabled="{Binding !IsLoading}"
+                             Text="{Binding FirstName}"
+                             HorizontalContentAlignment="Center" />
+                    <TextBox Watermark="Last Name"
+                             IsEnabled="{Binding !IsLoading}"
+                             Text="{Binding LastName}"
+                             HorizontalContentAlignment="Center" />
+                    <TextBox Watermark="Password"
+                             IsEnabled="{Binding !IsLoading}"
+                             Text="{Binding Password}"
+                             PasswordChar="*"
+                             HorizontalContentAlignment="Center" />
+                    <TextBox Watermark="Confirm Password"
+                             IsEnabled="{Binding !IsLoading}"
+                             Text="{Binding ConfirmPassword}"
+                             PasswordChar="*"
+                             HorizontalContentAlignment="Center" />
+                    <Button Content="Register"
+                            Command="{Binding RegisterCommand}"
+                            IsEnabled="{Binding !IsLoading}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="100" />
 
-            <Button Classes="Link Small"
-                    Content="Already have an account? Login"
-                    Command="{Binding SwitchToLoginViewCommand}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center" />
-
-        </StackPanel>
+                    <Button Classes="Link Small"
+                            Content="Already have an account? Login"
+                            Command="{Binding SwitchToLoginViewCommand}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Panel>
     </DockPanel>
 </UserControl>

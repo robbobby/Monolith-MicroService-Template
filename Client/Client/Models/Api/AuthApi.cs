@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
+using Api.Core.Model.Auth;
 using Common.IdentityApi;
 using Common.IdentityApi.Login;
+using LoginRequest = Common.IdentityApi.Login.LoginRequest;
 
 namespace Client.Models.Api;
 
-public class IdentityApi {
+public class AuthApi {
     public IdentityManageApi Manage { get; } = new();
 
     public async Task<string?> Test() {
@@ -12,8 +14,8 @@ public class IdentityApi {
     }
 
     // TODO: Implement the return type
-    public async Task<object?> Register(string email, string password) {
-        return await ApiClient.PostAsync<object>("/Api/Identity/Register", new { email, password });
+    public async Task<object?> Register(RegisterRequest request) {
+        return await ApiClient.PostAsync<object>("/Api/Auth/Register", request);
     }
 
     public async Task<TokenResult?> Login(LoginRequest request) {

@@ -14,7 +14,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     public DbSet<UserEntity> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-        optionsBuilder.UseNpgsql("Host=localhost;Database=WebApi;Username=root;Password=mysecretpassword;Port=5432");
+        optionsBuilder.UseNpgsql("Host=localhost;Database=WebApi;Username=rob;Port=5432");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {

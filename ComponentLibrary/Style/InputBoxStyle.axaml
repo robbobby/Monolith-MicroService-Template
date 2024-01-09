@@ -2,12 +2,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <Border Padding="20">
-            <StackPanel  Spacing="20">
+            <StackPanel Spacing="20">
                 <TextBox Text="Standard" />
                 <TextBox Watermark="Inactive" />
                 <TextBox Text="Error" Classes="Error" />
                 <TextBox Text="Success" Classes="Success" />
-                <TextBox IsEnabled="False" Watermark="Disabled"></TextBox>
+                <TextBox IsEnabled="False" Watermark="Disabled" />
             </StackPanel>
         </Border>
     </Design.PreviewWith>
@@ -15,30 +15,30 @@
     <Style Selector="TextBox">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="#c8c8c8" />
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Background}" />
-        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=TextLight}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.TextLight}" />
         <Setter Property="Padding" Value="8" />
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="FontSize" Value="{ReflectionBinding Source={StaticResource Typography}, Path=Text.Caption}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />
         <Setter Property="MinWidth" Value="120" />
         <Setter Property="MinHeight" Value="24" />
     </Style>
-    
+
     <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
         <Setter Property="Background"
-                Value="{ReflectionBinding Source={StaticResource Colour}, Path=BackgroundContrast}" />
+                Value="{DynamicResource Colour.BackgroundContrast}" />
     </Style>
     <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
         <Setter Property="Background"
-                Value="{ReflectionBinding Source={StaticResource Colour}, Path=BackgroundContrast}" />
+                Value="{DynamicResource Colour.BackgroundContrast}" />
     </Style>
     <Style Selector="TextBox.Error">
-        <Setter Property="BorderBrush" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Danger}" />
-        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Danger}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Danger}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Danger}" />
     </Style>
 
     <Style Selector="TextBox.Success">
-        <Setter Property="BorderBrush" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Success}" />
-        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Success}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Success}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Success}" />
     </Style>
 </Styles>

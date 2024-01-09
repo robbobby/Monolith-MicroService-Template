@@ -1,7 +1,7 @@
-using Foundation;
 using Avalonia;
 using Avalonia.iOS;
 using Avalonia.ReactiveUI;
+using Foundation;
 
 namespace Client.iOS;
 
@@ -10,7 +10,7 @@ namespace Client.iOS;
 // application events from iOS.
 [Register("AppDelegate")]
 #pragma warning disable CA1711 // Identifiers should not have incorrect suffix
-public partial class AppDelegate : AvaloniaAppDelegate<App>
+public class AppDelegate : AvaloniaAppDelegate<App>
 #pragma warning restore CA1711 // Identifiers should not have incorrect suffix
 {
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder) {

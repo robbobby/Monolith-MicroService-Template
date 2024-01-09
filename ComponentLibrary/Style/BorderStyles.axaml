@@ -1,0 +1,74 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <StackPanel Spacing="10" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Margin="20">
+                <Border Padding="20">
+                    <TextBlock Text="Border" />
+                </Border>
+                <Border Classes="Primary" Padding="20">
+                    <TextBlock Text="Primary" />
+                </Border>
+                <Border Classes="Warning" Padding="20">
+                    <TextBlock Text="Warning" />
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Classes="Success" Padding="20">
+                    <TextBlock Text="Success" />
+                </Border>
+                <Border Classes="Danger" Padding="20">
+                    <TextBlock Text="Danger" />
+                </Border>
+                <Border Classes="Inverse" Padding="20">
+                    <TextBlock Text="Inverse" />
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Classes="Info" Padding="20">
+                    <TextBlock Text="Info" />
+                </Border>
+
+                <Border Classes="Disabled" Padding="20">
+                    <TextBlock Text="Disabled" />
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Design.PreviewWith>
+    
+    
+    <Style Selector="Border">
+        <Setter Property="CornerRadius"
+                Value="{StaticResource Radius.Base}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.Primary">
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Primary}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.Warning">
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Warning}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.Danger">
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Danger}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.Success">
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Success}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.Inverse">
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Inverse}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.Info">
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Info}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.Disabled">
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Disabled}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+</Styles>

@@ -1,0 +1,25 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <system:Double x:Key="FontSize.Base">14</system:Double>
+    <system:Double x:Key="FontSize.Paragraph">14</system:Double>
+    <system:Double x:Key="FontSize.Caption">12</system:Double>
+    <system:Double x:Key="FontSize.Overline">10</system:Double>
+
+
+    <system:Double x:Key="Button.FontSize.XLarge">28</system:Double>
+    <system:Double x:Key="Button.FontSize.Large">21</system:Double>
+    <system:Double x:Key="Button.FontSize.Medium">14</system:Double>
+    <system:Double x:Key="Button.FontSize.Small">12</system:Double>
+
+    <CornerRadius x:Key="Radius.Base">3</CornerRadius>
+    <CornerRadius x:Key="Radius.Small">2</CornerRadius>
+    <CornerRadius x:Key="Radius.Large">6</CornerRadius>
+    <CornerRadius x:Key="Radius.XLarge">9</CornerRadius>
+
+    <system:Double x:Key="FontSize.H1">35</system:Double>
+    <system:Double x:Key="FontSize.H2">28</system:Double>
+    <system:Double x:Key="FontSize.H3">24.5</system:Double>
+    <system:Double x:Key="FontSize.H4">21</system:Double>
+    <system:Double x:Key="FontSize.H5">17.5</system:Double>
+</ResourceDictionary>

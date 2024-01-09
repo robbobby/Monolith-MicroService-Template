@@ -14,7 +14,7 @@
                     <ControlTemplate>
                         <Border Width="250"
                                 Height="300"
-                                Background="{ReflectionBinding Source={StaticResource Colour}, Path=BackgroundContrast}"
+                                Background="{DynamicResource Colour.BackgroundContrast}"
                                 CornerRadius="6">
                             <StackPanel Width="200"
                                         HorizontalAlignment="Center"
@@ -35,7 +35,6 @@
                          Text="{Binding Username}"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Stretch"
-
                          HorizontalContentAlignment="Center" />
                 <TextBox Watermark="Password"
                          PasswordChar="*"
@@ -43,20 +42,24 @@
                          VerticalAlignment="Center"
                          HorizontalAlignment="Stretch"
                          HorizontalContentAlignment="Center" />
-                <Button Content="Login with Microsoft"
-                        Classes="Small "
+                <Button Content="Login"
+                        Classes="Small Primary"
                         HorizontalAlignment="Stretch"
                         Command="{Binding LoginCommand}"
+                        IsEnabled="{Binding !IsLoading}" />
+                <Button Content="Login with Microsoft"
+                        Classes="Small Primary"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding SocialLoginCommand}"
                         CommandParameter="{x:Static common:LoginProvider.Microsoft}"
                         IsEnabled="{Binding !IsLoading}" />
                 <Button Content="Login with Google"
                         Classes="Small"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Command="{Binding LoginCommand}"
+                        Command="{Binding SocialLoginCommand}"
                         CommandParameter="{x:Static common:LoginProvider.Google}"
                         IsEnabled="{Binding !IsLoading}" />
-
                 <Button Classes="Link Small"
                         Command="{Binding SwitchToRegisterViewCommand}"
                         CommandParameter="{x:Static common:LoginProvider.Microsoft}">

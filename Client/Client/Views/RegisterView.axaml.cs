@@ -7,7 +7,7 @@ public partial class RegisterView : ViewBase {
         InitializeComponent();
         DataContext = viewModel;
     }
-    
+
     public RegisterView() : base(new RegisterViewModel()) {
         InitializeComponent();
     }

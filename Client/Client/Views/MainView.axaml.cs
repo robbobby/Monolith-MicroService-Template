@@ -7,7 +7,7 @@ public partial class MainView : ViewBase {
         InitializeComponent();
         DataContext = viewModel;
     }
-    
+
     private MainView() : base(null!) {
         InitializeComponent();
     }

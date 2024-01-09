@@ -2,6 +2,7 @@
 
 namespace Client.ViewModels;
 
-public class ViewModelBase : ObservableObject {
+public partial class ViewModelBase : ObservableObject {
+    [ObservableProperty] private bool _isLoading;
     public bool PersistData { get; set; } = true;
 }

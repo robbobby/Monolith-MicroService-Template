@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Api.Core.Model.Auth;
 using AuthServiceApi.Controllers;
 using AuthServiceApi.Repository;
 using Core.Entity.Identity;
@@ -13,7 +14,7 @@ public class AuthServiceService(AuthServiceRepository authServiceRepository) {
     private AuthServiceRepository _authServiceRepository => authServiceRepository;
     private PasswordHasher<UserEntity> _passwordHasher { get; } = new();
 
-    public async Task<HttpResult> RegisterUser(UserRegisterRequest request) {
+    public async Task<HttpResult> RegisterUser(RegisterRequest request) {
         if (_authServiceRepository.Users.Get(u => u.Email == request.Email).FirstOrDefault() != null)
             // We can't provide an error message due to security reasons, return Ok and advise the user to check their email
             return new HttpResult {
@@ -43,7 +44,7 @@ public class AuthServiceService(AuthServiceRepository authServiceRepository) {
         };
     }
 
-    public async Task<AuthenticationResult> AuthenticateUser(UserLoginRequest loginRequest) {
+    public async Task<AuthenticationResult> AuthenticateUser(LoginRequest loginRequest) {
         var user = _authServiceRepository.Users
             .Get(u => u.UserName == loginRequest.Username || u.Email == loginRequest.Username).FirstOrDefault();
 

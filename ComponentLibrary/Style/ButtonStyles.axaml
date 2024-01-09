@@ -62,8 +62,8 @@
     </Design.PreviewWith>
 
     <Style Selector="Button.Primary">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Primary}" />
-        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=TextLight}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.TextLight}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -71,61 +71,61 @@
         <Setter Property="Padding" Value="8" />
         <Setter Property="Margin" Value="0, 0, 0, 0" />
         <Setter Property="CornerRadius"
-                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Radius.Medium}" />
+                Value="{StaticResource Radius.Large}" />
     </Style>
     <Style
         Selector="Button.Primary:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=PrimaryHover}" />
-        <Setter Property="BorderBrush" Value="{ReflectionBinding Source={StaticResource Colour}, Path=PrimaryHover}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.PrimaryHover}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.PrimaryHover}" />
         <Setter Property="Cursor" Value="Hand" />
     </Style>
 
 
     <Style Selector="Button.Warning">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Warning}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Warning}" />
     </Style>
     <Style Selector="Button.Warning:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=WarningHover}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.WarningHover}" />
     </Style>
 
     <Style Selector="Button.Default">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Default}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Default}" />
     </Style>
     <Style Selector="Button.Default:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=DefaultHover}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.DefaultHover}" />
     </Style>
 
     <Style Selector="Button.Danger">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Danger}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Danger}" />
     </Style>
     <Style Selector="Button.Danger:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=DangerHover}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.DangerHover}" />
     </Style>
 
     <Style Selector="Button.Success">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Success}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Success}" />
     </Style>
     <Style Selector="Button.Success:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=SuccessHover}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.SuccessHover}" />
     </Style>
 
     <Style Selector="Button.Inverse">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Inverse}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Inverse}" />
     </Style>
     <Style Selector="Button.Inverse:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=InverseHover}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.InverseHover}" />
     </Style>
 
     <Style Selector="Button.Info">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Info}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Info}" />
     </Style>
     <Style Selector="Button.Info:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{ReflectionBinding Source={StaticResource Colour}, Path=InfoHover}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.InfoHover}" />
     </Style>
-    
+
     <Style Selector="Button.Link">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=Link}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Link}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0" />
@@ -136,7 +136,7 @@
     </Style>
     <Style Selector="Button.Link:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{ReflectionBinding Source={StaticResource Colour}, Path=LinkHover}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.LinkHover}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0" />
@@ -149,19 +149,19 @@
     <!-- Sizes -->
     <Style Selector="Button.XLarge">
         <Setter Property="FontSize"
-                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.XLarge}" />
+                Value="{DynamicResource Button.FontSize.Large}" />
     </Style>
     <Style Selector="Button.Large">
         <Setter Property="FontSize"
-                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.Large}" />
+                Value="{DynamicResource Button.FontSize.Large}" />
     </Style>
     <Style Selector="Button.Medium">
         <Setter Property="FontSize"
-                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.Medium}" />
+                Value="{DynamicResource Button.FontSize.Medium}" />
     </Style>
     <Style Selector="Button.Small">
         <Setter Property="FontSize"
-                Value="{ReflectionBinding Source={StaticResource Typography}, Path=Button.Small}" />
+                Value="{DynamicResource Button.FontSize.Small}" />
     </Style>
 
 </Styles>

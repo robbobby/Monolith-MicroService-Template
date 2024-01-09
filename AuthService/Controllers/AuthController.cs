@@ -1,19 +1,20 @@
+using Api.Core.Model.Auth;
 using AuthServiceApi.Service;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RegisterRequest = Api.Core.Model.Auth.RegisterRequest;
 
 namespace AuthServiceApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthServiceController(AuthServiceService authServiceService, IMapper mapper)
+public class AuthController(AuthServiceService authServiceService)
     : ControllerBase {
-    private readonly IMapper _mapper = mapper;
 
     [AllowAnonymous]
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] UserRegisterRequest reqBody) {
+    public async Task<IActionResult> Register([FromBody] RegisterRequest reqBody) {
+        Console.WriteLine(reqBody);
         var result = await authServiceService.RegisterUser(reqBody);
 
         if (result.Succeeded == ResultType.Success) return Ok();
@@ -26,7 +27,7 @@ public class AuthServiceController(AuthServiceService authServiceService, IMappe
 
     [AllowAnonymous]
     [HttpPost("login")]
-    public async Task<ActionResult<AuthenticationResult>> LoginWithPassword([FromBody] UserLoginRequest reqBody) {
+    public async Task<ActionResult<AuthenticationResult>> LoginWithPassword([FromBody] LoginRequest reqBody) {
         var result = await authServiceService.AuthenticateUser(reqBody);
 
         if (result.Succeeded) return Ok(result);
@@ -47,17 +48,4 @@ public class AuthenticationResult {
     public string RefreshToken { get; set; }
     public bool Succeeded { get; set; }
     public string[] Errors { get; set; }
-}
-
-public class UserLoginRequest {
-    public string Username { get; set; }
-    public string Password { get; set; }
-}
-
-public class UserRegisterRequest {
-    public string Username { get; set; }
-    public string Password { get; set; }    
-    public string Email { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
 }

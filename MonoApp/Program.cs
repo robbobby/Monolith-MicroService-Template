@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) => {
-    options.UseNpgsql("Host=localhost;Database=WebApi;Username=root;Password=mysecretpassword;Port=5432", dbOptions => {
+    options.UseNpgsql("Host=localhost;Database=WebApi;Username=rob;Port=5432", dbOptions => {
         dbOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.GetName().Name);
     });
 });
@@ -43,7 +43,7 @@ builder.Services.AddCors(options => {
 });
 
 builder.Services.AddDbContext<AppDbContext>(opts =>
-    opts.UseNpgsql("Host=localhost;Database=WebApi;Username=root;Password=mysecretpassword;Port=5432"));
+    opts.UseNpgsql("Host=localhost;Database=WebApi;Username=rob;Port=5432"));
 
 InjectMicroServices();
 
@@ -103,7 +103,7 @@ IEnumerable<Type> GetMonolithServices(Type attributeType) {
 }
 
 void ResolveDbContextOptions(IServiceProvider provider, DbContextOptionsBuilder builder) {
-    builder.UseNpgsql("Host=localhost;Database=WebApi;Username=root;Password=mysecretpassword;Port=5432",
+    builder.UseNpgsql("Host=localhost;Database=WebApi;Username=rob;Port=5432",
         NpsqlOptionsAction);
 }
 

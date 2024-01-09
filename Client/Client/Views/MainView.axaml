@@ -14,5 +14,5 @@
         <SolidColorBrush Color="#23272B" />
     </UserControl.Background>
 
-    <TransitioningContentControl Content="{Binding ContentViewModel}" />
+    <TransitioningContentControl Content="{Binding TemplateView}" />
 </UserControl>

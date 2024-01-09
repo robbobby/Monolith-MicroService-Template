@@ -11,6 +11,6 @@ public static class UseDatabase {
     }
 
     private static string GetConnectionString() {
-        return "Host=localhost;Database=WebApi;Username=root;Password=mysecretpassword;Port=5432";
+        return "Host=localhost;Database=WebApi;Username=rob;Port=5432";
     }
 }

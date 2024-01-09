@@ -15,22 +15,23 @@
         <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-        <PackageReference Include="FluentAvaloniaUI" Version="2.0.4" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
+        <PackageReference Include="FluentAvaloniaUI" Version="2.0.4"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Api.Core\Api.Core.csproj"/>
+        <ProjectReference Include="..\..\Common\Common.csproj"/>
+        <ProjectReference Include="..\..\ComponentLibrary\ComponentLibrary.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\Common\Common.csproj"/>
-        <ProjectReference Include="..\..\ComponentLibrary\ComponentLibrary.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Common\Common.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <UpToDateCheckInput Remove="Style\ButtonStyles.axaml" />
-      <UpToDateCheckInput Remove="Style\MainStyle.axaml" />
+        <UpToDateCheckInput Remove="Style\ButtonStyles.axaml"/>
+        <UpToDateCheckInput Remove="Style\MainStyle.axaml"/>
     </ItemGroup>
 </Project>

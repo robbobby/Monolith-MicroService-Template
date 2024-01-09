@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Client.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:views="clr-namespace:Client.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.ApplicationTemplateView"
+             x:DataType="viewModels:ApplicationTemplateViewModel">
+    <SplitView IsPaneOpen="{Binding IsNavMenuOpen}"
+               OpenPaneLength="200"
+               CompactPaneLength="48"
+               DisplayMode="CompactInline"
+               Background="{DynamicResource Colour.BackgroundContrast}"
+               PaneBackground="{DynamicResource Colour.BackgroundContrast}">
+        <SplitView.Pane>
+            <StackPanel>
+                <Button HorizontalAlignment="Right" Margin="9"
+                        Command="{Binding ToggleNavMenuCommand}">
+                -
+                </Button>
+                <ListBox ItemsSource="{Binding NavItems}" SelectedItem="{Binding SelectedNavItem}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:NavigationItem}">
+                            <StackPanel Spacing="15" Orientation="Horizontal">
+                                <TextBlock Text="{Binding Label}" FontSize="20"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Border Background="{DynamicResource Colour.Background}"
+                    CornerRadius="12 0 0 0">
+            <StackPanel Margin="20">
+                <TransitioningContentControl Content="{Binding View}"/>
+            </StackPanel>
+            </Border>
+        </SplitView.Content>
+
+    </SplitView>
+</UserControl>
