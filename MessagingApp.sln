@@ -30,7 +30,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentLibrary", "Compone
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceTemplateApi", "MicroServiceTemplate\MicroServiceTemplateApi.csproj", "{F8EA1FDE-8756-4ACA-9777-19473F26FB20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Core", "Api.Core\Api.Core.csproj", "{F9AC6483-5E68-44AC-B49A-4433AD2DF5C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apis.Core", "Apis.Core\Apis.Core.csproj", "{F9AC6483-5E68-44AC-B49A-4433AD2DF5C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

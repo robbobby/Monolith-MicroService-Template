@@ -10,5 +10,6 @@ public partial class LoginView : ViewBase {
 
     public LoginView() : base(new LoginViewModel()) {
         InitializeComponent();
+        
     }
 }

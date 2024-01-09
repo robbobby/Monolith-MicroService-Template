@@ -1,6 +1,10 @@
 using System;
 using System.Threading.Tasks;
+using Apis.Core.Model.Auth;
+using Avalonia;
+using Client.Models.Apis;
 using Client.Views;
+using Common.IdentityApi;
 using Common.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -25,10 +29,22 @@ public partial class LoginViewModel : ViewModelBase {
     }
 
     [RelayCommand]
-    public Task LoginCommand() {
-        Router.NavigateTo<ApplicationView>();
-        Console.WriteLine("LoginCommand");
-        return Task.CompletedTask;
+    public async Task LoginCommand() {
+        try {
+            IsLoading = true;
+            var result = await Api.Auth.Login(new LoginRequest {
+                Username = Username,
+                Password = Password
+            });
+
+            if (result?.Succeeded == ResultType.Success) {
+                ApiClient.SetTokens(result.Data!);
+                Router.NavigateTo<ApplicationView>();
+            }
+        }
+        finally {
+            IsLoading = false;
+        }
     }
 
     [RelayCommand]
@@ -38,7 +54,7 @@ public partial class LoginViewModel : ViewModelBase {
                 Console.WriteLine("Google");
                 break;
             case LoginProvider.Microsoft:
-                Models.Api.Api.Auth.Test().ContinueWith(task => {
+                Models.Apis.Api.Auth.Test().ContinueWith(task => {
                     Console.WriteLine(task.Result);
                 }, TaskContinuationOptions.ExecuteSynchronously);
                 break;

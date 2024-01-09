@@ -33,12 +33,14 @@
                         Spacing="0,0,0,10">
                 <TextBox Watermark="Username or Email"
                          Text="{Binding Username}"
+                         IsEnabled="{Binding !IsLoading}"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Stretch"
                          HorizontalContentAlignment="Center" />
                 <TextBox Watermark="Password"
                          PasswordChar="*"
                          Text="{Binding Password}"
+                         IsEnabled="{Binding !IsLoading}"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Stretch"
                          HorizontalContentAlignment="Center" />

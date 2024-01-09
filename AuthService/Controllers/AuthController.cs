@@ -1,8 +1,9 @@
-using Api.Core.Model.Auth;
+using Apis.Core.Model.Auth;
 using AuthServiceApi.Service;
+using Common.IdentityApi;
+using Common.IdentityApi.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RegisterRequest = Api.Core.Model.Auth.RegisterRequest;
 
 namespace AuthServiceApi.Controllers;
 
@@ -12,13 +13,11 @@ public class AuthController(AuthServiceService authServiceService)
     : ControllerBase {
     [AllowAnonymous]
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterRequest reqBody) {
-        Console.WriteLine(reqBody);
+    public async Task<ActionResult<HttpResult>> Register([FromBody] RegisterRequest reqBody) {
         var result = await authServiceService.RegisterUser(reqBody);
 
-        if (result.Succeeded == ResultType.Success) return Ok();
+        if (result.Succeeded == ResultType.Success) return Ok(new HttpResult { Succeeded = ResultType.Success });
 
-        if (result.Succeeded == ResultType.Conflict) return Conflict(result);
         if (result.Errors.Length > 0) return BadRequest(result);
 
         return BadRequest(result);
@@ -26,12 +25,21 @@ public class AuthController(AuthServiceService authServiceService)
 
     [AllowAnonymous]
     [HttpPost("login")]
-    public async Task<ActionResult<AuthenticationResult>> LoginWithPassword([FromBody] LoginRequest reqBody) {
+    public async Task<ActionResult<HttpResult<TokenResult?>>> LoginWithPassword([FromBody] LoginRequest reqBody) {
         var result = await authServiceService.AuthenticateUser(reqBody);
+        if (result.Succeeded) {
+            return Ok(new HttpResult<TokenResult> {
+                Succeeded = ResultType.Success,
+                Data = result.TokenResult
+            });
+        }
 
-        if (result.Succeeded) return Ok(result);
-
-        return Ok(result);
+        Console.WriteLine("Login failed");
+        
+        return BadRequest(new HttpResult {
+            Succeeded = ResultType.Failure,
+            Errors = ["Incorrect username or password"]
+        });
     }
 
     [Authorize]
@@ -43,8 +51,7 @@ public class AuthController(AuthServiceService authServiceService)
 }
 
 public class AuthenticationResult {
-    public string AccessToken { get; set; }
-    public string RefreshToken { get; set; }
+    public TokenResult? TokenResult { get; set; }
     public bool Succeeded { get; set; }
     public string[] Errors { get; set; }
 }

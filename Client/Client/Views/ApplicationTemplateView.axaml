@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Client.ViewModels"
+             xmlns:client="clr-namespace:Client"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.ApplicationTemplateView"
              x:DataType="viewModels:ApplicationTemplateViewModel">
@@ -16,7 +17,16 @@
             <StackPanel>
                 <Button HorizontalAlignment="Right" Margin="9"
                         Command="{Binding ToggleNavMenuCommand}">
-                    -
+                    <PathIcon>
+                        <PathIcon.Data>
+                            <Binding Path="IsNavMenuOpen">
+                                <Binding.Converter>
+                                    <client:BooleanConverter False="{StaticResource Icon.MenuBar}"
+                                                             True="{StaticResource Icon.Cross}" />
+                                </Binding.Converter>
+                            </Binding>
+                        </PathIcon.Data>
+                    </PathIcon>
                 </Button>
                 <ListBox ItemsSource="{Binding NavItems}" SelectedItem="{Binding SelectedNavItem}">
                     <ListBox.ItemTemplate>

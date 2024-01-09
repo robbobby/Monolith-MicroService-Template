@@ -1,15 +1,18 @@
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 using System.Security.Authentication;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Common.IdentityApi.Login;
 
-namespace Client.Models.Api;
+namespace Client.Models.Apis;
 
 public class ApiClient {
     private static readonly HttpClientHandler _handler = new();
+    private static string _refreshToken = "";
 
     private static readonly HttpClient Client;
 
@@ -99,7 +102,9 @@ public class ApiClient {
             return content as T;
 
         try {
-            return JsonSerializer.Deserialize<T>(content);
+            return JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions {
+                PropertyNameCaseInsensitive = true
+            });
         }
         catch (JsonException) {
             Console.WriteLine($"Error deserializing {content}");
@@ -110,5 +115,11 @@ public class ApiClient {
     private static void LogOnError(HttpResponseMessage response) {
         Console.WriteLine(response.StatusCode);
         Console.WriteLine(response.ReasonPhrase);
+    }
+
+    public static void SetTokens(TokenResult resultData) {
+        Client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", resultData.AccessToken);
+        _refreshToken = resultData.RefreshToken;
     }
 }

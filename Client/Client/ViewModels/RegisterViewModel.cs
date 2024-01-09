@@ -1,5 +1,9 @@
-using Api.Core.Model.Auth;
+using System;
+using System.Threading.Tasks;
+using Apis.Core.Model.Auth;
+using Client.Models.Apis;
 using Client.Views;
+using Common.IdentityApi;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -19,18 +23,20 @@ public partial class RegisterViewModel : ViewModelBase {
     }
 
     [RelayCommand]
-    public void RegisterCommand() {
+    public async Task RegisterCommand() {
         try {
             IsLoading = true;
-            Models.Api.Api.Auth.Register(new RegisterRequest {
+            var result = await Api.Auth.Register(new RegisterRequest {
                 Username = Username,
                 Email = Email,
                 FirstName = FirstName,
                 LastName = LastName,
                 Password = Password
-            }).ContinueWith(task => {
-                if (task.IsCompletedSuccessfully) Router.NavigateTo<LoginView>();
             });
+            
+            if (result?.Succeeded == ResultType.Success) {
+                Router.NavigateTo<LoginView>();
+            }
         }
         finally {
             IsLoading = false;

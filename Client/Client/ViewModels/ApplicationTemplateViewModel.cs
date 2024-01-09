@@ -1,5 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
 using Client.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -27,12 +30,25 @@ public partial class ApplicationTemplateViewModel : TemplateViewModelBase {
 }
 
 // where T is ViewBase
-public class NavigationItem(string label, string icon, Type viewType) {
-    public string Icon = icon;
-    public Type ViewType = viewType;
-    public string Label { get; init; } = label;
+public class NavigationItem {
+    private readonly Type _viewType;
+    public Type ViewType;
+
+    public NavigationItem(string label, string iconKey, Type viewType) {
+        _viewType = viewType;
+        ViewType = viewType;
+        Label = label;
+        // Application.Current!.TryFindResource(iconKey, out var iconGeometry);
+        // if (iconGeometry is StreamGeometry geometry)
+            // Icon = geometry;
+        // else
+            // throw new Exception($"Icon {iconKey} not found");
+    }
+
+    public StreamGeometry Icon { get; init; }
+    public string Label { get; init; }
 
     public void Navigate() {
-        Router.NavigateTo(viewType);
+        Router.NavigateTo(_viewType);
     }
 }

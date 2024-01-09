@@ -1,25 +1,23 @@
+using System;
 using System.Threading.Tasks;
-using Api.Core.Model.Auth;
+using Apis.Core.Model.Auth;
 using Common.IdentityApi;
 using Common.IdentityApi.Login;
-using LoginRequest = Common.IdentityApi.Login.LoginRequest;
 
-namespace Client.Models.Api;
+namespace Client.Models.Apis;
 
 public class AuthApi {
-    public IdentityManageApi Manage { get; } = new();
-
     public async Task<string?> Test() {
         return await ApiClient.GetAsync<string>("/Api/Identity/Identitys");
     }
 
     // TODO: Implement the return type
-    public async Task<object?> Register(RegisterRequest request) {
-        return await ApiClient.PostAsync<object>("/Api/Auth/Register", request);
+    public async Task<HttpResult?> Register(RegisterRequest request) {
+        return await ApiClient.PostAsync<HttpResult>("/Api/Auth/Register", request);
     }
 
-    public async Task<TokenResult?> Login(LoginRequest request) {
-        return await ApiClient.PostAsync<TokenResult>("/Api/Identity/Login", request);
+    public async Task<HttpResult<TokenResult?>?> Login(LoginRequest request) {
+        return await ApiClient.PostAsync<HttpResult<TokenResult?>>("/Api/Auth/Login", request);
     }
 
     public async Task<TokenResult?> RefreshToken(string refreshToken) {

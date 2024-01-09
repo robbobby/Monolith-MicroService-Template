@@ -15,7 +15,7 @@
         <ResourceDictionary x:Key="TypographyResource" />
 
     </Styles.Resources>
-
+    <StyleInclude Source="Icons.axaml" />
     <StyleInclude Source="ButtonStyles.axaml" />
     <StyleInclude Source="InputBoxStyle.axaml" />
     <StyleInclude Source="BorderStyles.axaml" />
