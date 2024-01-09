@@ -10,7 +10,6 @@ namespace AuthServiceApi.Controllers;
 [Route("api/[controller]")]
 public class AuthController(AuthServiceService authServiceService)
     : ControllerBase {
-
     [AllowAnonymous]
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest reqBody) {

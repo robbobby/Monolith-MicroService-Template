@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Client.Views;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Client.ViewModels;
 
@@ -48,9 +47,7 @@ public abstract class Router {
     }
 
     private static void AddHistory(Type type) {
-        if (HistoryIndex != History.Count) {
-            History.RemoveRange(HistoryIndex + 1, History.Count - HistoryIndex - 1);
-        }
+        if (HistoryIndex != History.Count) History.RemoveRange(HistoryIndex + 1, History.Count - HistoryIndex - 1);
 
         if (ContentView != null) {
             if (!ContentView.PersistData) {

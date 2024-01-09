@@ -17,13 +17,13 @@ public class Injection {
 
         services.AddSingleton<RegisterView>();
         services.AddSingleton<RegisterViewModel>();
-        
+
         services.AddSingleton<AuthTemplateView>();
         services.AddSingleton<AuthTemplateViewModel>();
-        
+
         services.AddSingleton<ApplicationTemplateView>();
         services.AddSingleton<ApplicationTemplateViewModel>();
-        
+
         services.AddSingleton<ApplicationView>();
         services.AddSingleton<ApplicationViewModel>();
 

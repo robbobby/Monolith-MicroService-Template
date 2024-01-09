@@ -36,8 +36,8 @@
             </StackPanel>
         </StackPanel>
     </Design.PreviewWith>
-    
-    
+
+
     <Style Selector="Border">
         <Setter Property="CornerRadius"
                 Value="{StaticResource Radius.Base}" />

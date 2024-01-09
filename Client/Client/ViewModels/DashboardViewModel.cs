@@ -1,5 +1,3 @@
 namespace Client.ViewModels;
 
-public class DashboardViewModel : ViewModelBase {
-    
-}
+public class DashboardViewModel : ViewModelBase { }

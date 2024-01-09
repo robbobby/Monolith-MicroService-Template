@@ -8,6 +8,6 @@
              x:DataType="viewModels:AuthTemplateViewModel">
     <StackPanel>
         <TextBlock Text="Welcome to Authentication" />
-        <TransitioningContentControl Content="{Binding View}"/>
+        <TransitioningContentControl Content="{Binding View}" />
     </StackPanel>
 </UserControl>

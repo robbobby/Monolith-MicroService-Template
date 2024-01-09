@@ -1,4 +1,3 @@
 namespace Client.ViewModels;
 
-public partial class AuthTemplateViewModel : TemplateViewModelBase;
-
+public class AuthTemplateViewModel : TemplateViewModelBase;

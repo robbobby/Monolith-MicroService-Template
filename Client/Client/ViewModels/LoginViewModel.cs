@@ -30,6 +30,7 @@ public partial class LoginViewModel : ViewModelBase {
         Console.WriteLine("LoginCommand");
         return Task.CompletedTask;
     }
+
     [RelayCommand]
     public Task SocialLoginCommand(LoginProvider provider) {
         switch (provider) {

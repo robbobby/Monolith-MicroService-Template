@@ -12,8 +12,7 @@
                 <ResourceInclude Source="Values/MainStyleValue.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        <ResourceDictionary x:Key="TypographyResource">
-        </ResourceDictionary>
+        <ResourceDictionary x:Key="TypographyResource" />
 
     </Styles.Resources>
 

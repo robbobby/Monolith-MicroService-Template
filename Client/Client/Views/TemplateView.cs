@@ -4,10 +4,10 @@ using Client.ViewModels;
 namespace Client.Views;
 
 public class TemplateView : UserControl {
-    private readonly TemplateViewModelBase _viewModel;
     public TemplateView(TemplateViewModelBase viewModel) {
-        _viewModel = viewModel;
+        ViewModel = viewModel;
         DataContext = viewModel;
     }
-    public TemplateViewModelBase ViewModel => _viewModel;
+
+    public TemplateViewModelBase ViewModel { get; }
 }

@@ -1,7 +1,3 @@
-using System;
-
 namespace Client.ViewModels;
 
-public class ApplicationViewModel : ViewModelBase {
-    
-}
+public class ApplicationViewModel : ViewModelBase { }
