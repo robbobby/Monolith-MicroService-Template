@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Core.Entity.Interface;
 using Microsoft.AspNetCore.Identity;
 

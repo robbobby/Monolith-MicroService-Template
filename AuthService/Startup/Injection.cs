@@ -16,7 +16,7 @@ public class Injection : IStartupInjection {
 
         builderServices.AddAutoMapper(typeof(AuthServiceApiMapperProfile));
 
-        builderServices.AddScoped<AuthServiceService>();
+        builderServices.AddScoped<AuthService>();
         builderServices.AddScoped<AuthServiceRepository>();
     }
 }

@@ -3,20 +3,17 @@ using System;
 using Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Core.Migrations.Configuration
+namespace Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231222172018_Initial")]
-    partial class Initial
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +80,7 @@ namespace Core.Migrations.Configuration
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Core.Entity.UnitEntity", b =>
@@ -98,7 +95,7 @@ namespace Core.Migrations.Configuration
 
                     b.HasKey("Id");
 
-                    b.ToTable("Units", (string)null);
+                    b.ToTable("Units");
                 });
 
             modelBuilder.Entity("Core.Entity.UserUnitEntity", b =>
@@ -109,38 +106,35 @@ namespace Core.Migrations.Configuration
                     b.Property<Guid>("UnitId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("UnitsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("UserId", "UnitId");
 
-                    b.HasIndex("UnitsId");
+                    b.HasIndex("UnitId");
 
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("UserUnits", (string)null);
+                    b.ToTable("UserUnits");
                 });
 
             modelBuilder.Entity("Core.Entity.UserUnitEntity", b =>
                 {
-                    b.HasOne("Core.Entity.UnitEntity", "Units")
+                    b.HasOne("Core.Entity.UnitEntity", "Unit")
                         .WithMany("Users")
-                        .HasForeignKey("UnitsId")
+                        .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Entity.Identity.UserEntity", "Users")
-                        .WithMany()
-                        .HasForeignKey("UsersId")
+                    b.HasOne("Core.Entity.Identity.UserEntity", "User")
+                        .WithMany("Units")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Unit");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Core.Entity.Identity.UserEntity", b =>
+                {
                     b.Navigation("Units");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Core.Entity.UnitEntity", b =>

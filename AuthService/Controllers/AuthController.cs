@@ -9,12 +9,12 @@ namespace AuthServiceApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(AuthServiceService authServiceService)
+public class AuthController(AuthService authService)
     : ControllerBase {
     [AllowAnonymous]
     [HttpPost("register")]
     public async Task<ActionResult<HttpResult>> Register([FromBody] RegisterRequest reqBody) {
-        var result = await authServiceService.RegisterUser(reqBody);
+        var result = await authService.RegisterUser(reqBody);
 
         if (result.Succeeded == ResultType.Success) return Ok(new HttpResult { Succeeded = ResultType.Success });
 
@@ -26,7 +26,7 @@ public class AuthController(AuthServiceService authServiceService)
     [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult<HttpResult<TokenResult?>>> LoginWithPassword([FromBody] LoginRequest reqBody) {
-        var result = await authServiceService.AuthenticateUser(reqBody);
+        var result = await authService.AuthenticateUser(reqBody);
         if (result.Succeeded) {
             return Ok(new HttpResult<TokenResult> {
                 Succeeded = ResultType.Success,
@@ -45,7 +45,7 @@ public class AuthController(AuthServiceService authServiceService)
     [Authorize]
     [HttpPost("logout")]
     public async Task<IActionResult> Logout() {
-        await authServiceService.LogoutUser();
+        await authService.LogoutUser();
         return Ok();
     }
 }

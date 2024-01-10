@@ -11,9 +11,6 @@ public class UserApiDbContext(DbContextOptions<UserApiDbContext> options) : DbCo
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         Console.WriteLine($"Connection string: {Database.GetConnectionString()}");
-        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-            if (entityType.ClrType.Name.EndsWith("Entity"))
-                modelBuilder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name.Replace("Entity", ""));
     }
 
     private static string GetConnectionString() {

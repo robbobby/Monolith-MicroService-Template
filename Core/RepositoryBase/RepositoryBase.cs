@@ -19,6 +19,10 @@ public class RepositoryBase<T>(IAppDbContext dbContext,
         return DbContext.Set<T>().Where(condition).AsQueryable();
     }
 
+    public IQueryable<T> Get() {
+        return DbContext.Set<T>();
+    }
+
     public IQueryable<T> GetAll() {
         return DbContext.Set<T>();
     }
