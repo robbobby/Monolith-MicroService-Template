@@ -7,8 +7,8 @@ using AuthServiceApi.Controllers;
 using AuthServiceApi.Repository;
 using Common.IdentityApi;
 using Common.IdentityApi.Login;
+using Common.Model;
 using Core;
-using Core.Entity;
 using Core.Entity.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -25,14 +25,14 @@ public class AuthService(AuthServiceRepository authServiceRepository) {
                 .FirstOrDefault() != null)
             // We can't provide an error message due to security reasons, return Ok and advise the user to check their email
             return new HttpResult {
-                Succeeded = ResultType.Success,
+                Succeeded = ResultType.Success
             };
 
         var user = new UserEntity {
             UserName = request.Username,
             Email = request.Email,
             FirstName = request.FirstName,
-            LastName = request.LastName,
+            LastName = request.LastName
         };
 
         user.PasswordHash = _passwordHasher2.HashPassword(user, request.Password);
@@ -55,20 +55,21 @@ public class AuthService(AuthServiceRepository authServiceRepository) {
                 Units = u.Units.Select(uu => new UnitDto {
                     Id = uu.Unit.Id,
                     Name = uu.Unit.Name
-                }).ToArray() })
+                }).ToArray()
+            })
             .FirstOrDefault(u => u.UserName == loginRequest.Username || u.Email == loginRequest.Username);
 
         if (user == null)
             return new AuthenticationResult {
                 Succeeded = false,
-                Errors = new[] { "User not found" }
+                Errors = ["Incorrect username or password"]
             };
 
         if (_passwordHasher.VerifyHashedPassword(user, user.Password!, loginRequest.Password) ==
             PasswordVerificationResult.Failed)
             return new AuthenticationResult {
                 Succeeded = false,
-                Errors = new[] { "Incorrect password" }
+                Errors = ["Incorrect username or password"]
             };
 
         var result = await GenerateToken(user);
@@ -83,8 +84,10 @@ public class AuthService(AuthServiceRepository authServiceRepository) {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(Guid.NewGuid().ToString());
 
-        var unitClaims = user.Units.Length == 0 ? "" : JsonSerializer.Serialize(user.Units.Select(u => new UnitDto
-            { Id = u.Id, Name = u.Name }).ToList());
+        var unitClaims = user.Units.Length == 0
+            ? ""
+            : JsonSerializer.Serialize(user.Units.Select(u => new UnitDto
+                { Id = u.Id, Name = u.Name }).ToList());
         var tokenDescriptor = new SecurityTokenDescriptor {
             Subject = new ClaimsIdentity(new[] {
                 new Claim(CustomClaimTypes.Id, user.Id.ToString()),
@@ -123,9 +126,4 @@ public class UserDto {
     public string? UserName { get; set; }
     public string? Email { get; set; }
     public string? Password { get; set; }
-}
-
-public class CustomClaimTypes {
-    public const string Units = "units";
-    public const string Id = "id";
 }

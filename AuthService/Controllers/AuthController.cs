@@ -27,18 +27,15 @@ public class AuthController(AuthService authService)
     [HttpPost("login")]
     public async Task<ActionResult<HttpResult<TokenResult?>>> LoginWithPassword([FromBody] LoginRequest reqBody) {
         var result = await authService.AuthenticateUser(reqBody);
-        if (result.Succeeded) {
+        if (result.Succeeded)
             return Ok(new HttpResult<TokenResult> {
                 Succeeded = ResultType.Success,
                 Data = result.TokenResult
             });
-        }
 
-        Console.WriteLine("Login failed");
-        
         return BadRequest(new HttpResult {
             Succeeded = ResultType.Failure,
-            Errors = ["Incorrect username or password"]
+            Errors = result.Errors
         });
     }
 

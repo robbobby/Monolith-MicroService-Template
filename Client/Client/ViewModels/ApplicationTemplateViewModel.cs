@@ -1,7 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Media;
 using Client.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -40,9 +38,9 @@ public class NavigationItem {
         Label = label;
         // Application.Current!.TryFindResource(iconKey, out var iconGeometry);
         // if (iconGeometry is StreamGeometry geometry)
-            // Icon = geometry;
+        // Icon = geometry;
         // else
-            // throw new Exception($"Icon {iconKey} not found");
+        // throw new Exception($"Icon {iconKey} not found");
     }
 
     public StreamGeometry Icon { get; init; }

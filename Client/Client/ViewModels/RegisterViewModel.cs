@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
 using Client.Models.Apis;
@@ -33,10 +32,8 @@ public partial class RegisterViewModel : ViewModelBase {
                 LastName = LastName,
                 Password = Password
             });
-            
-            if (result?.Succeeded == ResultType.Success) {
-                Router.NavigateTo<LoginView>();
-            }
+
+            if (result?.Succeeded == ResultType.Success) Router.NavigateTo<LoginView>();
         }
         finally {
             IsLoading = false;

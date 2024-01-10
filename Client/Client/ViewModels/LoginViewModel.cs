@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
-using Avalonia;
 using Client.Models.Apis;
 using Client.Views;
 using Common.IdentityApi;
@@ -38,6 +37,7 @@ public partial class LoginViewModel : ViewModelBase {
             });
 
             if (result?.Succeeded == ResultType.Success) {
+                Console.WriteLine("Login success");
                 ApiClient.SetTokens(result.Data!);
                 Router.NavigateTo<ApplicationView>();
             }
@@ -54,7 +54,7 @@ public partial class LoginViewModel : ViewModelBase {
                 Console.WriteLine("Google");
                 break;
             case LoginProvider.Microsoft:
-                Models.Apis.Api.Auth.Test().ContinueWith(task => {
+                Api.Auth.Test().ContinueWith(task => {
                     Console.WriteLine(task.Result);
                 }, TaskContinuationOptions.ExecuteSynchronously);
                 break;

@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
 using Common.IdentityApi;

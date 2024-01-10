@@ -118,6 +118,7 @@ public class ApiClient {
     }
 
     public static void SetTokens(TokenResult resultData) {
+        User.FromToken(resultData.AccessToken);
         Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", resultData.AccessToken);
         _refreshToken = resultData.RefreshToken;
