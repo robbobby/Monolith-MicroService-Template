@@ -10,7 +10,8 @@
         <!-- TODO: Height and width of this should be auth with some padding -->
         <Panel Height="300"
                Width="300">
-            <Border Width="400">
+            <Border Width="300"
+                    Classes="Primary">
                 <StackPanel Spacing="5"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">

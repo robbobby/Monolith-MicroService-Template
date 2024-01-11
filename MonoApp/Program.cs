@@ -1,10 +1,12 @@
 using System.Security.Authentication;
+using System.Text;
 using Core;
 using Core.Attributes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,19 +14,46 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
+Console.WriteLine(builder.Configuration["Identity:Key"]);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {
-        options.Authority = builder.Configuration["Identity:Authority"];
+        options.Authority = "https://localhost:7111";
         options.Audience = builder.Configuration["Identity:Audience"];
-
         options.TokenValidationParameters = new TokenValidationParameters {
             ValidateAudience = true,
-            ValidateIssuer = true,
-            ValidateIssuerSigningKey = true
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Identity:Key"]))
         };
     });
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1", new() { Title = "My API", Version = "v1" });
+
+    // Define the BearerAuth scheme
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
+        Description =
+            "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    });
+
+    // Apply the BearerAuth scheme globally to all operations
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+        {
+            new OpenApiSecurityScheme {
+                Reference = new OpenApiReference {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) => {
     options.UseNpgsql("Host=localhost;Database=WebApi;Username=rob;Port=5432", dbOptions => {

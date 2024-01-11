@@ -1,4 +1,7 @@
 using Core.Attributes;
+using Core.Entity;
+using Core.Entity.Identity;
+using Core.RepositoryBase;
 using UnitApi.Repository;
 using UnitApi.Service;
 
@@ -13,5 +16,8 @@ public class Injection : IStartupInjection {
 
         services.AddScoped<UnitService>();
         services.AddScoped<UnitRepository>();
+        
+        services.AddScoped<RepositoryWithEntityId<UnitEntity>>();
+        services.AddScoped<RepositoryBase<UserUnitEntity>>();
     }
 }

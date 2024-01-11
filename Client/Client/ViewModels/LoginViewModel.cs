@@ -37,7 +37,6 @@ public partial class LoginViewModel : ViewModelBase {
             });
 
             if (result?.Succeeded == ResultType.Success) {
-                Console.WriteLine("Login success");
                 ApiClient.SetTokens(result.Data!);
                 Router.NavigateTo<ApplicationView>();
             }

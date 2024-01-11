@@ -1,6 +1,6 @@
 namespace Common.Model;
 
-public class CustomClaimTypes {
+public class CustomClaimType {
     public const string Units = "units";
-    public const string Id = "id";
+    public const string UserId = "userId";
 }

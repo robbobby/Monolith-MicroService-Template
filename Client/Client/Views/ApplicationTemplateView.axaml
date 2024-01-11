@@ -7,19 +7,19 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.ApplicationTemplateView"
              x:DataType="viewModels:ApplicationTemplateViewModel">
-    <SplitView IsPaneOpen="{Binding IsNavMenuOpen}"
+    <SplitView IsPaneOpen="{Binding !IsNavMenuOpen}"
                OpenPaneLength="200"
                CompactPaneLength="48"
                DisplayMode="CompactInline"
                Background="{DynamicResource Colour.BackgroundContrast}"
                PaneBackground="{DynamicResource Colour.BackgroundContrast}">
         <SplitView.Pane>
-            <StackPanel>
-                <Button HorizontalAlignment="Right" Margin="9"
-                        Command="{Binding ToggleNavMenuCommand}">
-                    <PathIcon>
+            <StackPanel Spacing="5" >
+                <Button Margin="9"
+                        Command="{Binding ToggleNavMenuCommand}" HorizontalAlignment="Right" >
+                    <PathIcon Width="15" Height="15">
                         <PathIcon.Data>
-                            <Binding Path="IsNavMenuOpen">
+                            <Binding Path="!IsNavMenuOpen">
                                 <Binding.Converter>
                                     <client:BooleanConverter False="{StaticResource Icon.MenuBar}"
                                                              True="{StaticResource Icon.Cross}" />
@@ -28,15 +28,37 @@
                         </PathIcon.Data>
                     </PathIcon>
                 </Button>
-                <ListBox ItemsSource="{Binding NavItems}" SelectedItem="{Binding SelectedNavItem}">
+                <ListBox ItemsSource="{Binding NavItems}"
+                         SelectedItem="{Binding SelectedNavItem}"
+                         VerticalAlignment="Center"
+                         Width="210"
+                         Margin="0 0 0 0"
+                         HorizontalAlignment="Left">
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="Padding" Value="2 0 0 0" />
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="Width" Value="200" />
+                            <Setter Property="Height" Value="20" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </ListBox.Styles>
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type viewModels:NavigationItem}">
-                            <StackPanel Spacing="15" Orientation="Horizontal">
-                                <TextBlock Text="{Binding Label}" FontSize="20" />
+                            <StackPanel Orientation="Horizontal">
+                                <PathIcon Data="{Binding Icon}" Margin="10 0 13 0"
+                                          Width="20" Height="20"
+
+                                          Foreground="{DynamicResource Colour.Primary}" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding Label}" VerticalAlignment="Center"
+                                           FontSize="12"
+                                           HorizontalAlignment="Left" Margin="0 4 0 0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                
+                
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>

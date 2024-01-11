@@ -100,6 +100,9 @@ public class ApiClient {
 
         if (typeof(T) == typeof(string))
             return content as T;
+        
+        if(typeof(T) == typeof(Guid))
+            return Guid.Parse(content) as T;
 
         try {
             return JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions {
@@ -118,7 +121,7 @@ public class ApiClient {
     }
 
     public static void SetTokens(TokenResult resultData) {
-        User.FromToken(resultData.AccessToken);
+        AppState.User.FromToken(resultData.AccessToken);
         Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", resultData.AccessToken);
         _refreshToken = resultData.RefreshToken;

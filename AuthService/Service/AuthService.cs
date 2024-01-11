@@ -15,7 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace AuthServiceApi.Service;
 
-public class AuthService(AuthServiceRepository authServiceRepository) {
+public class AuthService(AuthServiceRepository authServiceRepository, IConfiguration _configuration) {
     private AuthServiceRepository _authServiceRepository => authServiceRepository;
     private PasswordHasher<UserDto> _passwordHasher { get; } = new();
     private PasswordHasher<UserEntity> _passwordHasher2 { get; } = new();
@@ -72,7 +72,7 @@ public class AuthService(AuthServiceRepository authServiceRepository) {
                 Errors = ["Incorrect username or password"]
             };
 
-        var result = await GenerateToken(user);
+        var result = GenerateToken(user);
 
         return new AuthenticationResult {
             Succeeded = true,
@@ -80,9 +80,10 @@ public class AuthService(AuthServiceRepository authServiceRepository) {
         };
     }
 
-    public async Task<TokenResult> GenerateToken(UserDto user) {
+    private TokenResult GenerateToken(UserDto user) {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(Guid.NewGuid().ToString());
+        var key = Encoding.ASCII.GetBytes(_configuration["Identity:Key"]!);
+        Console.WriteLine(_configuration["Identity:Key"]);
 
         var unitClaims = user.Units.Length == 0
             ? ""
@@ -90,8 +91,10 @@ public class AuthService(AuthServiceRepository authServiceRepository) {
                 { Id = u.Id, Name = u.Name }).ToList());
         var tokenDescriptor = new SecurityTokenDescriptor {
             Subject = new ClaimsIdentity(new[] {
-                new Claim(CustomClaimTypes.Id, user.Id.ToString()),
-                new Claim(CustomClaimTypes.Units, unitClaims)
+                new Claim(CustomClaimType.UserId, user.Id.ToString()),
+                new Claim(CustomClaimType.Units, unitClaims),
+                new Claim(JwtRegisteredClaimNames.Iss, _configuration["Identity:Authority"]!),
+                new Claim(JwtRegisteredClaimNames.Aud, _configuration["Identity:Audience"]!)
             }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
@@ -118,6 +121,22 @@ public class AuthService(AuthServiceRepository authServiceRepository) {
     }
 
     public async Task LogoutUser() { }
+
+    public Task<TokenResult> UpdateToken(string userId) {
+        return Task.FromResult(GenerateToken(_authServiceRepository.Users
+            .Get()
+            .Select(u => new UserDto {
+                Id = u.Id,
+                UserName = u.UserName,
+                Email = u.Email,
+                Password = u.PasswordHash,
+                Units = u.Units.Select(uu => new UnitDto {
+                    Id = uu.Unit.Id,
+                    Name = uu.Unit.Name
+                }).ToArray()
+            })
+            .FirstOrDefault(u => u.Id.ToString() == userId)!));
+    }
 }
 
 public class UserDto {

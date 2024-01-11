@@ -1,23 +1,29 @@
 using System;
+using System.Collections.ObjectModel;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text.Json;
 using Common.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Client.Models;
 
-public class User {
-    public static Guid Id { get; set; }
-    public static UserUnit[] Units { get; set; } = [];
+public partial class User : ObservableObject {
+    [ObservableProperty] private Guid _id;
+    public ObservableCollection<UserUnit> Units { get; init; } = new();
 
-    public static void FromToken(string token) {
+    public void FromToken(string token) {
         var decodedToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
-        Id = Guid.Parse(decodedToken.Claims.First(claim => claim.Type == CustomClaimTypes.Id).Value);
+        Id = Guid.Parse(decodedToken.Claims.First(claim => claim.Type == CustomClaimType.UserId).Value);
 
-        var unitsClaimValue = decodedToken.Claims.First(claim => claim.Type == CustomClaimTypes.Units).Value;
+        var unitsClaimValue = decodedToken.Claims.First(claim => claim.Type == CustomClaimType.Units).Value;
 
-        Units = JsonSerializer.Deserialize<UserUnit[]>(unitsClaimValue) ?? [];
-
-        Console.WriteLine($"User: {Id}");
+        if (!string.IsNullOrEmpty(unitsClaimValue)) {
+            var units = JsonSerializer.Deserialize<ObservableCollection<UserUnit>>(unitsClaimValue) ?? [];
+            Units.Clear();
+            foreach (var unit in units) {
+                Units.Add(unit);
+            }
+        }
     }
 }

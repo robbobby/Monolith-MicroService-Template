@@ -2,6 +2,7 @@ using Apis.Core.Model.Auth;
 using AuthServiceApi.Service;
 using Common.IdentityApi;
 using Common.IdentityApi.Login;
+using Common.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace AuthServiceApi.Controllers;
 public class AuthController(AuthService authService)
     : ControllerBase {
     [AllowAnonymous]
-    [HttpPost("register")]
+    [HttpPost("Register")]
     public async Task<ActionResult<HttpResult>> Register([FromBody] RegisterRequest reqBody) {
         var result = await authService.RegisterUser(reqBody);
 
@@ -24,7 +25,7 @@ public class AuthController(AuthService authService)
     }
 
     [AllowAnonymous]
-    [HttpPost("login")]
+    [HttpPost("Login")]
     public async Task<ActionResult<HttpResult<TokenResult?>>> LoginWithPassword([FromBody] LoginRequest reqBody) {
         var result = await authService.AuthenticateUser(reqBody);
         if (result.Succeeded)
@@ -40,10 +41,22 @@ public class AuthController(AuthService authService)
     }
 
     [Authorize]
-    [HttpPost("logout")]
+    [HttpPost("Logout")]
     public async Task<IActionResult> Logout() {
         await authService.LogoutUser();
         return Ok();
+    }
+
+    [Authorize]
+    [HttpPost("UpdateToken")]
+    public async Task<ActionResult<HttpResult<TokenResult?>>> UpdateToken() {
+        var userId = User.Claims.First(c => c.Type == CustomClaimType.UserId).Value;
+        var result = await authService.UpdateToken(userId);
+        
+        return Ok(new HttpResult<TokenResult> {
+            Succeeded = ResultType.Success,
+            Data = result
+        });
     }
 }
 

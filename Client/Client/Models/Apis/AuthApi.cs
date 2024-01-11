@@ -16,41 +16,19 @@ public class AuthApi {
     }
 
     public async Task<HttpResult<TokenResult?>?> Login(LoginRequest request) {
-        return await ApiClient.PostAsync<HttpResult<TokenResult?>>("/Api/Auth/Login", request);
+        var result = await ApiClient.PostAsync<HttpResult<TokenResult?>>("/Api/Auth/Login", request);
+        if (result?.Succeeded == ResultType.Success) {
+            ApiClient.SetTokens(result.Data!);
+        }
+        return result;
     }
-
-    public async Task<TokenResult?> RefreshToken(string refreshToken) {
-        return await ApiClient.PostAsync<TokenResult>("/Api/Identity/RefreshToken", new { refreshToken });
-    }
-
-    public async Task ConfirmEmail(string userId, string code, string changeEmail) {
-        await ApiClient.PostAsync<object>("/Api/Identity/ConfirmEmail", new { userId, code, changeEmail });
-    }
-
-    public async Task ResendConfirmationEmail(string email) {
-        await ApiClient.PostAsync<object>("/Api/Identity/ResendEmailConfirmation", new { email });
-    }
-
-    public async Task ForgotPassword(string email) {
-        await ApiClient.PostAsync<object>("/Api/Identity/ForgotPassword", new { email });
-    }
-
-    public async Task ResetPassword(string email, string resetCode, string newPassword) {
-        await ApiClient.PostAsync<object>("/Api/Identity/ResetPassword",
-            new { email, resetCode, password = newPassword });
-    }
-}
-
-public class IdentityManageApi {
-    public async Task<TwoFactorAuthDetails?> TwoFactorAuth(TwoFactoryAuthRequest request) {
-        return await ApiClient.PostAsync<TwoFactorAuthDetails>("/Api/Identity/Manage/2fa");
-    }
-
-    public async Task<IdentityInfo?> IdentityInfo() {
-        return await ApiClient.GetAsync<IdentityInfo>("/Api/Identity/Manage/IdentityInfo");
-    }
-
-    public async Task UpdateIdentityInfo(UpdateIdentityRequest request) {
-        await ApiClient.PostAsync<object>("/Api/Identity/Manage/IdentityInfo", request);
+    
+    public async Task<HttpResult<TokenResult>?> UpdateToken() {
+        var result = await ApiClient.PostAsync<HttpResult<TokenResult>>("/Api/Auth/UpdateToken");
+        if (result?.Succeeded == ResultType.Success) {
+            ApiClient.SetTokens(result.Data!);
+        }
+        
+        return result;
     }
 }
