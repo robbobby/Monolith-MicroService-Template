@@ -33,7 +33,7 @@ public partial class RegisterViewModel : ViewModelBase {
                 Password = Password
             });
 
-            if (result?.Succeeded == ResultType.Success) Router.NavigateTo<LoginView>();
+            if(result?.Succeeded == ResultType.Success) Router.NavigateTo<LoginView>();
         }
         finally {
             IsLoading = false;

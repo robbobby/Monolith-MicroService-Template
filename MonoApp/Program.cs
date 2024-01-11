@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddSwaggerGen(c => {
-    c.SwaggerDoc("v1", new() { Title = "My API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
 
     // Define the BearerAuth scheme
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
@@ -79,7 +79,7 @@ InjectMicroServices();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment()) {
+if(app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -96,7 +96,7 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
-if (app.Environment.IsDevelopment()) {
+if(app.Environment.IsDevelopment()) {
     using var scope = app.Services.CreateScope();
 
     await scope.ServiceProvider.GetRequiredService<AppDbContext>().Database.MigrateAsync();
@@ -108,7 +108,7 @@ return;
 
 void MapMicroServices() {
     foreach (var service in GetMonolithServices(typeof(MonolithStartupRegisterAttribute)))
-        if (Activator.CreateInstance(service) is IServiceStartup startUp)
+        if(Activator.CreateInstance(service) is IServiceStartup startUp)
             startUp.Configure(app);
         else
             throw new Exception(
@@ -117,7 +117,7 @@ void MapMicroServices() {
 
 void InjectMicroServices() {
     foreach (var service in GetMonolithServices(typeof(MonolithServiceRegisterAttribute)))
-        if (Activator.CreateInstance(service) is IStartupInjection startupInjection)
+        if(Activator.CreateInstance(service) is IStartupInjection startupInjection)
             startupInjection.Inject(builder.Services);
         else
             throw new Exception(
@@ -127,7 +127,7 @@ void InjectMicroServices() {
 IEnumerable<Type> GetMonolithServices(Type attributeType) {
     foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
     foreach (var type in assembly.GetTypes())
-        if (type.GetCustomAttributes(attributeType, true).Length > 0)
+        if(type.GetCustomAttributes(attributeType, true).Length > 0)
             yield return type;
 }
 

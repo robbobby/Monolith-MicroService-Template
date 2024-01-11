@@ -21,8 +21,8 @@ public class AuthService(AuthServiceRepository authServiceRepository, IConfigura
     private PasswordHasher<UserEntity> _passwordHasher2 { get; } = new();
 
     public async Task<HttpResult> RegisterUser(RegisterRequest request) {
-        if (_authServiceRepository.Users.Get(u => u.Email == request.Email || u.UserName == request.Username)
-                .FirstOrDefault() != null)
+        if(_authServiceRepository.Users.Get(u => u.Email == request.Email || u.UserName == request.Username)
+               .FirstOrDefault() != null)
             // We can't provide an error message due to security reasons, return Ok and advise the user to check their email
             return new HttpResult {
                 Succeeded = ResultType.Success
@@ -59,14 +59,14 @@ public class AuthService(AuthServiceRepository authServiceRepository, IConfigura
             })
             .FirstOrDefault(u => u.UserName == loginRequest.Username || u.Email == loginRequest.Username);
 
-        if (user == null)
+        if(user == null)
             return new AuthenticationResult {
                 Succeeded = false,
                 Errors = ["Incorrect username or password"]
             };
 
-        if (_passwordHasher.VerifyHashedPassword(user, user.Password!, loginRequest.Password) ==
-            PasswordVerificationResult.Failed)
+        if(_passwordHasher.VerifyHashedPassword(user, user.Password!, loginRequest.Password) ==
+           PasswordVerificationResult.Failed)
             return new AuthenticationResult {
                 Succeeded = false,
                 Errors = ["Incorrect username or password"]

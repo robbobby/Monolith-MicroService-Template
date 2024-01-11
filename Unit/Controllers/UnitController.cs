@@ -15,7 +15,7 @@ public class UnitController(UnitService unitService) : ControllerBase {
         var result = unitService.GetAll<UnitDto>().ToList();
         return Task.FromResult<IActionResult>(Ok());
     }
-    
+
     [Authorize]
     [HttpPost]
     public async Task<ActionResult<HttpResult<Guid>>> CreateUnit([FromBody] string name) {

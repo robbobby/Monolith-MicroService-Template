@@ -9,7 +9,7 @@ public class BooleanConverter : IValueConverter {
     public object False { get; set; }
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-        if (value is bool b)
+        if(value is bool b)
             return b ? True : False;
 
         return False;

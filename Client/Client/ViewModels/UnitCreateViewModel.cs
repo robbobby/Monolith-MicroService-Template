@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Client.Models;
@@ -17,8 +16,6 @@ public partial class UnitCreateViewModel : ViewModelBase {
     [RelayCommand]
     public async Task CreateUnitCommand() {
         var result = await Api.Unit.CreateUnit(Name);
-        if(result.Succeeded == ResultType.Success) {
-            Api.Auth.UpdateToken();
-        }
+        if(result.Succeeded == ResultType.Success) Api.Auth.UpdateToken();
     }
 }

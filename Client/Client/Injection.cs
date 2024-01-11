@@ -29,7 +29,7 @@ public class Injection {
 
         services.AddSingleton<DashboardView>();
         services.AddSingleton<DashboardViewModel>();
-        
+
         services.AddSingleton<UnitCreateView>();
         services.AddSingleton<UnitCreateViewModel>();
     }

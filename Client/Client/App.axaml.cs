@@ -18,7 +18,7 @@ public class App : Application {
 
     public static T GetViewOrThrow<T>() where T : ViewBase {
         var view = Services.GetService<T>();
-        if (view == null)
+        if(view == null)
             throw new NullReferenceException(
                 $"View {typeof(T).Name} not found, Did you forget to add it to Injection.cs?");
         return view;
@@ -26,7 +26,7 @@ public class App : Application {
 
     public static ViewBase GetViewOrThrow(Type type) {
         var view = (ViewBase)Services.GetService(type)!;
-        if (view == null)
+        if(view == null)
             throw new NullReferenceException($"View {type.Name} not found, Did you forget to add it to Injection.cs?");
         return view;
     }
@@ -36,9 +36,9 @@ public class App : Application {
     }
 
     public override void OnFrameworkInitializationCompleted() {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        if(ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             desktop.MainWindow = Services.GetService<MainWindow>();
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+        else if(ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             singleViewPlatform.MainView = Services.GetService<MainView>();
 
         base.OnFrameworkInitializationCompleted();

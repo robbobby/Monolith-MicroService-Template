@@ -17,9 +17,9 @@ public class AuthController(AuthService authService)
     public async Task<ActionResult<HttpResult>> Register([FromBody] RegisterRequest reqBody) {
         var result = await authService.RegisterUser(reqBody);
 
-        if (result.Succeeded == ResultType.Success) return Ok(new HttpResult { Succeeded = ResultType.Success });
+        if(result.Succeeded == ResultType.Success) return Ok(new HttpResult { Succeeded = ResultType.Success });
 
-        if (result.Errors.Length > 0) return BadRequest(result);
+        if(result.Errors.Length > 0) return BadRequest(result);
 
         return BadRequest(result);
     }
@@ -28,7 +28,7 @@ public class AuthController(AuthService authService)
     [HttpPost("Login")]
     public async Task<ActionResult<HttpResult<TokenResult?>>> LoginWithPassword([FromBody] LoginRequest reqBody) {
         var result = await authService.AuthenticateUser(reqBody);
-        if (result.Succeeded)
+        if(result.Succeeded)
             return Ok(new HttpResult<TokenResult> {
                 Succeeded = ResultType.Success,
                 Data = result.TokenResult
@@ -52,7 +52,7 @@ public class AuthController(AuthService authService)
     public async Task<ActionResult<HttpResult<TokenResult?>>> UpdateToken() {
         var userId = User.Claims.First(c => c.Type == CustomClaimType.UserId).Value;
         var result = await authService.UpdateToken(userId);
-        
+
         return Ok(new HttpResult<TokenResult> {
             Succeeded = ResultType.Success,
             Data = result

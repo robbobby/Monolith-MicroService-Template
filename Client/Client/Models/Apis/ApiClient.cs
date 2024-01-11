@@ -17,10 +17,10 @@ public class ApiClient {
     private static readonly HttpClient Client;
 
     static ApiClient() {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
-            RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
-            RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
-           ) {
+        if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+           RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
+           RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+          ) {
             _handler.ServerCertificateCustomValidationCallback =
                 HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
             _handler.SslProtocols = SslProtocols.Tls12;
@@ -88,19 +88,19 @@ public class ApiClient {
     }
 
     private static async Task<T?> HandleResponse<T>(HttpResponseMessage response) where T : class {
-        if (!response.IsSuccessStatusCode)
+        if(!response.IsSuccessStatusCode)
             LogOnError(response);
         else
             response.EnsureSuccessStatusCode();
 
         var content = await response.Content.ReadAsStringAsync();
 
-        if (string.IsNullOrEmpty(content))
+        if(string.IsNullOrEmpty(content))
             return default;
 
-        if (typeof(T) == typeof(string))
+        if(typeof(T) == typeof(string))
             return content as T;
-        
+
         if(typeof(T) == typeof(Guid))
             return Guid.Parse(content) as T;
 

@@ -18,7 +18,7 @@ public abstract class Router {
     public static ViewBase? ContentView {
         get => _contentView;
         set {
-            if (_contentView != value) {
+            if(_contentView != value) {
                 _contentView = value;
                 Console.WriteLine($"The current view is {ContentView?.GetType().Name}");
                 OnRouteChange(nameof(ContentView));
@@ -47,10 +47,10 @@ public abstract class Router {
     }
 
     private static void AddHistory(Type type) {
-        if (HistoryIndex != History.Count) History.RemoveRange(HistoryIndex + 1, History.Count - HistoryIndex - 1);
+        if(HistoryIndex != History.Count) History.RemoveRange(HistoryIndex + 1, History.Count - HistoryIndex - 1);
 
-        if (ContentView != null) {
-            if (!ContentView.PersistData) {
+        if(ContentView != null) {
+            if(!ContentView.PersistData) {
                 foreach (var property in ContentView.ViewModel.GetType().GetProperties())
                     property.SetValue(ContentView.ViewModel, null);
             } else {
@@ -63,7 +63,7 @@ public abstract class Router {
 
                     var propertyName = field.Name.TrimStart('_');
 
-                    if (propertyName.Length > 0 && char.IsLower(propertyName[0]))
+                    if(propertyName.Length > 0 && char.IsLower(propertyName[0]))
                         propertyName = cultureInfo.TextInfo.ToTitleCase(propertyName);
 
                     var property = viewModelType.GetProperty(propertyName,

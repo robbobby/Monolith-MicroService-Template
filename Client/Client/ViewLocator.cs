@@ -7,13 +7,13 @@ namespace Client;
 
 public class ViewLocator : IDataTemplate {
     public Control? Build(object? data) {
-        if (data is null)
+        if(data is null)
             return null;
 
         var name = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
         var type = Type.GetType(name);
 
-        if (type != null) return (Control)App.Services.GetService(type)!;
+        if(type != null) return (Control)App.Services.GetService(type)!;
 
         return new TextBlock { Text = "Not Found: " + name };
     }

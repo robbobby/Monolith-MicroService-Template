@@ -51,7 +51,7 @@ public class RepositoryBase<T>(IAppDbContext dbContext,
     public async Task Delete(Guid id) {
         var entity = await DbContext.Set<T>().FindAsync(id);
 
-        if (entity != null) {
+        if(entity != null) {
             DbContext.Set<T>().Remove(entity);
             await SaveChangesAsync();
         }

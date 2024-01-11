@@ -17,18 +17,14 @@ public class AuthApi {
 
     public async Task<HttpResult<TokenResult?>?> Login(LoginRequest request) {
         var result = await ApiClient.PostAsync<HttpResult<TokenResult?>>("/Api/Auth/Login", request);
-        if (result?.Succeeded == ResultType.Success) {
-            ApiClient.SetTokens(result.Data!);
-        }
+        if(result?.Succeeded == ResultType.Success) ApiClient.SetTokens(result.Data!);
         return result;
     }
-    
+
     public async Task<HttpResult<TokenResult>?> UpdateToken() {
         var result = await ApiClient.PostAsync<HttpResult<TokenResult>>("/Api/Auth/UpdateToken");
-        if (result?.Succeeded == ResultType.Success) {
-            ApiClient.SetTokens(result.Data!);
-        }
-        
+        if(result?.Succeeded == ResultType.Success) ApiClient.SetTokens(result.Data!);
+
         return result;
     }
 }

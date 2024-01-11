@@ -24,9 +24,9 @@ public partial class MainViewModel : ViewModelBase {
 
     private void SetView(object? sender, PropertyChangedEventArgs args) {
         Console.WriteLine($"The current view is {Router.ContentView.GetType().Name}");
-        if (args.PropertyName != nameof(Router.ContentView)) return;
+        if(args.PropertyName != nameof(Router.ContentView)) return;
 
-        if (Router.ContentView!.ViewTemplate != _viewTemplate) {
+        if(Router.ContentView!.ViewTemplate != _viewTemplate) {
             _viewTemplate = Router.ContentView.ViewTemplate;
             TemplateView = _viewTemplate switch {
                 ViewTemplateType.Auth => App.Services.GetService<AuthTemplateView>()!,

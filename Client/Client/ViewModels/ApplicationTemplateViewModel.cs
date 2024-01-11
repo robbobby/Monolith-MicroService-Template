@@ -16,7 +16,7 @@ public partial class ApplicationTemplateViewModel : TemplateViewModelBase {
     public ObservableCollection<NavigationItem> NavItems { get; init; } = [
         new NavigationItem("Home", "Icon.Home", typeof(ApplicationView)),
         new NavigationItem("Dashboard", "Icon.LaptopRegular", typeof(DashboardView)),
-        new NavigationItem("Units", "Icon.CalendarDateRegular", typeof(UnitCreateView)),
+        new NavigationItem("Units", "Icon.CalendarDateRegular", typeof(UnitCreateView))
     ];
 
     partial void OnSelectedNavItemChanged(NavigationItem? value) {
@@ -33,18 +33,19 @@ public partial class ApplicationTemplateViewModel : TemplateViewModelBase {
 // where T is ViewBase
 public class NavigationItem {
     private readonly Type _viewType;
-    public StreamGeometry Icon { get; init; }
-    public string Label { get; init; }
 
     public NavigationItem(string label, string iconKey, Type viewType) {
         _viewType = viewType;
         Label = label;
         Application.Current!.TryFindResource(iconKey, out var iconGeometry);
-        if (iconGeometry is StreamGeometry geometry)
+        if(iconGeometry is StreamGeometry geometry)
             Icon = geometry;
         else
             throw new Exception($"Icon {iconKey} not found");
     }
+
+    public StreamGeometry Icon { get; init; }
+    public string Label { get; init; }
 
 
     public void Navigate() {

@@ -14,9 +14,9 @@
                Background="{DynamicResource Colour.BackgroundContrast}"
                PaneBackground="{DynamicResource Colour.BackgroundContrast}">
         <SplitView.Pane>
-            <StackPanel Spacing="5" >
+            <StackPanel Spacing="5">
                 <Button Margin="9"
-                        Command="{Binding ToggleNavMenuCommand}" HorizontalAlignment="Right" >
+                        Command="{Binding ToggleNavMenuCommand}" HorizontalAlignment="Right">
                     <PathIcon Width="15" Height="15">
                         <PathIcon.Data>
                             <Binding Path="!IsNavMenuOpen">
@@ -57,8 +57,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                
-                
+
+
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>

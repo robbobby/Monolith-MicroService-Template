@@ -18,12 +18,10 @@ public partial class User : ObservableObject {
 
         var unitsClaimValue = decodedToken.Claims.First(claim => claim.Type == CustomClaimType.Units).Value;
 
-        if (!string.IsNullOrEmpty(unitsClaimValue)) {
+        if(!string.IsNullOrEmpty(unitsClaimValue)) {
             var units = JsonSerializer.Deserialize<ObservableCollection<UserUnit>>(unitsClaimValue) ?? [];
             Units.Clear();
-            foreach (var unit in units) {
-                Units.Add(unit);
-            }
+            foreach (var unit in units) Units.Add(unit);
         }
     }
 }
