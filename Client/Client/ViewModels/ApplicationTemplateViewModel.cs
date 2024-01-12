@@ -14,24 +14,25 @@ namespace Client.ViewModels;
 
 public partial class ApplicationTemplateViewModel : TemplateViewModelBase {
     private readonly Router _router;
+    public ObservableCollection<NavigationItem> NavItems { get; init; } = [
+        new NavigationItem("Home", "Icon.Home", typeof(ApplicationView)),
+        new NavigationItem("Dashboard", "Icon.LaptopRegular", typeof(DashboardView)),
+        new NavigationItem("Units", "Icon.CalendarDateRegular", typeof(UnitCreateView))
+    ];
+    
     [ObservableProperty] private bool _hasUnits = AppState.User.Units.Any();
     [ObservableProperty] private bool _isNavMenuOpen = true;
-    [ObservableProperty] private NavigationItem _selectedNavItem = null!; // TODO: Fix this
+    [ObservableProperty] private NavigationItem? _selectedNavItem;
     [ObservableProperty] private UserUnit? _selectedUnit;
 
     public ApplicationTemplateViewModel(Router router) {
         _router = router;
         SelectedUnit = Units.FirstOrDefault(u => u.Id == AppState.User.SelectedUnit?.Id);
         SubscribeToUnitChanged();
+        SelectedNavItem = NavItems.FirstOrDefault(n => n.ViewType == _router.ContentView?.GetType());
     }
 
     public ObservableCollection<UserUnit> Units => AppState.User.Units;
-
-    public ObservableCollection<NavigationItem> NavItems { get; init; } = [
-        new NavigationItem("Home", "Icon.Home", typeof(ApplicationView)),
-        new NavigationItem("Dashboard", "Icon.LaptopRegular", typeof(DashboardView)),
-        new NavigationItem("Units", "Icon.CalendarDateRegular", typeof(UnitCreateView))
-    ];
 
     partial void OnSelectedUnitChanged(UserUnit? value) {
         if(!SelectedUnit?.Equals(value) ?? value != null) SelectedUnit = value;
