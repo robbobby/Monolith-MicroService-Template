@@ -12,13 +12,6 @@
             <Border Width="300"
                     Classes="Primary">
                 <StackPanel>
-                    <ListBox ItemsSource="{Binding Units}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
                     <StackPanel Spacing="5"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">

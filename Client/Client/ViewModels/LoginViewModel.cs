@@ -10,11 +10,9 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-public partial class LoginViewModel : ViewModelBase {
+public partial class LoginViewModel(Router _router) : ViewModelBase {
     [ObservableProperty] private bool _isLoading;
-
     [ObservableProperty] [NonePersistent] private string _password = "";
-
     [ObservableProperty] private string _username = "";
 
     [RelayCommand]
@@ -24,7 +22,7 @@ public partial class LoginViewModel : ViewModelBase {
 
     [RelayCommand]
     public void SwitchToRegisterViewCommand() {
-        Router.NavigateTo<RegisterView>();
+        _router.NavigateTo<RegisterView>();
     }
 
     [RelayCommand]
@@ -38,7 +36,7 @@ public partial class LoginViewModel : ViewModelBase {
 
             if(result?.Succeeded == ResultType.Success) {
                 ApiClient.SetTokens(result.Data!);
-                Router.NavigateTo<ApplicationView>();
+                _router.NavigateTo<ApplicationView>();
             }
         }
         finally {
@@ -53,9 +51,7 @@ public partial class LoginViewModel : ViewModelBase {
                 Console.WriteLine("Google");
                 break;
             case LoginProvider.Microsoft:
-                Api.Auth.Test().ContinueWith(task => {
-                    Console.WriteLine(task.Result);
-                }, TaskContinuationOptions.ExecuteSynchronously);
+                Console.WriteLine("Microsoft");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(provider), provider, null);

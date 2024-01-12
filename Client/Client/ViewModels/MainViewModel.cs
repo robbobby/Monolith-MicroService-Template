@@ -7,14 +7,16 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Client.ViewModels;
 
 public partial class MainViewModel : ViewModelBase {
+    private readonly Router _router;
     [ObservableProperty] private TemplateView _templateView;
     private ViewTemplateType _viewTemplate;
 
-    public MainViewModel() {
+    public MainViewModel(Router router) {
+        _router = router;
         TemplateView = App.Services.GetService<AuthTemplateView>()!;
         InitialView();
 
-        Router.ViewChange += SetView;
+        _router.PropertyChanged += SetView;
     }
 
     private void InitialView() {
@@ -23,11 +25,10 @@ public partial class MainViewModel : ViewModelBase {
     }
 
     private void SetView(object? sender, PropertyChangedEventArgs args) {
-        Console.WriteLine($"The current view is {Router.ContentView.GetType().Name}");
         if(args.PropertyName != nameof(Router.ContentView)) return;
 
-        if(Router.ContentView!.ViewTemplate != _viewTemplate) {
-            _viewTemplate = Router.ContentView.ViewTemplate;
+        if(_router.ContentView!.ViewTemplate != _viewTemplate) {
+            _viewTemplate = _router.ContentView.ViewTemplate;
             TemplateView = _viewTemplate switch {
                 ViewTemplateType.Auth => App.Services.GetService<AuthTemplateView>()!,
                 ViewTemplateType.Application => App.Services.GetService<ApplicationTemplateView>()!,
@@ -35,8 +36,8 @@ public partial class MainViewModel : ViewModelBase {
             };
         }
 
-        Console.WriteLine($"The current view is {Router.ContentView.GetType().Name}");
-        TemplateView.ViewModel.View = Router.ContentView;
-        Console.WriteLine($"The current view is {TemplateView.ViewModel.View.GetType().Name}");
+        Console.WriteLine($"Setting view to {_router.ContentView?.GetType().Name}");
+
+        TemplateView.ViewModel.View = _router.ContentView;
     }
 }

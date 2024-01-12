@@ -48,6 +48,11 @@ public class RepositoryBase<T>(IAppDbContext dbContext,
         SaveChanges();
     }
 
+    public async Task DeleteAsync(T entity) {
+        DbContext.Set<T>().Remove(entity);
+        await SaveChangesAsync();
+    }
+
     public async Task Delete(Guid id) {
         var entity = await DbContext.Set<T>().FindAsync(id);
 

@@ -41,10 +41,23 @@ public class AuthController(AuthService authService)
     }
 
     [Authorize]
-    [HttpPost("Logout")]
-    public async Task<IActionResult> Logout() {
-        await authService.LogoutUser();
-        return Ok();
+    [HttpPost("SignOut")]
+    public async Task<IActionResult> Logout([FromBody] string refreshToken) {
+        try {
+            await authService.LogoutUser(User.Claims.FirstOrDefault(c => c.Type == CustomClaimType.UserId).Value,
+                refreshToken);
+
+            return Ok(new HttpResult {
+                Succeeded = ResultType.Success
+            });
+        }
+        catch (Exception e) {
+            Console.WriteLine(e);
+            return BadRequest(new HttpResult {
+                Succeeded = ResultType.Failure,
+                Errors = ["Oops, something went wrong!"]
+            });
+        }
     }
 
     [Authorize]

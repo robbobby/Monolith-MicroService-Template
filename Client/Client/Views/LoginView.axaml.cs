@@ -8,7 +8,7 @@ public partial class LoginView : ViewBase {
         DataContext = viewModel;
     }
 
-    public LoginView() : base(new LoginViewModel()) {
+    public LoginView() : base(new LoginViewModel(new Router())) {
         InitializeComponent();
     }
 }

@@ -9,6 +9,7 @@ using Common.IdentityApi;
 using Common.IdentityApi.Login;
 using Common.Model;
 using Core;
+using Core.Entity;
 using Core.Entity.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -83,12 +84,13 @@ public class AuthService(AuthServiceRepository authServiceRepository, IConfigura
     private TokenResult GenerateToken(UserDto user) {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_configuration["Identity:Key"]!);
-        Console.WriteLine(_configuration["Identity:Key"]);
 
         var unitClaims = user.Units.Length == 0
             ? ""
             : JsonSerializer.Serialize(user.Units.Select(u => new UnitDto
                 { Id = u.Id, Name = u.Name }).ToList());
+
+        var expiry = DateTime.UtcNow.AddHours(1);
         var tokenDescriptor = new SecurityTokenDescriptor {
             Subject = new ClaimsIdentity(new[] {
                 new Claim(CustomClaimType.UserId, user.Id.ToString()),
@@ -96,7 +98,7 @@ public class AuthService(AuthServiceRepository authServiceRepository, IConfigura
                 new Claim(JwtRegisteredClaimNames.Iss, _configuration["Identity:Authority"]!),
                 new Claim(JwtRegisteredClaimNames.Aud, _configuration["Identity:Audience"]!)
             }),
-            Expires = DateTime.UtcNow.AddHours(1),
+            Expires = expiry,
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature)
         };
@@ -104,23 +106,27 @@ public class AuthService(AuthServiceRepository authServiceRepository, IConfigura
         var token = tokenHandler.CreateToken(tokenDescriptor);
         var refreshToken = Guid.NewGuid().ToString();
 
-        // _authServiceRepository.Tokens.Add(new UserToken {
-        // UserId = user.Id,
-        // LoginProvider = "jwt",
-        // Name = "refresh",
-        // Value = refreshToken
-        // });
-
         var accessToken = tokenHandler.WriteToken(token);
-        Console.WriteLine($"Access token: {accessToken}");
+        _authServiceRepository.Tokens.Add(new TokenEntity {
+            UserId = user.Id,
+            AccessToken = accessToken,
+            RefreshToken = refreshToken,
+            ExpiresAt = DateTime.UtcNow.AddDays(7).ToString("yyyy-MM-ddTHH:mm:ss")
+        });
+
         return new TokenResult {
-            AccessToken = tokenHandler.WriteToken(token),
+            AccessToken = accessToken,
             RefreshToken = refreshToken,
             ExpiresIn = tokenDescriptor.Expires?.ToString("yyyy-MM-ddTHH:mm:ss")
         };
     }
 
-    public async Task LogoutUser() { }
+    public async Task LogoutUser(string userId, string refreshToken) {
+        var token = _authServiceRepository.Tokens
+            .Get(t => t.UserId.ToString() == userId && t.RefreshToken == refreshToken).FirstOrDefault();
+        if(token == null) return;
+        await _authServiceRepository.Tokens.DeleteAsync(token);
+    }
 
     public Task<TokenResult> UpdateToken(string userId) {
         return Task.FromResult(GenerateToken(_authServiceRepository.Users

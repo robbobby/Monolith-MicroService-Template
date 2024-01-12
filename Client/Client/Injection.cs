@@ -6,6 +6,8 @@ namespace Client;
 
 public class Injection {
     public static void ConfigureServices(ServiceCollection services) {
+        services.AddSingleton<Router>();
+
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindowViewModel>();
 

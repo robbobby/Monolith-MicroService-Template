@@ -1,52 +1,31 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Client.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Client.ViewModels;
 
 public record HistoryItem(Type Type, ViewBase? State);
 
-public abstract class Router {
-    private static ViewBase? _contentView;
-    private static List<Type> History { get; } = new();
-    private static int HistoryIndex { get; set; } = -1;
+public partial class Router : ObservableObject {
+    [ObservableProperty] private static ViewBase? _contentView;
+    private List<Type> History { get; } = new();
+    private int HistoryIndex { get; set; } = -1;
 
-    public static ViewBase? ContentView {
-        get => _contentView;
-        set {
-            if(_contentView != value) {
-                _contentView = value;
-                Console.WriteLine($"The current view is {ContentView?.GetType().Name}");
-                OnRouteChange(nameof(ContentView));
-            }
-        }
-    }
-
-    public static event PropertyChangedEventHandler? ViewChange;
-
-    private static void OnRouteChange(string propertyName) {
-        Console.WriteLine($"The current view is {ContentView?.GetType().Name}");
-        ViewChange?.Invoke(null, new PropertyChangedEventArgs(propertyName));
-    }
-
-    public static void NavigateTo<T>() where T : ViewBase {
+    public void NavigateTo<T>() where T : ViewBase {
         AddHistory(typeof(T));
-
         ContentView = App.GetViewOrThrow<T>();
     }
 
-    public static void NavigateTo(Type type) {
+    public void NavigateTo(Type type) {
         AddHistory(type);
-        Console.WriteLine($"Navigating to {type.Name}");
         ContentView = App.GetViewOrThrow(type);
-        Console.WriteLine("Navigtated");
     }
 
-    private static void AddHistory(Type type) {
+    private void AddHistory(Type type) {
         if(HistoryIndex != History.Count) History.RemoveRange(HistoryIndex + 1, History.Count - HistoryIndex - 1);
 
         if(ContentView != null) {

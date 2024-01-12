@@ -11,6 +11,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
         IIdentityDbContext, IUserDbContext {
     public DbSet<UnitEntity> Units { get; set; }
     public DbSet<UserUnitEntity> UserUnits { get; set; }
+    public DbSet<TokenEntity> Tokens { get; set; }
     public DbSet<UserEntity> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

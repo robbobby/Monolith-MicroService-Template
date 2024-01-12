@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-public partial class RegisterViewModel : ViewModelBase {
+public partial class RegisterViewModel(Router _router) : ViewModelBase {
     [ObservableProperty] private string _confirmPassword = "";
     [ObservableProperty] private string _email = "";
     [ObservableProperty] private string _firstName = "";
@@ -18,7 +18,7 @@ public partial class RegisterViewModel : ViewModelBase {
 
     [RelayCommand]
     public void SwitchToLoginViewCommand() {
-        Router.NavigateTo<LoginView>();
+        _router.NavigateTo<LoginView>();
     }
 
     [RelayCommand]
@@ -33,7 +33,7 @@ public partial class RegisterViewModel : ViewModelBase {
                 Password = Password
             });
 
-            if(result?.Succeeded == ResultType.Success) Router.NavigateTo<LoginView>();
+            if(result?.Succeeded == ResultType.Success) _router.NavigateTo<LoginView>();
         }
         finally {
             IsLoading = false;

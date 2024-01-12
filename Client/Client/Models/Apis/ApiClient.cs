@@ -12,7 +12,6 @@ namespace Client.Models.Apis;
 
 public class ApiClient {
     private static readonly HttpClientHandler _handler = new();
-    private static string _refreshToken = "";
 
     private static readonly HttpClient Client;
 
@@ -30,6 +29,9 @@ public class ApiClient {
             BaseAddress = new Uri("https://localhost:7111")
         };
     }
+
+    public static string RefreshToken { get; private set; } = null!;
+
 
     public static async Task<T?> GetAsync<T>(string uri) where T : class {
         try {
@@ -124,6 +126,12 @@ public class ApiClient {
         AppState.User.FromToken(resultData.AccessToken);
         Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", resultData.AccessToken);
-        _refreshToken = resultData.RefreshToken;
+        RefreshToken = resultData.RefreshToken;
+    }
+
+    public static void ClearTokens() {
+        AppState.User = new User();
+        Client.DefaultRequestHeaders.Authorization = null;
+        RefreshToken = null!;
     }
 }
