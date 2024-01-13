@@ -1,12 +1,13 @@
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
 using Client.Models.Apis;
-using Client.Views;
+using Client.ViewModels;
 using Common.IdentityApi;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Router = Client.Models.Router;
 
-namespace Client.ViewModels;
+namespace Client.Views.Auth;
 
 public partial class RegisterViewModel(Router _router) : ViewModelBase {
     [ObservableProperty] private string _confirmPassword = "";

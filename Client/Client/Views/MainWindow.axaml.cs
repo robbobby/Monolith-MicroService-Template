@@ -1,4 +1,3 @@
-using Client.ViewModels;
 using FluentAvalonia.UI.Windowing;
 using Microsoft.Extensions.DependencyInjection;
 

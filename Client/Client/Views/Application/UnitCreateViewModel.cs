@@ -1,13 +1,14 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Client.Models;
 using Client.Models.Apis;
+using Client.Models.State;
+using Client.ViewModels;
 using Common.IdentityApi;
 using Common.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Client.ViewModels;
+namespace Client.Views.Application;
 
 public partial class UnitCreateViewModel : ViewModelBase {
     [ObservableProperty] private string _name = "";

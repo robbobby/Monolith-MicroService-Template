@@ -2,13 +2,15 @@ using System;
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
 using Client.Models.Apis;
-using Client.Views;
+using Client.ViewModels;
+using Client.Views.Application;
 using Common.IdentityApi;
 using Common.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Router = Client.Models.Router;
 
-namespace Client.ViewModels;
+namespace Client.Views.Auth;
 
 public partial class LoginViewModel(Router _router) : ViewModelBase {
     [ObservableProperty] private bool _isLoading;

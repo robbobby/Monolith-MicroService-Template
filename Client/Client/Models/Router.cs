@@ -4,9 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Client.Views;
+using Client.Views.Auth;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Client.ViewModels;
+namespace Client.Models;
 
 public record HistoryItem(Type Type, ViewBase? State);
 

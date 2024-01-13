@@ -1,10 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
-using Client.Views;
+using Client.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using ApplicationTemplateView = Client.Views.Templates.ApplicationTemplateView;
+using AuthTemplateView = Client.Views.Templates.AuthTemplateView;
+using LoginView = Client.Views.Auth.LoginView;
+using Router = Client.Models.Router;
 
-namespace Client.ViewModels;
+namespace Client.Views;
 
 public partial class MainViewModel : ViewModelBase {
     private readonly Router _router;
@@ -25,7 +29,7 @@ public partial class MainViewModel : ViewModelBase {
     }
 
     private void SetView(object? sender, PropertyChangedEventArgs args) {
-        if(args.PropertyName != nameof(Router.ContentView)) return;
+        if(args.PropertyName != nameof(_router.ContentView)) return;
 
         if(_router.ContentView!.ViewTemplate != _viewTemplate) {
             _viewTemplate = _router.ContentView.ViewTemplate;

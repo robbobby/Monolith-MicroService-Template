@@ -35,4 +35,67 @@
         <UpToDateCheckInput Remove="Style\ButtonStyles.axaml"/>
         <UpToDateCheckInput Remove="Style\MainStyle.axaml"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Views\Application\DashboardView.axaml.cs">
+            <DependentUpon>DashboardView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Application\ApplicationView.axaml.cs">
+            <DependentUpon>ApplicationView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Templates\ApplicationTemplateView.axaml.cs">
+            <DependentUpon>ApplicationTemplateView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Templates\AuthTemplateView.axaml.cs">
+            <DependentUpon>AuthTemplateView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Auth\RegisterView.axaml.cs">
+            <DependentUpon>RegisterView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Application\UnitCreateView.axaml.cs">
+            <DependentUpon>UnitCreateView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Auth\LoginView.axaml.cs">
+            <DependentUpon>LoginView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Application\ApplicationViewModel.cs">
+            <DependentUpon>ApplicationView.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Application\DashboardViewModel.cs">
+            <DependentUpon>DashboardView.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Application\UnitCreateViewModel.cs">
+            <DependentUpon>UnitCreateView.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Auth\LoginViewModel.cs">
+            <DependentUpon>LoginView.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\MainWindowViewModel.cs">
+            <DependentUpon>MainWindow.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Templates\ApplicationTemplateViewModel.cs">
+            <DependentUpon>ApplicationTemplateView.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Auth\RegisterViewModel.cs">
+            <DependentUpon>RegisterView.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Templates\AuthTemplateViewModel.cs">
+            <DependentUpon>AuthTemplateView.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\MainViewModel.cs">
+            <DependentUpon>MainView.axaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="ViewModels\Application\"/>
+        <Folder Include="ViewModels\Auth\"/>
+    </ItemGroup>
 </Project>

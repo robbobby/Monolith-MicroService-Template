@@ -2,10 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:Client.ViewModels"
+             xmlns:auth="clr-namespace:Client.Views.Auth"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Client.Views.RegisterView"
-             x:DataType="vm:RegisterViewModel">
+             x:Class="Client.Views.Auth.RegisterView"
+             x:DataType="auth:RegisterViewModel">
     <DockPanel>
         <!-- TODO: Height and width of this should be auth with some padding -->
         <Panel Height="300"

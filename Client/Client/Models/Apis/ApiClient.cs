@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Security.Authentication;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Client.Models.State;
 using Common.IdentityApi.Login;
 
 namespace Client.Models.Apis;

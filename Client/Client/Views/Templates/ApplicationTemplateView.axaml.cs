@@ -1,13 +1,11 @@
-using Client.ViewModels;
-
-namespace Client.Views;
+namespace Client.Views.Templates;
 
 public partial class ApplicationTemplateView : TemplateView {
     public ApplicationTemplateView(ApplicationTemplateViewModel viewModel) : base(viewModel) {
         InitializeComponent();
     }
 
-    public ApplicationTemplateView() : base(new ApplicationTemplateViewModel(new Router())) {
+    public ApplicationTemplateView() : base(new ApplicationTemplateViewModel()) {
         InitializeComponent();
     }
 }

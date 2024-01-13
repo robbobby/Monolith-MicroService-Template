@@ -1,6 +1,4 @@
-using Client.ViewModels;
-
-namespace Client.Views;
+namespace Client.Views.Application;
 
 public partial class UnitCreateView : ApplicationViewBase {
     public UnitCreateView(UnitCreateViewModel viewModel) : base(viewModel) {

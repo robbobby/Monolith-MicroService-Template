@@ -1,6 +1,4 @@
-using Client.ViewModels;
-
-namespace Client.Views;
+namespace Client.Views.Application;
 
 public partial class ApplicationView : ApplicationViewBase {
     public ApplicationView(ApplicationViewModel viewModel) : base(viewModel) {

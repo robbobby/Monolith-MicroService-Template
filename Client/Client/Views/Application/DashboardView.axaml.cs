@@ -1,6 +1,4 @@
-using Client.ViewModels;
-
-namespace Client.Views;
+namespace Client.Views.Application;
 
 public partial class DashboardView : ApplicationViewBase {
     public DashboardView(DashboardViewModel viewModel) : base(viewModel) {

@@ -1,6 +1,4 @@
-using Client.ViewModels;
-
-namespace Client.Views;
+namespace Client.Views.Templates;
 
 public partial class AuthTemplateView : TemplateView {
     public AuthTemplateView(AuthTemplateViewModel viewModel) : base(viewModel) {

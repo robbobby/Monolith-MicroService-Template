@@ -1,6 +1,6 @@
-using Client.ViewModels;
+using Router = Client.Models.Router;
 
-namespace Client.Views;
+namespace Client.Views.Auth;
 
 public partial class LoginView : ViewBase {
     public LoginView(LoginViewModel viewModel) : base(viewModel) {

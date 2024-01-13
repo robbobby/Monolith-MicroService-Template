@@ -6,17 +6,12 @@ using System.Text.Json;
 using Common.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Client.Models;
+namespace Client.Models.State;
 
 public partial class User : ObservableObject {
     [ObservableProperty] private Guid _id;
     [ObservableProperty] private UserUnit? _selectedUnit;
-
-    public User() {
-        Units = new ObservableCollection<UserUnit>();
-    }
-
-    public ObservableCollection<UserUnit> Units { get; init; } = new();
+    public ObservableCollection<UserUnit> Units { get; init; } = [];
 
     public void FromToken(string token) {
         var decodedToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
@@ -27,14 +22,12 @@ public partial class User : ObservableObject {
         if(!string.IsNullOrEmpty(unitsClaimValue)) {
             var units = JsonSerializer.Deserialize<ObservableCollection<UserUnit>>(unitsClaimValue) ?? [];
             foreach (var unit in units)
-                if(Units.Any(u => u.Id == unit.Id)) { } else {
+                if(Units.All(u => u.Id != unit.Id))
                     Units.Add(unit);
-                }
 
             foreach (var un in Units)
-                if(units.Any(u => u.Id == un.Id)) { } else {
+                if(units.All(u => u.Id != un.Id))
                     Units.Remove(un);
-                }
         }
 
         SelectedUnit = Units.FirstOrDefault();
