@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
+using Client.Models;
 using Client.Models.Apis;
 using Client.ViewModels;
 using Client.Views.Application;
@@ -12,7 +13,7 @@ using Router = Client.Models.Router;
 
 namespace Client.Views.Auth;
 
-public partial class LoginViewModel(Router _router) : ViewModelBase {
+public partial class LoginViewModel(Router _router, NotificationManager _notification) : ViewModelBase {
     [ObservableProperty] private bool _isLoading;
     [ObservableProperty] [NonePersistent] private string _password = "";
     [ObservableProperty] private string _username = "";
@@ -39,7 +40,15 @@ public partial class LoginViewModel(Router _router) : ViewModelBase {
             if(result?.Succeeded == ResultType.Success) {
                 ApiClient.SetTokens(result.Data!);
                 _router.NavigateTo<ApplicationView>();
+                _notification.Success("Logged in successfully");
+            } else {
+                _notification.Error("Failed to login");
             }
+        }
+        catch (Exception e) {
+            Console.WriteLine(e);
+            _notification.Error("Failed to login");
+            throw;
         }
         finally {
             IsLoading = false;

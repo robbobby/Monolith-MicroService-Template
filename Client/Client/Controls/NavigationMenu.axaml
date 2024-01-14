@@ -7,7 +7,7 @@
              xmlns:models="clr-namespace:Client.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Controls.NavigationMenu"
-             x:DataType="controls:NavigationMenuViewModel">
+             x:DataType="controls:NavigationMenuModel">
     <Grid RowDefinitions="Auto * Auto">
         <StackPanel Spacing="5" Orientation="Vertical">
             <Button Margin="9" HorizontalAlignment="Right"
@@ -56,7 +56,8 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Margin="4 0 4 10"
                     Spacing="3">
-            <Button Classes="Transparent">
+            <Button Classes="Transparent"
+                    Command="{Binding SettingsCommand}">
                 <StackPanel Orientation="Horizontal">
                     <PathIcon Data="{DynamicResource Icon.SettingsRegular}"
                               Margin="1 0 13 0"

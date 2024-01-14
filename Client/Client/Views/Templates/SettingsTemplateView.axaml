@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Client.Controls"
+             xmlns:templates="clr-namespace:Client.Views.Templates"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.Templates.SettingsTemplateView"
+             x:DataType="templates:SettingsTemplateViewModel">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <SplitView IsPaneOpen="{Binding !IsNavMenuOpen}"
+               OpenPaneLength="200"
+               CompactPaneLength="48"
+               DisplayMode="CompactInline"
+               Background="{DynamicResource Colour.BackgroundContrast}"
+               PaneBackground="{DynamicResource Colour.BackgroundContrast}">
+        <SplitView.Pane>
+            <controls:NavigationMenu
+                ToggleMenuDataContext="{Binding $parent.((templates:SettingsTemplateViewModel)DataContext).ToggleMenuContext}" />
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Border Background="{DynamicResource Colour.Background}"
+                    CornerRadius="12 0 0 0">
+                <StackPanel>
+                    <controls:HeaderNav />
+                    <TransitioningContentControl Content="{Binding View}" />
+                </StackPanel>
+            </Border>
+        </SplitView.Content>
+    </SplitView>
+</UserControl>

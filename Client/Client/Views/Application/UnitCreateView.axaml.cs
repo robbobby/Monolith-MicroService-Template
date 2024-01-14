@@ -1,3 +1,5 @@
+using Client.Models;
+
 namespace Client.Views.Application;
 
 public partial class UnitCreateView : ApplicationViewBase {
@@ -6,7 +8,7 @@ public partial class UnitCreateView : ApplicationViewBase {
         DataContext = viewModel;
     }
 
-    public UnitCreateView() : base(new UnitCreateViewModel()) {
+    public UnitCreateView() : base(new UnitCreateViewModel(new NotificationManager())) {
         InitializeComponent();
     }
 }

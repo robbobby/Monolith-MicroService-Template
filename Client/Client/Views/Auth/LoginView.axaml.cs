@@ -1,3 +1,4 @@
+using Client.Models;
 using Router = Client.Models.Router;
 
 namespace Client.Views.Auth;
@@ -8,7 +9,7 @@ public partial class LoginView : ViewBase {
         DataContext = viewModel;
     }
 
-    public LoginView() : base(new LoginViewModel(new Router())) {
+    public LoginView() : base(new LoginViewModel(new Router(), new NotificationManager())) {
         InitializeComponent();
     }
 }

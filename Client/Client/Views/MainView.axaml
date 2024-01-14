@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:Client.Views"
              xmlns:auth="clr-namespace:Client.Views.Auth"
+             xmlns:controls="clr-namespace:Avalonia.Notification.Controls;assembly=Notification.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.MainView"
              x:DataType="views:MainViewModel">
@@ -14,5 +15,11 @@
         <SolidColorBrush Color="#23272B" />
     </UserControl.Background>
 
-    <TransitioningContentControl Content="{Binding TemplateView}" />
+    <Panel>
+        <controls:NotificationMessageContainer Manager="{Binding Notification.Notification}" ZIndex="100"
+                                               Margin="35, 0 0 0" />
+        <TransitioningContentControl Content="{Binding TemplateView}" />
+    </Panel>
+
+
 </UserControl>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using Client.Models;
 using Client.ViewModels;
+using Client.Views.Templates;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 using ApplicationTemplateView = Client.Views.Templates.ApplicationTemplateView;
@@ -15,13 +17,16 @@ public partial class MainViewModel : ViewModelBase {
     [ObservableProperty] private TemplateView _templateView;
     private ViewTemplateType _viewTemplate;
 
-    public MainViewModel(Router router) {
+    public MainViewModel(Router router, NotificationManager notificationNotification) {
         _router = router;
+        Notification = notificationNotification;
         TemplateView = App.Services.GetService<AuthTemplateView>()!;
         InitialView();
 
         _router.PropertyChanged += SetView;
     }
+
+    public NotificationManager Notification { get; }
 
     private void InitialView() {
         _viewTemplate = ViewTemplateType.Auth;
@@ -36,6 +41,7 @@ public partial class MainViewModel : ViewModelBase {
             TemplateView = _viewTemplate switch {
                 ViewTemplateType.Auth => App.Services.GetService<AuthTemplateView>()!,
                 ViewTemplateType.Application => App.Services.GetService<ApplicationTemplateView>()!,
+                ViewTemplateType.Settings => App.Services.GetService<SettingsTemplateView>()!,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

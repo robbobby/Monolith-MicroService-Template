@@ -2,9 +2,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:application="clr-namespace:Client.Views.Application"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Client.Views.Application.ApplicationView">
+             x:Class="Client.Views.Application.ApplicationView"
+             x:DataType="application:ApplicationViewModel">
     <Grid>
         <TextBlock Text="Application View!" />
+        <StackPanel>
+
+            <Button
+                Margin="8"
+                Padding="12,8"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#1751C3"
+                Command="{Binding ButtonBaseInfoOnClick}"
+                Content="Info message" />
+
+            <Button
+                Margin="8"
+                Padding="12,8"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#E0A030"
+                Command="{Binding ButtonBaseWarningOnClick}"
+                Content="Warning (with header)" />
+
+            <Button
+                Margin="8"
+                Padding="12,8"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#F15B19"
+                Command="{Binding ButtonBaseErrorOnClick}"
+                Content="Error message" />
+
+            <Button
+                Margin="8"
+                Padding="12,8"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#1751C3"
+                Command="{Binding ButtonBaseInfoDelayOnClick}"
+                Content="Animated info message with delayed dismiss (5s)" />
+        </StackPanel>
     </Grid>
 </UserControl>

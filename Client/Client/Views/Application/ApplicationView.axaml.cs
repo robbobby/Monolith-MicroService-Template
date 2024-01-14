@@ -1,3 +1,6 @@
+using Avalonia.Notification;
+using Client.Models;
+
 namespace Client.Views.Application;
 
 public partial class ApplicationView : ApplicationViewBase {
@@ -7,7 +10,8 @@ public partial class ApplicationView : ApplicationViewBase {
         DataContext = viewModel;
     }
 
-    public ApplicationView() : base(new ApplicationViewModel()) {
+    public ApplicationView() : base(new ApplicationViewModel(new NotificationMessageManager(),
+        new NotificationManager())) {
         ViewTemplate = ViewTemplateType.Application;
         InitializeComponent();
     }

@@ -1,5 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
+using Client.Models;
 using Client.Models.Apis;
 using Client.ViewModels;
 using Common.IdentityApi;
@@ -9,7 +11,7 @@ using Router = Client.Models.Router;
 
 namespace Client.Views.Auth;
 
-public partial class RegisterViewModel(Router _router) : ViewModelBase {
+public partial class RegisterViewModel(Router _router, NotificationManager _notification) : ViewModelBase {
     [ObservableProperty] private string _confirmPassword = "";
     [ObservableProperty] private string _email = "";
     [ObservableProperty] private string _firstName = "";
@@ -35,6 +37,12 @@ public partial class RegisterViewModel(Router _router) : ViewModelBase {
             });
 
             if(result?.Succeeded == ResultType.Success) _router.NavigateTo<LoginView>();
+            else _notification.Error("Failed to register");
+        }
+        catch (Exception e) {
+            Console.WriteLine(e);
+            _notification.Error("Failed to register");
+            throw;
         }
         finally {
             IsLoading = false;

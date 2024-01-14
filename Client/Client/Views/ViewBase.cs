@@ -11,11 +11,18 @@ public class ViewBase(ViewModelBase viewModelBase) : UserControl {
 
 public enum ViewTemplateType {
     Auth,
-    Application
+    Application,
+    Settings
 }
 
 public class ApplicationViewBase : ViewBase {
     public ApplicationViewBase(ViewModelBase viewModelBase) : base(viewModelBase) {
         ViewTemplate = ViewTemplateType.Application;
+    }
+}
+
+public class SettingsViewBase : ViewBase {
+    public SettingsViewBase(ViewModelBase viewModelBase) : base(viewModelBase) {
+        ViewTemplate = ViewTemplateType.Settings;
     }
 }
