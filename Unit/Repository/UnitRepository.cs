@@ -3,7 +3,8 @@ using Core.RepositoryBase;
 
 namespace UnitApi.Repository;
 
-public class UnitRepository(RepositoryWithEntityId<UnitEntity> units, RepositoryBase<UserUnitEntity> userUnits) {
-    public RepositoryWithEntityId<UnitEntity> Units { get; } = units;
-    public RepositoryBase<UserUnitEntity> UserUnits { get; } = userUnits;
+public class UnitRepository(RepositoryWithEntityId<OrganisationEntity> units,
+                            RepositoryBase<UserOrganisationEntity> userUnits) {
+    public RepositoryWithEntityId<OrganisationEntity> Units { get; } = units;
+    public RepositoryBase<UserOrganisationEntity> UserUnits { get; } = userUnits;
 }

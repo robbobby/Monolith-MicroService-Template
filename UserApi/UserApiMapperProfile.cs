@@ -9,6 +9,6 @@ namespace UserApi;
 public class UserApiMapperProfile : Profile {
     public UserApiMapperProfile() {
         CreateMap<UserEntity, UserDto>();
-        CreateMap<UserUnitEntity, UnitDto>();
+        CreateMap<UserOrganisationEntity, UnitDto>();
     }
 }

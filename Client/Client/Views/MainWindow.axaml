@@ -7,6 +7,6 @@
     x:Class="Client.Views.MainWindow"
     x:CompileBindings="True"
     Icon="/Assets/avalonia-logo.ico"
-    Title="Messaging App">
+    Title="Project Manager">
     <!-- <ContentPresenter Content="{Binding Content, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" /> -->
 </Window>

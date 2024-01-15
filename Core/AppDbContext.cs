@@ -9,9 +9,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     : DbContext,
         IAppDbContext,
         IIdentityDbContext, IUserDbContext {
-    public DbSet<UnitEntity> Units { get; set; }
-    public DbSet<UserUnitEntity> UserUnits { get; set; }
+    public DbSet<OrganisationEntity> Units { get; set; }
+    public DbSet<UserOrganisationEntity> UserUnits { get; set; }
     public DbSet<TokenEntity> Tokens { get; set; }
+    public DbSet<ProjectEntity> Projects { get; set; }
     public DbSet<UserEntity> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

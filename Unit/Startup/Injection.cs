@@ -16,7 +16,7 @@ public class Injection : IStartupInjection {
         services.AddScoped<UnitService>();
         services.AddScoped<UnitRepository>();
 
-        services.AddScoped<RepositoryWithEntityId<UnitEntity>>();
-        services.AddScoped<RepositoryBase<UserUnitEntity>>();
+        services.AddScoped<RepositoryWithEntityId<OrganisationEntity>>();
+        services.AddScoped<RepositoryBase<UserOrganisationEntity>>();
     }
 }

@@ -83,6 +83,41 @@ namespace Core.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Core.Entity.OrganisationEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Organisations");
+                });
+
+            modelBuilder.Entity("Core.Entity.ProjectEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("OrganisationId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrganisationId");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("Core.Entity.TokenEntity", b =>
                 {
                     b.Property<string>("AccessToken")
@@ -105,34 +140,33 @@ namespace Core.Migrations
                     b.ToTable("Tokens");
                 });
 
-            modelBuilder.Entity("Core.Entity.UnitEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Units");
-                });
-
-            modelBuilder.Entity("Core.Entity.UserUnitEntity", b =>
+            modelBuilder.Entity("Core.Entity.UserOrganisationEntity", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("UnitId")
+                    b.Property<Guid>("OrganisationId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("UserId", "UnitId");
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("UnitId");
+                    b.HasKey("UserId", "OrganisationId");
 
-                    b.ToTable("UserUnits");
+                    b.HasIndex("OrganisationId");
+
+                    b.ToTable("UserOrganisation");
+                });
+
+            modelBuilder.Entity("Core.Entity.ProjectEntity", b =>
+                {
+                    b.HasOne("Core.Entity.OrganisationEntity", "Organisation")
+                        .WithMany()
+                        .HasForeignKey("OrganisationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organisation");
                 });
 
             modelBuilder.Entity("Core.Entity.TokenEntity", b =>
@@ -146,31 +180,31 @@ namespace Core.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Core.Entity.UserUnitEntity", b =>
+            modelBuilder.Entity("Core.Entity.UserOrganisationEntity", b =>
                 {
-                    b.HasOne("Core.Entity.UnitEntity", "Unit")
+                    b.HasOne("Core.Entity.OrganisationEntity", "Organisation")
                         .WithMany("Users")
-                        .HasForeignKey("UnitId")
+                        .HasForeignKey("OrganisationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Entity.Identity.UserEntity", "User")
-                        .WithMany("Units")
+                        .WithMany("Organisations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Unit");
+                    b.Navigation("Organisation");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Core.Entity.Identity.UserEntity", b =>
                 {
-                    b.Navigation("Units");
+                    b.Navigation("Organisations");
                 });
 
-            modelBuilder.Entity("Core.Entity.UnitEntity", b =>
+            modelBuilder.Entity("Core.Entity.OrganisationEntity", b =>
                 {
                     b.Navigation("Users");
                 });

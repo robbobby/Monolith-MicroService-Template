@@ -6,6 +6,6 @@ namespace UnitApi;
 
 public class UnitApiMapperProfile : Profile {
     public UnitApiMapperProfile() {
-        CreateMap<UnitEntity, UnitDto>();
+        CreateMap<OrganisationEntity, UnitDto>();
     }
 }

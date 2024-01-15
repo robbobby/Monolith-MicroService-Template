@@ -17,7 +17,8 @@ public partial class ApplicationTemplateViewModel : TemplateViewModelBase, INavi
     private ObservableCollection<NavigationItem> NavItems { get; } = [
         new NavigationItem("Home", "Icon.Home", typeof(ApplicationView)),
         new NavigationItem("Dashboard", "Icon.LaptopRegular", typeof(DashboardView)),
-        new NavigationItem("Units", "Icon.CalendarRegular", typeof(UnitCreateView))
+        new NavigationItem("Units", "Icon.CalendarRegular", typeof(UnitCreateView)),
+        new NavigationItem("Backlog", "Icon.Backlog", typeof(BacklogView))
     ];
 
     public ToggleMenuModel ToggleMenuContext { get; init; }

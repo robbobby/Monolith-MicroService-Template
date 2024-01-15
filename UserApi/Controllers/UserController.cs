@@ -1,7 +1,6 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+using Core.CustomHttpContext;
 using Microsoft.AspNetCore.Mvc;
-using UserApi.Model;
 using UserApi.Service;
 
 namespace UserApi.Controllers;
@@ -10,14 +9,15 @@ namespace UserApi.Controllers;
 [Route("api/[controller]")]
 public class UserController(UserService userService,
                             IMapper mapper)
-    : ControllerBase {
+    : HttpControllerBase {
     private IMapper _mapper { get; } = mapper;
 
-    [Authorize]
+    [AppAuthorise()]
     [HttpGet]
     [Route("users")]
     public Task<IActionResult> GetUsers() {
-        var users = userService.GetAll<UserDto>();
+        // TODO: THe map is throwing an error for some reason
+        var users = userService.GetAll(User.CurrentOrganisation);
         return Task.FromResult<IActionResult>(Ok(users));
     }
 }

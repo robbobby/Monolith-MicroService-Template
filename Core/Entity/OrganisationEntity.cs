@@ -3,9 +3,9 @@ using Core.Entity.Interface;
 
 namespace Core.Entity;
 
-[Table("Units")]
-public class UnitEntity : IEntityId {
+[Table("Organisations")]
+public class OrganisationEntity : IEntityId {
     public string Name { get; set; }
-    public IList<UserUnitEntity> Users { get; set; }
+    public IList<UserOrganisationEntity> Users { get; set; }
     public Guid Id { get; set; }
 }

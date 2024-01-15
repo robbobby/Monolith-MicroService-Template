@@ -14,7 +14,7 @@ namespace Client.Views.Application;
 
 public partial class UnitCreateViewModel(NotificationManager _notification) : ViewModelBase {
     [ObservableProperty] private string _name = "";
-    public ObservableCollection<UserUnit> Units => AppState.User.Units;
+    public ObservableCollection<UserOrganisation> Units => AppState.User.Units;
 
     [RelayCommand]
     public async Task CreateUnitCommand() {

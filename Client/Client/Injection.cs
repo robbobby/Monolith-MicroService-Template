@@ -17,6 +17,9 @@ public static class Injection {
         services.AddSingleton<INotificationMessageManager, NotificationMessageManager>();
         services.AddSingleton<NotificationManager>();
 
+        services.AddSingleton<BacklogView>();
+        services.AddSingleton<BacklogViewModel>();
+
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindowViewModel>();
 

@@ -10,15 +10,15 @@ namespace Client.Controls;
 
 public partial class HeaderNavViewModel : ViewModelBase {
     [ObservableProperty] private bool _hasUnits = AppState.User.Units.Any();
-    [ObservableProperty] private UserUnit? _selectedUnit;
+    [ObservableProperty] private UserOrganisation? _selectedUnit;
 
     public HeaderNavViewModel() {
         SelectedUnit = Units.FirstOrDefault(u => u.Id == AppState.User.SelectedUnit?.Id);
     }
 
-    public ObservableCollection<UserUnit> Units => AppState.User.Units;
+    public ObservableCollection<UserOrganisation> Units => AppState.User.Units;
 
-    partial void OnSelectedUnitChanged(UserUnit? value) {
+    partial void OnSelectedUnitChanged(UserOrganisation? value) {
         SubscribeToUnitChanged();
         if(!SelectedUnit?.Equals(value) ?? value != null) SelectedUnit = value;
     }

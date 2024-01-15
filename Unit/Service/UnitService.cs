@@ -1,3 +1,4 @@
+using Common.Model;
 using Core.Entity;
 using UnitApi.Repository;
 
@@ -9,19 +10,19 @@ public class UnitService(UnitRepository unitRepository) {
     }
 
     public async Task<Guid> Create(string name, Guid userId) {
-        var entity = new UnitEntity {
+        var entity = new OrganisationEntity {
             Name = name
         };
 
         var unit = await unitRepository.Units.AddAsync(entity);
 
         Console.WriteLine(unit.Id);
-        var userUnit = new UserUnitEntity {
+        var userUnit = new UserOrganisationEntity {
             UserId = userId,
-            UnitId = unit.Id
+            OrganisationId = unit.Id,
+            Role = UserRole.Owner
         };
 
-        Console.WriteLine();
         await unitRepository.UserUnits.AddAsync(userUnit);
 
         return entity.Id;
