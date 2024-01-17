@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Client.Models.State;
 using Common.IdentityApi.Login;
 
-namespace Client.Models.Apis;
+namespace Client.Models.Apis.Http;
 
 public class ApiClient {
     private static readonly HttpClientHandler _handler = new();
@@ -32,6 +32,7 @@ public class ApiClient {
     }
 
     public static string RefreshToken { get; private set; } = null!;
+    public static string AccessToken { get; private set; } = null!;
 
 
     public static async Task<T?> GetAsync<T>(string uri) where T : class {
@@ -128,6 +129,7 @@ public class ApiClient {
         Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", resultData.AccessToken);
         RefreshToken = resultData.RefreshToken;
+        AccessToken = resultData.AccessToken;
     }
 
     public static void ClearTokens() {

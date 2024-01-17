@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
 
 Console.WriteLine(builder.Configuration["Identity:Key"]);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

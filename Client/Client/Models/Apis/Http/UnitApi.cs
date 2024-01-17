@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Common.IdentityApi;
 
-namespace Client.Models.Apis;
+namespace Client.Models.Apis.Http;
 
 public class UnitApi {
     public async Task<HttpResult<Guid?>?> CreateUnit(string name) {

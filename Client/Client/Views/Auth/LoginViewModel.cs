@@ -2,18 +2,18 @@ using System;
 using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
 using Client.Models;
-using Client.Models.Apis;
+using Client.Models.Apis.Http;
+using Client.Models.Apis.Socket;
 using Client.ViewModels;
 using Client.Views.Application;
 using Common.IdentityApi;
 using Common.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Router = Client.Models.Router;
 
 namespace Client.Views.Auth;
 
-public partial class LoginViewModel(Router _router, NotificationManager _notification) : ViewModelBase {
+public partial class LoginViewModel(Router _router, NotificationManager _notification, WebSocket _socket) : ViewModelBase {
     [ObservableProperty] private bool _isLoading;
     [ObservableProperty] [NonePersistent] private string _password = "";
     [ObservableProperty] private string _username = "";
@@ -40,6 +40,7 @@ public partial class LoginViewModel(Router _router, NotificationManager _notific
             if(result?.Succeeded == ResultType.Success) {
                 ApiClient.SetTokens(result.Data!);
                 _router.NavigateTo<ApplicationView>();
+                await _socket.Connect();
                 _notification.Success("Logged in successfully");
             } else {
                 _notification.Error("Failed to login");

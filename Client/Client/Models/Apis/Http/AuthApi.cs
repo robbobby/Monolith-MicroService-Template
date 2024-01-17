@@ -3,7 +3,7 @@ using Apis.Core.Model.Auth;
 using Common.IdentityApi;
 using Common.IdentityApi.Login;
 
-namespace Client.Models.Apis;
+namespace Client.Models.Apis.Http;
 
 public class AuthApi {
     public async Task<HttpResult?> Register(RegisterRequest request) {

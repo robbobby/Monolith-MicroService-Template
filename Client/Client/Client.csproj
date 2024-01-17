@@ -116,6 +116,9 @@
         <Compile Update="Views\Settings\UnitSettingsViewModel.cs">
             <DependentUpon>UnitSettingsView.axaml</DependentUpon>
         </Compile>
+        <Compile Update="Views\Application\BacklogViewModel.cs">
+          <DependentUpon>BacklogView.axaml</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>

@@ -1,6 +1,7 @@
 using Avalonia.Notification;
 using Client.Controls;
 using Client.Models;
+using Client.Models.Apis.Socket;
 using Client.Views;
 using Client.Views.Application;
 using Client.Views.Auth;
@@ -16,6 +17,7 @@ public static class Injection {
         services.AddSingleton<Router>();
         services.AddSingleton<INotificationMessageManager, NotificationMessageManager>();
         services.AddSingleton<NotificationManager>();
+        services.AddSingleton<WebSocket>();
 
         services.AddSingleton<BacklogView>();
         services.AddSingleton<BacklogViewModel>();

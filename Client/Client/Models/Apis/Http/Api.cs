@@ -1,4 +1,4 @@
-namespace Client.Models.Apis;
+namespace Client.Models.Apis.Http;
 
 public static class Api {
     public static AuthApi Auth { get; } = new();

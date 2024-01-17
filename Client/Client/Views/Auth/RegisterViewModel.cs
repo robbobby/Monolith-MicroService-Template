@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Apis.Core.Model.Auth;
 using Client.Models;
 using Client.Models.Apis;
+using Client.Models.Apis.Http;
 using Client.ViewModels;
 using Common.IdentityApi;
 using CommunityToolkit.Mvvm.ComponentModel;
