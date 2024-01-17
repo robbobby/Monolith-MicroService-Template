@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Client.Models;
-using Client.Models.Apis;
 using Client.Models.Apis.Http;
 using Client.ViewModels;
 using Client.Views.Auth;

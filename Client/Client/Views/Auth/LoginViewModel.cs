@@ -13,7 +13,8 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Client.Views.Auth;
 
-public partial class LoginViewModel(Router _router, NotificationManager _notification, WebSocket _socket) : ViewModelBase {
+public partial class LoginViewModel(Router _router, NotificationManager _notification, WebSocket _socket)
+    : ViewModelBase {
     [ObservableProperty] private bool _isLoading;
     [ObservableProperty] [NonePersistent] private string _password = "";
     [ObservableProperty] private string _username = "";

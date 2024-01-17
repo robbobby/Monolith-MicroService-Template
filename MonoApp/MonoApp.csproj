@@ -24,7 +24,7 @@
         <ProjectReference Include="..\Core\Core.csproj"/>
         <ProjectReference Include="..\Unit\UnitApi.csproj"/>
         <ProjectReference Include="..\UserApi\UserApi.csproj"/>
-        <ProjectReference Include="..\WebSocket\WebSocket.csproj" />
+        <ProjectReference Include="..\WebSocket\WebSocket.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

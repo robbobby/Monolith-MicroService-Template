@@ -11,7 +11,8 @@ public class OrganisationHub : Hub {
     }
 
     public override async Task OnConnectedAsync() {
-        await Clients.All.SendAsync(OrgServerToClient.ClientJoined, "System", $"{Context.ConnectionId} joined the conversation");
+        await Clients.All.SendAsync(OrgServerToClient.ClientJoined, "System",
+            $"{Context.ConnectionId} joined the conversation");
         await base.OnConnectedAsync();
     }
 }

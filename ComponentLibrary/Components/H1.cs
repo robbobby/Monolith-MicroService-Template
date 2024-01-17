@@ -5,10 +5,10 @@ using Avalonia.Styling;
 namespace ComponentLibrary;
 
 public class H1 : TextBlock, IStyleable {
-    Type IStyleable.StyleKey => typeof(TextBlock);
-
     public H1() {
-        this.FontSize = 32; // equivalent to <H1> in HTML
-        this.FontWeight = FontWeight.Bold;
+        FontSize = 32; // equivalent to <H1> in HTML
+        FontWeight = FontWeight.Bold;
     }
+
+    Type IStyleable.StyleKey => typeof(TextBlock);
 }

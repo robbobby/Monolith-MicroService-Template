@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Client.Models;
-using Client.Models.Apis;
 using Client.Models.Apis.Http;
 using Client.Models.State;
 using Client.ViewModels;

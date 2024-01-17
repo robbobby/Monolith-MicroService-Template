@@ -12,7 +12,7 @@ public class UserController(UserService userService,
     : HttpControllerBase {
     private IMapper _mapper { get; } = mapper;
 
-    [AppAuthorise()]
+    [AppAuthorise]
     [HttpGet]
     [Route("users")]
     public Task<IActionResult> GetUsers() {
