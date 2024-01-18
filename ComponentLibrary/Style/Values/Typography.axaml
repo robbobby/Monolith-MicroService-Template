@@ -6,7 +6,6 @@
     <system:Double x:Key="FontSize.Caption">12</system:Double>
     <system:Double x:Key="FontSize.Overline">10</system:Double>
 
-
     <system:Double x:Key="Button.FontSize.XLarge">28</system:Double>
     <system:Double x:Key="Button.FontSize.Large">21</system:Double>
     <system:Double x:Key="Button.FontSize.Medium">14</system:Double>
