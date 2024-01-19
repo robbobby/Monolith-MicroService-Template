@@ -3,28 +3,35 @@
 
     <Color x:Key="Colour.Background.Contrast">#2C2F33</Color>
     <Color x:Key="Colour.Background.Primary">#23272B</Color>
-    <Color x:Key="Colour.Text.Dark">#0F0F0F</Color>
-    <Color x:Key="Colour.Text.Light">#FFFFFF</Color>
+    <Color x:Key="Colour.Text.Primary">#0F0F0F</Color>
+    <Color x:Key="Colour.Text.Inverse">#FFFFFF</Color>
 
     <Color x:Key="Colour.Default">#BDC3C7</Color>
     <Color x:Key="Colour.DefaultHover">#95A5A6</Color>
 
     <Color x:Key="Colour.Primary">#1ABC9C</Color>
+    <Color x:Key="Colour.PrimaryTransparent">#E61ABC9C</Color>
     <Color x:Key="Colour.PrimaryHover">#16A085</Color>
 
     <Color x:Key="Colour.Warning">#F1C40F</Color>
+    <Color x:Key="Colour.WarningTransparent">#5AF1C40F</Color>
     <Color x:Key="Colour.WarningHover">#F39C12</Color>
 
     <Color x:Key="Colour.Success">#2ECC71</Color>
+    <Color x:Key="Colour.SuccessTransparent">#902ECC71</Color>
     <Color x:Key="Colour.SuccessHover">#27AE60</Color>
 
     <Color x:Key="Colour.Danger">#C0392B</Color>
+    <Color x:Key="Colour.DangerTransparent">#90C0392B</Color>
     <Color x:Key="Colour.DangerHover">#E74C3C</Color>
 
-    <Color x:Key="Colour.Inverse">#0F0F0F</Color>
-    <Color x:Key="Colour.InverseHover">#1A1A1A</Color>
+    <Color x:Key="Colour.Inverse">#FFFFFF</Color>
+    <Color x:Key="Colour.InverseTransparent">#99FFFFFF</Color>
+    <Color x:Key="Colour.InverseHover">#F5F5F5</Color>
+
 
     <Color x:Key="Colour.Info">#3498DB</Color>
+    <Color x:Key="Colour.InfoTransparent">#903498DB</Color>
     <Color x:Key="Colour.InfoHover">#2980B9</Color>
 
     <Color x:Key="Colour.Disabled">#D1D5D8</Color>

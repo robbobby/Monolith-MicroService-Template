@@ -30,7 +30,7 @@ public class XamlSourceGenerator : IIncrementalGenerator {
                 source.AppendLine("{");
 
                 foreach (var group in keys.GroupBy(k => string.Join(".", k.Parts.Take(k.Parts.Count - 1))))
-                    GenerateKeyClass(group.Key, group.Select(k => k.Parts.Last()), source);
+                    GenerateKeyClass(group.Key, group.Select(k => (k.Key, k.Parts.Last())).ToList(), source);
 
                 source.AppendLine("}");
 
@@ -38,25 +38,28 @@ public class XamlSourceGenerator : IIncrementalGenerator {
                 context.AddSource($"{fileName}.ResourceKeys.g.cs", SourceText.From(source.ToString(), Encoding.UTF8));
             }
             catch (Exception e) {
-                // existing code...
+                context.ReportDiagnostic(Diagnostic.Create(
+                    new DiagnosticDescriptor("XKG001", "XamlKeyGenerator", e.Message, "XamlKeyGenerator",
+                        DiagnosticSeverity.Error, true), Location.None));
             }
         });
     }
 
-    private static void GenerateKeyClass(string classPath, IEnumerable<string> properties, StringBuilder source) {
+    private static void GenerateKeyClass(string classPath, IEnumerable<(string Key, string Property)> properties,
+                                         StringBuilder source) {
         var parts = classPath.Split('.').ToList();
         GenerateNestedClasses(parts, properties, source, 1);
     }
 
-    private static void GenerateNestedClasses(List<string> parts, IEnumerable<string> properties, StringBuilder source,
-                                              int depth) {
+    private static void GenerateNestedClasses(List<string> parts, IEnumerable<(string Key, string Property)> properties,
+                                              StringBuilder source, int depth) {
         var indent = new string(' ', depth * 4);
         if(parts.Count == 1) {
             source.AppendLine($"{indent}public partial class {parts[0]}");
             source.AppendLine($"{indent}{{");
             foreach (var property in properties)
-                source.AppendLine(
-                    $"{indent}    public static string {property} = \"{string.Join(".", parts)}.{property}\";");
+                source.AppendLine($"{indent}    public static string {property.Property} = \"{property.Key}\";");
+
             source.AppendLine($"{indent}}}");
         } else {
             source.AppendLine($"{indent}public partial class {parts[0]}");

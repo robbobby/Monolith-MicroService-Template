@@ -16,7 +16,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="#c8c8c8" />
         <Setter Property="Background" Value="{DynamicResource Colour.Background.Primary}" />
-        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Inverse}" />
         <Setter Property="Padding" Value="8" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />

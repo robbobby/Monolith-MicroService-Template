@@ -1,0 +1,116 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Badge Classes="Small">No Class</Badge>
+                    <Badge>No Class</Badge>
+                    <Badge Classes="Medium">No Class</Badge>
+                    <Badge Classes="Large">No Class</Badge>
+                    <Badge Classes="XLarge">No Class</Badge>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Badge Classes="Warning Small">Warning</Badge>
+                    <Badge Classes="Warning">Warning</Badge>
+                    <Badge Classes="Warning Medium">Warning</Badge>
+                    <Badge Classes="Warning Large">Warning</Badge>
+                    <Badge Classes="Warning XLarge">Warning</Badge>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Badge Classes="Default Small">Default</Badge>
+                    <Badge Classes="Default">Default</Badge>
+                    <Badge Classes="Default Medium">Default</Badge>
+                    <Badge Classes="Default Large">Default</Badge>
+                    <Badge Classes="Default XLarge">Default</Badge>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Badge Classes="Danger Small">Danger</Badge>
+                    <Badge Classes="Danger">Danger</Badge>
+                    <Badge Classes="Danger Medium">Danger</Badge>
+                    <Badge Classes="Danger Large">Danger</Badge>
+                    <Badge Classes="Danger XLarge">Danger</Badge>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Badge Classes="Success Small">Success</Badge>
+                    <Badge Classes="Success">Success</Badge>
+                    <Badge Classes="Success Medium">Success</Badge>
+                    <Badge Classes="Success Large">Success</Badge>
+                    <Badge Classes="Success XLarge">Success</Badge>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Badge Classes="Inverse Small">Inverse</Badge>
+                    <Badge Classes="Inverse">Inverse</Badge>
+                    <Badge Classes="Inverse Medium">Inverse</Badge>
+                    <Badge Classes="Inverse Large">Inverse</Badge>
+                    <Badge Classes="Inverse XLarge">Inverse</Badge>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Badge Classes="Info Small">Info</Badge>
+                    <Badge Classes="Info">Info</Badge>
+                    <Badge Classes="Info Medium">Info</Badge>
+                    <Badge Classes="Info Large">Info</Badge>
+                    <Badge Classes="Info XLarge">Info</Badge>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="Badge">
+        <Setter Property="Background" Value="{DynamicResource Colour.PrimaryTransparent}" />
+        <Setter Property="Opacity" Value="0.7" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Inverse}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.PrimaryHover}" />
+        <Setter Property="Padding" Value="12 2 12 0" />
+        <Setter Property="CornerRadius"
+                Value="16" />
+
+    </Style>
+
+    <Style Selector="Badge.Warning">
+        <Setter Property="Background" Value="{DynamicResource Colour.WarningTransparent}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Primary}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.WarningHover}" />
+    </Style>
+    <Style Selector="Badge.Default">
+        <Setter Property="Background" Value="{DynamicResource Colour.Background.Primary}" />
+    </Style>
+    <Style Selector="Badge.Danger">
+        <Setter Property="Background" Value="{DynamicResource Colour.DangerTransparent}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.DangerHover}" />
+    </Style>
+    <Style Selector="Badge.Success">
+        <Setter Property="Background" Value="{DynamicResource Colour.SuccessTransparent}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.SuccessHover}" />
+    </Style>
+    <Style Selector="Badge.Inverse">
+        <Setter Property="Background" Value="{DynamicResource Colour.InverseTransparent}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Inverse}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.Text.Primary}" />
+    </Style>
+    <Style Selector="Badge.Info">
+        <Setter Property="Background" Value="{DynamicResource Colour.InfoTransparent}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Colour.InfoHover}" />
+    </Style>
+
+
+    <Style Selector="Badge.XLarge">
+        <Setter Property="Padding" Value="12 4 12 0" />
+        <Setter Property="FontSize" Value="{DynamicResource Button.FontSize.Large}" />
+    </Style>
+    <Style Selector="Badge.Large">
+        <Setter Property="Padding" Value="12 4 12 0" />
+        <Setter Property="FontSize" Value="{DynamicResource Button.FontSize.Large}" />
+    </Style>
+    <Style Selector="Badge.Medium">
+        <Setter Property="Padding" Value="12 2 12 0" />
+        <Setter Property="FontSize" Value="{DynamicResource Button.FontSize.Medium}" />
+    </Style>
+    <Style Selector="Badge.Small">
+        <Setter Property="Padding" Value="12 4 12 0" />
+        <Setter Property="FontSize" Value="{DynamicResource Button.FontSize.Small}" />
+    </Style>
+</Styles>

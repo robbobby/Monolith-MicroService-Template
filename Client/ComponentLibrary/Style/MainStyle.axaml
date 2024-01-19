@@ -19,4 +19,5 @@
     <StyleInclude Source="ButtonStyles.axaml" />
     <StyleInclude Source="InputBoxStyle.axaml" />
     <StyleInclude Source="BorderStyles.axaml" />
+    <StyleInclude Source="BadgeStyles.axaml" />
 </Styles>

@@ -9,7 +9,7 @@ namespace Client.Models;
 
 public class NotificationManager {
     private readonly IResourceDictionary _resources = Application.Current!.Resources;
-    public INotificationMessageManager Notification { get; } = new NotificationMessageManager();
+    public static INotificationMessageManager Notification { get; } = new NotificationMessageManager();
 
     public void Success(string message) {
         Success(new NotificationModel { Message = message });
@@ -60,16 +60,16 @@ public class NotificationManager {
         notification.Queue();
     }
 
-    private NotificationMessageBuilder BuildNotification(NotificationModel model, object? successColour,
+    private NotificationMessageBuilder BuildNotification(NotificationModel model, object? accentColour,
                                                          object? backgroundColour) {
-        var notification = Notification
-            .CreateMessage()
-            .Animates(true)
-            .Background(backgroundColour!.ToString())
-            .Accent(successColour.ToString())
-            .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
-            .Dismiss().WithButton("X", button => { })
-            .HasBadge("Success");
+        var notification = Notification.CreateMessage();
+        notification.Animates(true);
+        notification.Background(backgroundColour!.ToString()!);
+        notification.Accent(accentColour!.ToString()!);
+        notification.Dismiss().WithDelay(TimeSpan.FromSeconds(5));
+        notification.Dismiss().WithButton("X", button => { });
+        notification.HasBadge("Success");
+        ;
 
         if(!string.IsNullOrEmpty(model.Header)) notification.HasHeader(model.Header);
         if(!string.IsNullOrEmpty(model.Message)) notification.HasMessage(model.Message);

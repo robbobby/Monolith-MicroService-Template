@@ -8,12 +8,6 @@
              x:Class="Client.Views.Auth.LoginView"
              x:DataType="auth:LoginViewModel">
     <DockPanel>
-        <H1>Header</H1>
-        <H2>Header</H2>
-        <H3>Header</H3>
-        <H4>Header</H4>
-        <H5>Header</H5>
-
         <Panel.Styles>
             <Style Selector="ContentControl">
                 <Setter Property="Template">

@@ -17,7 +17,7 @@ public class H5() : Header(ResourceKeys.FontSize.H5);
 public class Header : TextBlock {
     private readonly string _fontSizeKey;
 
-    public Header(string fontSizeKey) {
+    protected Header(string fontSizeKey) {
         _fontSizeKey = fontSizeKey;
         var thing = ResourceKeys.Button.FontSize.XLarge;
         FontWeight = FontWeight.Bold;

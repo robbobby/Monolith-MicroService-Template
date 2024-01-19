@@ -63,7 +63,7 @@
 
     <Style Selector="Button.Primary">
         <Setter Property="Background" Value="{DynamicResource Colour.Primary}" />
-        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Inverse}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
