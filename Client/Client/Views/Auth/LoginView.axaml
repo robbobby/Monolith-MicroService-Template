@@ -13,14 +13,14 @@
         <H3>Header</H3>
         <H4>Header</H4>
         <H5>Header</H5>
-        
+
         <Panel.Styles>
             <Style Selector="ContentControl">
                 <Setter Property="Template">
                     <ControlTemplate>
                         <Border Width="250"
                                 Height="300"
-                                Background="{DynamicResource Colour.BackgroundContrast}"
+                                Background="{DynamicResource Colour.Background.Contrast}"
                                 CornerRadius="6">
                             <StackPanel Width="200"
                                         HorizontalAlignment="Center"

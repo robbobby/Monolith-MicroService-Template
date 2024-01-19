@@ -15,8 +15,8 @@
     <Style Selector="TextBox">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="#c8c8c8" />
-        <Setter Property="Background" Value="{DynamicResource Colour.Background}" />
-        <Setter Property="Foreground" Value="{DynamicResource Colour.TextLight}" />
+        <Setter Property="Background" Value="{DynamicResource Colour.Background.Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Light}" />
         <Setter Property="Padding" Value="8" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />
@@ -26,11 +26,11 @@
 
     <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
         <Setter Property="Background"
-                Value="{DynamicResource Colour.BackgroundContrast}" />
+                Value="{DynamicResource Colour.Background.Contrast}" />
     </Style>
     <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
         <Setter Property="Background"
-                Value="{DynamicResource Colour.BackgroundContrast}" />
+                Value="{DynamicResource Colour.Background.Contrast}" />
     </Style>
     <Style Selector="TextBox.Error">
         <Setter Property="BorderBrush" Value="{DynamicResource Colour.Danger}" />

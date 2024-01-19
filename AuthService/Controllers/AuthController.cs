@@ -44,7 +44,7 @@ public class AuthController(AuthService authService)
     [HttpPost("SignOut")]
     public async Task<IActionResult> Logout([FromBody] string refreshToken) {
         try {
-            await authService.LogoutUser(User.Claims.FirstOrDefault(c => c.Type == CustomClaimType.UserId).Value,
+            await authService.LogoutUser(User.Claims.First(c => c.Type == CustomClaimType.UserId).Value,
                 refreshToken);
 
             return Ok(new HttpResult {
@@ -74,7 +74,7 @@ public class AuthController(AuthService authService)
 }
 
 public class AuthenticationResult {
-    public TokenResult? TokenResult { get; set; }
-    public bool Succeeded { get; set; }
-    public string[] Errors { get; set; }
+    public TokenResult? TokenResult { get; init; }
+    public bool Succeeded { get; init; }
+    public string[] Errors { get; init; } = [];
 }

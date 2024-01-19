@@ -9,5 +9,3 @@ app.MapGet("/", () => "Hello World!");
 app.MapHub<OrganisationHub>("/organisationHub");
 
 app.Run();
-
-namespace WebSocket { }

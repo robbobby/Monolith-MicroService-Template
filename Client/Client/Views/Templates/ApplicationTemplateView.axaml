@@ -13,14 +13,14 @@
                OpenPaneLength="200"
                CompactPaneLength="48"
                DisplayMode="CompactInline"
-               Background="{DynamicResource Colour.BackgroundContrast}"
-               PaneBackground="{DynamicResource Colour.BackgroundContrast}">
+               Background="{DynamicResource Colour.Background.Contrast}"
+               PaneBackground="{DynamicResource Colour.Background.Contrast}">
         <SplitView.Pane>
             <controls:NavigationMenu
                 ToggleMenuDataContext="{Binding $parent.((templates:ApplicationTemplateViewModel)DataContext).ToggleMenuContext}" />
         </SplitView.Pane>
         <SplitView.Content>
-            <Border Background="{DynamicResource Colour.Background}"
+            <Border Background="{DynamicResource Colour.Background.Primary}"
                     CornerRadius="12 0 0 0">
                 <StackPanel>
                     <controls:HeaderNav />
