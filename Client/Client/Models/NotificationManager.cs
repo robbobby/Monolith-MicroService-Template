@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Notification;
 using Avalonia.Styling;
+using ComponentLibrary;
 
 namespace Client.Models;
 
@@ -15,8 +16,9 @@ public class NotificationManager {
     }
 
     public void Success(NotificationModel model) {
-        _resources.TryGetResource("Colour.Success", ThemeVariant.Dark, out var accentColour);
-        _resources.TryGetResource("Colour.BackgroundContrast", ThemeVariant.Dark, out var backgroundColour);
+        var thing = ResourceKeys.Colour.Background.Contrast;
+        _resources.TryGetResource(ResourceKeys.Colour.Success, ThemeVariant.Dark, out var accentColour);
+        _resources.TryGetResource(ResourceKeys.Colour.Background.Contrast, ThemeVariant.Dark, out var backgroundColour);
 
         var notification = BuildNotification(model, accentColour, backgroundColour);
         notification.Queue();
@@ -27,8 +29,8 @@ public class NotificationManager {
     }
 
     public void Info(NotificationModel model) {
-        _resources.TryGetResource("Colour.Info", ThemeVariant.Dark, out var accentColour);
-        _resources.TryGetResource("Colour.BackgroundContrast", ThemeVariant.Dark, out var backgroundColour);
+        _resources.TryGetResource(ResourceKeys.Colour.Info, ThemeVariant.Dark, out var accentColour);
+        _resources.TryGetResource(ResourceKeys.Colour.Background.Contrast, ThemeVariant.Dark, out var backgroundColour);
 
         var notification = BuildNotification(model, accentColour, backgroundColour);
         notification.Queue();
@@ -39,8 +41,8 @@ public class NotificationManager {
     }
 
     public void Warning(NotificationModel model) {
-        _resources.TryGetResource("Colour.Warning", ThemeVariant.Dark, out var accentColour);
-        _resources.TryGetResource("Colour.BackgroundContrast", ThemeVariant.Dark, out var backgroundColour);
+        _resources.TryGetResource(ResourceKeys.Colour.Warning, ThemeVariant.Dark, out var accentColour);
+        _resources.TryGetResource(ResourceKeys.Colour.Background.Contrast, ThemeVariant.Dark, out var backgroundColour);
 
         var notification = BuildNotification(model, accentColour, backgroundColour);
         notification.Queue();
@@ -51,8 +53,8 @@ public class NotificationManager {
     }
 
     public void Error(NotificationModel model) {
-        _resources.TryGetResource("Colour.Danger", ThemeVariant.Dark, out var accentColour);
-        _resources.TryGetResource("Colour.BackgroundContrast", ThemeVariant.Dark, out var backgroundColour);
+        _resources.TryGetResource(ResourceKeys.Colour.Danger, ThemeVariant.Dark, out var accentColour);
+        _resources.TryGetResource(ResourceKeys.Colour.Background.Contrast, ThemeVariant.Dark, out var backgroundColour);
 
         var notification = BuildNotification(model, accentColour, backgroundColour);
         notification.Queue();

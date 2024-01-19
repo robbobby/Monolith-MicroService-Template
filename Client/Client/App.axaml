@@ -17,7 +17,7 @@
         <StyleInclude Source="avares://ComponentLibrary/Style/MainStyle.axaml" />
         <StyleInclude Source="avares://ComponentLibrary/Style/ButtonStyles.axaml" />
         <StyleInclude Source="avares://ComponentLibrary/Style/InputBoxStyle.axaml" />
-        <StyleInclude Source="avares://ComponentLibrary/Style/Icons.axaml" />
+        <StyleInclude Source="avares://ComponentLibrary/Style/Icons.ResourceBase.axaml" />
         <StyleInclude Source="avares://Notification.Avalonia/Themes/Generic.xaml" />
     </Application.Styles>
 </Application>
