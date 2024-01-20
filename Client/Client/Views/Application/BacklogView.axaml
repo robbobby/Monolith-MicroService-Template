@@ -1,17 +1,17 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:views="clr-namespace:Client.Views.Application"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:componentLibrary="clr-namespace:ComponentLibrary;assembly=ComponentLibrary"
              xmlns:controls="clr-namespace:Client.Controls"
+             xmlns:application="clr-namespace:Client.Views.Application"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.Application.BacklogView"
-             x:DataType="views:BacklogViewModel">
+             x:DataType="application:BacklogViewModel">
     <StackPanel>
         <componentLibrary:H1>Backlog</componentLibrary:H1>
         <StackPanel Spacing="5">
-            <Button Padding="0" Margin="0">
+            <Button Padding="0" Margin="0" Command="{Binding OpenModalCommand}">
                 <PathIcon Data="{DynamicResource Icon.AddSquareRegular}"
                           Margin="0"
                           Width="20" Height="20"

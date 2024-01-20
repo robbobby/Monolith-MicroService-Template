@@ -22,6 +22,8 @@ public static class Injection {
         services.AddSingleton<BacklogView>();
         services.AddSingleton<BacklogViewModel>();
 
+        services.AddSingleton<IModalService, ModalService>();
+
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindowViewModel>();
 

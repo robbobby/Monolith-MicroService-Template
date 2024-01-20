@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="50"
              x:Class="Client.Controls.BacklogItem">
-    <Grid ColumnDefinitions="Auto Auto * Auto Auto Auto Auto Auto Auto" Height="20">
+    <Grid ColumnDefinitions="Auto Auto Auto * Auto Auto Auto Auto Auto" Height="20">
         <CheckBox />
         <Badge Grid.Column="1" Classes="Info" Padding="0" Margin="0">
             <PathIcon Data="{DynamicResource Icon.WrenchRegular}"

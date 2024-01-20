@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Client.Controls"
              xmlns:templates="clr-namespace:Client.Views.Templates"
+             xmlns:application="clr-namespace:Client.Views.Application"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.Templates.ApplicationTemplateView"
              x:DataType="templates:ApplicationTemplateViewModel">
