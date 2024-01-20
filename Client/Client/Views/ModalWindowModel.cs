@@ -6,5 +6,4 @@ namespace Client.Views;
 
 public partial class ModalWindowModel : ViewModelBase {
     [ObservableProperty] private UserControl _modalContent;
-
 }

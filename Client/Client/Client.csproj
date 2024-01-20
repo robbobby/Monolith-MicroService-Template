@@ -120,12 +120,12 @@
             <DependentUpon>BacklogView.axaml</DependentUpon>
         </Compile>
         <Compile Update="Views\ModalWindowModel.cs">
-          <DependentUpon>ModalWindow.axaml</DependentUpon>
+            <DependentUpon>ModalWindow.axaml</DependentUpon>
         </Compile>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Service\" />
+        <Folder Include="Service\"/>
         <Folder Include="ViewModels\Application\"/>
         <Folder Include="ViewModels\Auth\"/>
     </ItemGroup>

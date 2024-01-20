@@ -20,7 +20,7 @@
         </ExperimentalAcrylicBorder>
         <StackPanel>
             <TransitioningContentControl x:Name="ContentControl"
-                            Content="{Binding ModalContent}" />
+                                         Content="{Binding ModalContent}" />
         </StackPanel>
     </Panel>
 </Window>
