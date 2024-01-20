@@ -3,7 +3,7 @@ using Client.Models;
 
 namespace Client.Views.Application;
 
-public partial class ApplicationView : ApplicationViewBase {
+public partial class ApplicationView : ApplicationViewBase<ApplicationViewModel> {
     public ApplicationView(ApplicationViewModel viewModel) : base(viewModel) {
         ViewTemplate = ViewTemplateType.Application;
         InitializeComponent();

@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace Client.Views.Application;
 
-public partial class BacklogView : ApplicationViewBase {
+public partial class BacklogView : ApplicationViewBase<BacklogViewModel> {
     private readonly IModalService _modalService;
   
     public BacklogView(BacklogViewModel viewModel, IModalService modalService) : base(viewModel) {
@@ -22,26 +22,23 @@ public partial class BacklogView : ApplicationViewBase {
 
     private async Task DoShowDialogAsync(InteractionContext<ModalWindow,
                                              object?> interaction) {
-        var dialog = interaction.Input;
-        var result = await _modalService.ShowDialog<ModalWindow?>(dialog, this.GetVisualRoot() as Window);
-        interaction.SetOutput(result);
+        await _modalService.ShowDialog(interaction, this.GetVisualRoot() as Window);
     }
 }
 
 public interface IModalService {
-    Task<object> ShowDialog<TWindow>(TWindow dialog, Window parentWindow) 
+    Task ShowDialog<TWindow>(InteractionContext<TWindow, object?> interaction, Window parentWindow)
         where TWindow : Window;
 }
 
 public class ModalService : IModalService {
-    public async Task<object> ShowDialog<TWindow>(TWindow dialog, Window parentWindow) 
+    public async Task ShowDialog<TWindow>(InteractionContext<TWindow, object?> interaction, Window parentWindow) 
         where TWindow : Window {
-        object result = null;
-        
+        var dialog = interaction.Input;
+
         if (dialog != null) {
-            result = await dialog.ShowDialog<object>(parentWindow);
-        }
-        
-        return result;
+            var result = await dialog.ShowDialog<object>(parentWindow);
+            interaction.SetOutput(result);
+        }      
     }
 }

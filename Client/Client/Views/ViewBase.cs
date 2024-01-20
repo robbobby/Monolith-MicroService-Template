@@ -15,8 +15,8 @@ public enum ViewTemplateType {
     Settings
 }
 
-public class ApplicationViewBase : ViewBase {
-    public ApplicationViewBase(ViewModelBase viewModelBase) : base(viewModelBase) {
+public class ApplicationViewBase<T> : ViewBase where T : ViewModelBase {
+    public ApplicationViewBase(T viewModelBase) : base(viewModelBase) {
         ViewTemplate = ViewTemplateType.Application;
     }
 }
