@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Client.Views.Application"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.Application.TicketCreateForm"
+             x:DataType="views:TicketCreateFormModel">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <TextBox Name="Name" Width="200" Margin="5" Watermark="Enter name here..." />
+        <TextBox Name="Description" Width="200" Margin="5" Watermark="Enter description here..." />
+        <ComboBox Name="Type" Width="200" Margin="5">
+            <ComboBoxItem>Option 1</ComboBoxItem>
+            <ComboBoxItem>Option 2</ComboBoxItem>
+            <ComboBoxItem>Option 3</ComboBoxItem>
+        </ComboBox>
+        <ComboBox Name="Priority" Width="200" Margin="5">
+            <ComboBoxItem>Low</ComboBoxItem>
+            <ComboBoxItem>Medium</ComboBoxItem>
+            <ComboBoxItem>High</ComboBoxItem>
+        </ComboBox>
+        <Panel Margin="10">
+            <Button Classes="Info" HorizontalAlignment="Left">Save</Button>
+            <Button Classes="Danger" HorizontalAlignment="Right">Cancel</Button>
+        </Panel>
+    </StackPanel>
+
+
+</UserControl>

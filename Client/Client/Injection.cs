@@ -59,6 +59,9 @@ public static class Injection {
 
         services.AddSingleton<UnitSettingsView>();
         services.AddSingleton<UnitSettingsViewModel>();
+
+        services.AddSingleton<TicketCreateForm>();
+        services.AddSingleton<TicketCreateFormModel>();
     }
 
     private static void InjectTemplates(ServiceCollection services) {

@@ -122,6 +122,9 @@
         <Compile Update="Views\ModalWindowModel.cs">
             <DependentUpon>ModalWindow.axaml</DependentUpon>
         </Compile>
+        <Compile Update="Views\Application\TicketCreateFormModel.cs">
+            <DependentUpon>TicketCreateForm.axaml</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>

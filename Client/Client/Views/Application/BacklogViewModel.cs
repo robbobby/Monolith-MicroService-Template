@@ -15,16 +15,12 @@ public partial class BacklogViewModel : ViewModelBase {
 
     [RelayCommand]
     public async Task OpenModal() {
+        var content = App.GetViewOrThrow<TicketCreateForm>();
         var viewModel = new ModalWindowModel {
-            ModalContent = App.GetViewOrThrow<ApplicationView>()
+            ModalContent = content
         };
 
-        var view = new ModalWindow {
-            CanResize = false,
-            Width = 300,
-            Height = 200,
-            DataContext = viewModel
-        };
+        var view = new ModalWindow(viewModel, content);
         await ShowModal.Handle(view);
     }
 }
