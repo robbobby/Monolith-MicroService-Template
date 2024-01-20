@@ -17,9 +17,8 @@ public partial class BacklogViewModel : ViewModelBase {
     
     [RelayCommand]
     public async Task OpenModal() {
-        Console.WriteLine("Opening modal");
         var viewModel = new ModalWindowModel {
-            ModalContent = App.GetViewOrThrow<UnitCreateView>()
+            ModalContent = App.GetViewOrThrow<ApplicationView>()
         };
         
         var view = new ModalWindow {
