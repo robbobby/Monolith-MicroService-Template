@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Core.Entity.Identity;
 using Core.Entity.Interface;
 
-namespace Core.Entity;
+namespace Core.Entity.Project;
 
 [Table("Projects")]
 public class ProjectEntity : IEntityId {

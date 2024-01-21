@@ -1,6 +1,7 @@
 using AutoMapper;
 using Common.Apis.Project;
 using Core.Entity;
+using Core.Entity.Project;
 
 namespace ProjectServiceApi;
 

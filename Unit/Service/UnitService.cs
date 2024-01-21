@@ -1,5 +1,6 @@
 using Common.Model;
 using Core.Entity;
+using Core.Entity.Identity;
 using UnitApi.Repository;
 
 namespace UnitApi.Service;

@@ -1,5 +1,6 @@
 using Core.Attributes;
 using Core.Entity;
+using Core.Entity.Project;
 using Core.RepositoryBase;
 using ProjectServiceApi.Repository;
 using ProjectServiceApi.Services;

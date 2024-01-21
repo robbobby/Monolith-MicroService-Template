@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using Core.Entity.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Entity;
+namespace Core.Entity.Identity;
 
 [PrimaryKey(nameof(AccessToken), nameof(RefreshToken))]
 public class TokenEntity {

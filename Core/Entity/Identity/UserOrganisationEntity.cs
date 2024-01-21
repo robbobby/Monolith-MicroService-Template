@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Common.Model;
-using Core.Entity.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Entity;
+namespace Core.Entity.Identity;
 
 [Table("UserOrganisation")]
 [PrimaryKey(nameof(UserId), nameof(OrganisationId))]

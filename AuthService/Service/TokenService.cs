@@ -7,6 +7,7 @@ using Common.Apis.Auth.Login;
 using Common.Model;
 using Core;
 using Core.Entity;
+using Core.Entity.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AuthServiceApi.Service;

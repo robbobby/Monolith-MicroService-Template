@@ -2,6 +2,7 @@ using AutoMapper;
 using Common.Apis.Auth;
 using Common.Apis.Project;
 using Core.Entity;
+using Core.Entity.Project;
 using ProjectServiceApi.Repository;
 
 namespace ProjectServiceApi.Services;
