@@ -1,4 +1,4 @@
-namespace Core.WebSocketMessageKeys;
+namespace Common.WebSocketMessageKeys;
 
 public static class OrgClientToServer {
     public const string SendMessage = "SendMessage";

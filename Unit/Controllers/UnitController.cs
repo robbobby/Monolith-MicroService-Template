@@ -1,4 +1,4 @@
-using Common.IdentityApi;
+using Common.Apis.Auth;
 using Common.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using Client.Models;
 using Client.ViewModels;
@@ -26,7 +25,6 @@ public partial class SettingsTemplateViewModel : TemplateViewModelBase, INavigat
 
     [RelayCommand]
     private void ToggleNavMenuCommand() {
-        Console.WriteLine("Toggling nav menu is SettingsTemplateViewModel");
         IsNavMenuOpen = !IsNavMenuOpen;
     }
 }

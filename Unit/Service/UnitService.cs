@@ -14,16 +14,15 @@ public class UnitService(UnitRepository unitRepository) {
             Name = name
         };
 
-        var unit = await unitRepository.Units.AddAsync(entity);
+        var unit = await unitRepository.Units.CreateAsync(entity);
 
-        Console.WriteLine(unit.Id);
         var userUnit = new UserOrganisationEntity {
             UserId = userId,
             OrganisationId = unit.Id,
             Role = UserRole.Owner
         };
 
-        await unitRepository.UserUnits.AddAsync(userUnit);
+        await unitRepository.UserUnits.CreateAsync(userUnit);
 
         return entity.Id;
     }

@@ -7,7 +7,7 @@ using System.Security.Authentication;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Client.Models.State;
-using Common.IdentityApi.Login;
+using Common.Apis.Auth.Login;
 
 namespace Client.Models.Apis.Http;
 
@@ -54,6 +54,7 @@ public class ApiClient {
         }
         catch (Exception e) {
             Console.WriteLine(e);
+            Console.WriteLine(e.Message);
             throw;
         }
     }

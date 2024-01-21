@@ -1,4 +1,4 @@
-namespace Apis.Core.Model.Auth;
+namespace Common.Apis.Auth.Login;
 
 public class LoginRequest {
     public string Username { get; set; }

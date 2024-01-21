@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:project="clr-namespace:Client.Views.Application.Project"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
+             x:Class="Client.Views.Application.Project.ProjectCreateForm"
+             x:DataType="project:ProjectCreateFormModel">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <TextBox Name="Name" Width="200" Margin="5" Watermark="Enter project name..."
+                 Text="{Binding Name, Mode=TwoWay}" />
+        <Panel Margin="10">
+            <Button Classes="Info" HorizontalAlignment="Left"
+                    Command="{Binding CreateCommand}">
+                Create
+            </Button>
+            <Button Classes="Danger" HorizontalAlignment="Right">Cancel</Button>
+        </Panel>
+    </StackPanel>
+
+</UserControl>

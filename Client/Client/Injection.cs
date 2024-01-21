@@ -2,12 +2,15 @@ using Avalonia.Notification;
 using Client.Controls;
 using Client.Models;
 using Client.Models.Apis.Socket;
+using Client.Service;
 using Client.Views;
 using Client.Views.Application;
+using Client.Views.Application.Project;
 using Client.Views.Auth;
 using Client.Views.Settings;
 using Client.Views.Templates;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectCreateFormModel = Client.Views.Application.Project.ProjectCreateFormModel;
 
 namespace Client;
 
@@ -60,8 +63,12 @@ public static class Injection {
         services.AddSingleton<UnitSettingsView>();
         services.AddSingleton<UnitSettingsViewModel>();
 
-        services.AddSingleton<TicketCreateForm>();
-        services.AddSingleton<TicketCreateFormModel>();
+        // Modals must be transient otherwise they cannot be re-attached to the visual tree
+        services.AddTransient<TicketCreateForm>();
+        services.AddTransient<TicketCreateFormModel>();
+
+        services.AddTransient<ProjectCreateForm>();
+        services.AddTransient<ProjectCreateFormModel>();
     }
 
     private static void InjectTemplates(ServiceCollection services) {

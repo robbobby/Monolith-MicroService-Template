@@ -1,6 +1,7 @@
+using Avalonia.Controls;
 using Avalonia.Styling;
 
-namespace Avalonia.Controls;
+namespace ComponentLibrary;
 
 public static class IResourceNodeExtensions {
     public static T GetResource<T>(this IResourceNode node, string key, ThemeVariant theme) {

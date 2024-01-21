@@ -24,7 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Apis.Core\Apis.Core.csproj"/>
         <ProjectReference Include="..\..\Common\Common.csproj"/>
         <ProjectReference Include="..\ComponentLibrary\ComponentLibrary.csproj"/>
     </ItemGroup>
@@ -125,10 +124,16 @@
         <Compile Update="Views\Application\TicketCreateFormModel.cs">
             <DependentUpon>TicketCreateForm.axaml</DependentUpon>
         </Compile>
+        <Compile Update="Views\Application\Project\ProjectCreateForm.axaml.cs">
+            <DependentUpon>ProjectCreateForm.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Application\Project\ProjectCreateFormModel.cs">
+            <DependentUpon>ProjectCreateForm.axaml</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Service\"/>
         <Folder Include="ViewModels\Application\"/>
         <Folder Include="ViewModels\Auth\"/>
     </ItemGroup>

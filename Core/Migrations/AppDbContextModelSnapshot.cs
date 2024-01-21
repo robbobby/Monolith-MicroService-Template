@@ -80,7 +80,7 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entity.OrganisationEntity", b =>
@@ -95,7 +95,7 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Organisations");
+                    b.ToTable("Organisations", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entity.ProjectEntity", b =>
@@ -115,7 +115,7 @@ namespace Core.Migrations
 
                     b.HasIndex("OrganisationId");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entity.TokenEntity", b =>
@@ -137,7 +137,7 @@ namespace Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tokens");
+                    b.ToTable("Tokens", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entity.UserOrganisationEntity", b =>
@@ -155,7 +155,7 @@ namespace Core.Migrations
 
                     b.HasIndex("OrganisationId");
 
-                    b.ToTable("UserOrganisation");
+                    b.ToTable("UserOrganisation", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entity.ProjectEntity", b =>

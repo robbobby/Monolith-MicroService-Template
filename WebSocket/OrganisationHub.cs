@@ -1,4 +1,4 @@
-using Core.WebSocketMessageKeys;
+using Common.WebSocketMessageKeys;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 

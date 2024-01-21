@@ -7,8 +7,7 @@ namespace Core;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options)
     : DbContext,
-        IAppDbContext,
-        IIdentityDbContext, IUserDbContext {
+        IAppDbContext, IUserDbContext {
     public DbSet<OrganisationEntity> Units { get; set; }
     public DbSet<UserOrganisationEntity> UserUnits { get; set; }
     public DbSet<TokenEntity> Tokens { get; set; }

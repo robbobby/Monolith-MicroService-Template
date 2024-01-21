@@ -8,7 +8,3 @@ public class AuthServiceRepository(RepositoryWithEntityId<UserEntity> users, Rep
     public RepositoryWithEntityId<UserEntity> Users { get; } = users;
     public RepositoryBase<TokenEntity> Tokens { get; } = tokens;
 }
-
-public class TokenRepository(RepositoryBase<TokenEntity> tokens) {
-    public RepositoryBase<TokenEntity> Tokens { get; } = tokens;
-}

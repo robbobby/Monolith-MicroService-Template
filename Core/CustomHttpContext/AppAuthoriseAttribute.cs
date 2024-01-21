@@ -27,7 +27,7 @@ public class AppAuthoriseAttribute : AuthorizeAttribute, IAuthorizationFilter {
             var organisationsClaim = token.Claims.Where(claim => claim.Type == CustomClaimType.Organisations)
                 .Select(claim => JsonSerializer.Deserialize<UserOrganisation[]>(claim.Value)).FirstOrDefault();
             var currentOrganisationClaim = token.Claims
-                .Where(claim => claim.Type == CustomClaimType.CurrentOrganisationId)
+                .Where(claim => claim.Type == CustomClaimType.OrganisationId)
                 .Select(claim => Guid.Parse(claim.Value)).FirstOrDefault();
 
             var userContext = new UserHttpContext {
@@ -38,26 +38,12 @@ public class AppAuthoriseAttribute : AuthorizeAttribute, IAuthorizationFilter {
 
             httpContext.SetUserContext(userContext);
 
-            Console.WriteLine("Current org " + userContext.CurrentOrganisation);
-            foreach (var userContextOrganisation in userContext.Organisations) {
-                Console.WriteLine("from list " + userContextOrganisation.Id);
-                Console.WriteLine($"IsEquaL {userContext.CurrentOrganisation == userContextOrganisation.Id}");
-            }
-
-
             var userRole = userContext.Organisations.FirstOrDefault(o => o.Id == userContext.CurrentOrganisation);
             if(_requireExactRole) {
                 if(userRole.Role != _requiredRole) context.Result = new ForbidResult();
             } else {
-                if(userRole.Role < _requiredRole) {
-                    Console.WriteLine(userRole.Role);
-                    Console.WriteLine(_requiredRole);
-                    context.Result = new ForbidResult();
-                }
+                if(userRole.Role < _requiredRole) context.Result = new ForbidResult();
             }
-
-            Console.WriteLine("Hello");
-            Console.WriteLine(context.Result);
         }
     }
 }

@@ -1,7 +1,8 @@
-using Apis.Core.Model.Auth;
 using AuthServiceApi.Service;
-using Common.IdentityApi;
-using Common.IdentityApi.Login;
+using Common.Apis.Auth;
+using Common.Apis.Auth.Login;
+using Common.Apis.Auth.Register;
+using Common.Apis.Auth.UpdateToken;
 using Common.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -62,9 +63,9 @@ public class AuthController(AuthService authService)
 
     [Authorize]
     [HttpPost("UpdateToken")]
-    public async Task<ActionResult<HttpResult<TokenResult?>>> UpdateToken() {
+    public async Task<ActionResult<HttpResult<TokenResult?>>> UpdateToken([FromBody] UpdateTokenRequest body) {
         var userId = User.Claims.First(c => c.Type == CustomClaimType.UserId).Value;
-        var result = await authService.UpdateToken(userId);
+        var result = await authService.UpdateToken(userId, body.OrganisationId, body.ProjectId);
 
         return Ok(new HttpResult<TokenResult> {
             Succeeded = ResultType.Success,

@@ -1,12 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using Apis.Core.Model.Auth;
 using Client.Models;
 using Client.Models.Apis.Http;
 using Client.Models.Apis.Socket;
 using Client.ViewModels;
 using Client.Views.Application;
-using Common.IdentityApi;
+using Common.Apis.Auth;
+using Common.Apis.Auth.Login;
 using Common.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -39,7 +39,6 @@ public partial class LoginViewModel(Router _router, NotificationManager _notific
             });
 
             if(result?.Succeeded == ResultType.Success) {
-                ApiClient.SetTokens(result.Data!);
                 _router.NavigateTo<ApplicationView>();
                 await _socket.Connect();
                 _notification.Success("Logged in successfully");

@@ -1,4 +1,4 @@
-namespace Common.IdentityApi;
+namespace Common.Apis.Auth;
 
 public class HttpResult<T> {
     public ResultType Succeeded { get; set; }

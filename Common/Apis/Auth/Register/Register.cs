@@ -1,4 +1,4 @@
-namespace Apis.Core.Model.Auth;
+namespace Common.Apis.Auth.Register;
 
 public class RegisterRequest {
     public string Username { get; set; }

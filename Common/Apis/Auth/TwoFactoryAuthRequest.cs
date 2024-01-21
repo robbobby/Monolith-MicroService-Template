@@ -1,4 +1,4 @@
-namespace Common.IdentityApi;
+namespace Common.Apis.Auth;
 
 public class TwoFactoryAuthRequest {
     public bool Enable { get; set; }

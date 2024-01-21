@@ -1,7 +1,4 @@
-using System.Threading.Tasks;
-using Avalonia.Controls;
-using Avalonia.VisualTree;
-using ReactiveUI;
+using Client.Service;
 
 namespace Client.Views.Application;
 
@@ -15,19 +12,5 @@ public partial class BacklogView : ApplicationViewBase<BacklogViewModel> {
 
     public BacklogView() : base(new BacklogViewModel()) {
         InitializeComponent();
-    }
-}
-
-public class ModalService {
-    public ViewBase View { get; set; }
-
-    public async Task ShowModal<TWindow>(InteractionContext<TWindow, object?> interaction)
-        where TWindow : Window {
-        var dialog = interaction.Input;
-
-        if(dialog != null) {
-            var result = await dialog.ShowDialog<object>(View.GetVisualRoot() as Window);
-            interaction.SetOutput(result);
-        }
     }
 }

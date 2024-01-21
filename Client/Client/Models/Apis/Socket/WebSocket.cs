@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Client.Models.Apis.Http;
-using Core.WebSocketMessageKeys;
+using Common.WebSocketMessageKeys;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Client.Models.Apis.Socket;

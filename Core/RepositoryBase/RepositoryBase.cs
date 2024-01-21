@@ -27,12 +27,12 @@ public class RepositoryBase<T>(IAppDbContext dbContext,
         return DbContext.Set<T>();
     }
 
-    public void Add(T entity) {
+    public void Create(T entity) {
         DbContext.Set<T>().Add(entity);
         SaveChanges();
     }
 
-    public async Task<T> AddAsync(T user) {
+    public async Task<T?> CreateAsync(T user) {
         var entity = await DbContext.Set<T>().AddAsync(user);
         await SaveChangesAsync();
         return entity.Entity;

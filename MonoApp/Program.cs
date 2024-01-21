@@ -2,6 +2,7 @@ using System.Security.Authentication;
 using System.Text;
 using Core;
 using Core.Attributes;
+using Core.RepositoryBase;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
+builder.Services.AddScoped<IAppDbContext, AppDbContext>();
 
-Console.WriteLine(builder.Configuration["Identity:Key"]);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {
         options.Authority = "https://localhost:7111";

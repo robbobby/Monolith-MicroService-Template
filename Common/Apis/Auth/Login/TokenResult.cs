@@ -1,4 +1,4 @@
-namespace Common.IdentityApi.Login;
+namespace Common.Apis.Auth.Login;
 
 public class TokenResult {
     public string AccessToken { get; set; }

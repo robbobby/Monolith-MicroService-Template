@@ -1,4 +1,4 @@
-namespace Common.IdentityApi;
+namespace Common.Apis.Auth;
 
 public class UpdateIdentityRequest {
     public string NewEmail { get; set; }

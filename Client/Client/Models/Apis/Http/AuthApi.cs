@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
-using Apis.Core.Model.Auth;
-using Common.IdentityApi;
-using Common.IdentityApi.Login;
+using Common.Apis.Auth;
+using Common.Apis.Auth.Login;
+using Common.Apis.Auth.Register;
+using Common.Apis.Auth.UpdateToken;
 
 namespace Client.Models.Apis.Http;
 
@@ -16,8 +17,8 @@ public class AuthApi {
         return result;
     }
 
-    public async Task<HttpResult<TokenResult>?> UpdateToken() {
-        var result = await ApiClient.PostAsync<HttpResult<TokenResult>>("/Api/Auth/UpdateToken");
+    public async Task<HttpResult<TokenResult>?> UpdateToken(UpdateTokenRequest request) {
+        var result = await ApiClient.PostAsync<HttpResult<TokenResult>>("/Api/Auth/UpdateToken", request);
         if(result?.Succeeded == ResultType.Success) ApiClient.SetTokens(result.Data!);
 
         return result;

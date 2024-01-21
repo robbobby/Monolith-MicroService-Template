@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Apis.Core.Model.Auth;
 using Client.Models;
 using Client.Models.Apis.Http;
 using Client.ViewModels;
-using Common.IdentityApi;
+using Common.Apis.Auth;
+using Common.Apis.Auth.Register;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Router = Client.Models.Router;

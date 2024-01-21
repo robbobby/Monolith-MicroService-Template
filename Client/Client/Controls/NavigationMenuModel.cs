@@ -7,7 +7,7 @@ using Client.Models.Apis.Http;
 using Client.ViewModels;
 using Client.Views.Auth;
 using Client.Views.Settings;
-using Common.IdentityApi;
+using Common.Apis.Auth;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 

@@ -39,8 +39,6 @@ public partial class Router : ObservableObject {
 
                 foreach (var field in viewModelType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
                              .Where(f => Attribute.IsDefined(f, typeof(NonePersistentAttribute)))) {
-                    Console.WriteLine($"Clearing {field.Name}");
-
                     var propertyName = field.Name.TrimStart('_');
 
                     if(propertyName.Length > 0 && char.IsLower(propertyName[0]))
