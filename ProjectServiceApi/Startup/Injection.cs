@@ -1,5 +1,4 @@
 using Core.Attributes;
-using Core.Entity;
 using Core.Entity.Project;
 using Core.RepositoryBase;
 using ProjectServiceApi.Repository;
@@ -16,6 +15,10 @@ public class Injection : IStartupInjection {
         services.AddScoped<ProjectService>();
         services.AddScoped<ProjectRepository>();
 
+        services.AddScoped<TicketService>();
+        services.AddScoped<TicketRepository>();
+
         services.AddScoped<RepositoryWithEntityId<ProjectEntity>>();
+        services.AddScoped<RepositoryWithEntityId<TicketEntity>>();
     }
 }

@@ -23,6 +23,14 @@ public class App : Application {
                 $"View {typeof(T).Name} not found, Did you forget to add it to Injection.cs?");
         return view;
     }
+    
+    public static T GetModalViewOrThrow<T>() where T : ModalViewBase {
+        var view = Services.GetService<T>();
+        if(view == null)
+            throw new NullReferenceException(
+                $"View {typeof(T).Name} not found, Did you forget to add it to Injection.cs?");
+        return view;
+    }
 
     public static ViewBase GetViewOrThrow(Type type) {
         var view = (ViewBase)Services.GetService(type)!;

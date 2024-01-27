@@ -1,0 +1,103 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ticket="clr-namespace:Client.Controls.Ticket"
+             xmlns:model="clr-namespace:Common.Model;assembly=Common"
+             xmlns:domain="clr-namespace:Client.Views.Application.Ticket"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.Application.Ticket.TicketUpdateForm"
+             x:DataType="domain:TicketUpdateFormModel">
+    <StackPanel>
+        <H3 HorizontalAlignment="Center" Margin="10">Create Ticket</H3>
+        <Grid HorizontalAlignment="Center"
+              RowDefinitions="Auto Auto Auto Auto,*,*"
+              ColumnDefinitions="Auto Auto">
+            <TextBox Grid.ColumnSpan="2"
+                     Name="Title"
+                     Margin="5"
+                     Watermark="Enter name here..."
+                     Text="{Binding Title}" />
+            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
+                     Name="Description"
+                     Height="100"
+                     Margin="5"
+                     Watermark="Enter description here..."
+                     Text="{Binding Description}" />
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       VerticalAlignment="Center">
+                Priority:
+            </TextBlock>
+            <!-- <ComboBox x:Name="PriorityComboBox" Grid.Row="2" Grid.Column="1" -->
+            <!--           Name="Priority" -->
+            <!--           Width="200" -->
+            <!--           Margin="5" -->
+            <!--           PlaceholderText="Priority..." -->
+            <!--           SelectedValue="{Binding Priority}"> -->
+            <!--     > -->
+            <!--     <ComboBoxItem Content="Lowest" Tag="{x:Static model:TicketPriority.VeryLow}" /> -->
+            <!--     <ComboBoxItem Content="Low" Tag="{x:Static model:TicketPriority.Low}" /> -->
+            <!--     <ComboBoxItem Content="Normal" Tag="{x:Static model:TicketPriority.Normal}" /> -->
+            <!--     <ComboBoxItem Content="High" Tag="{x:Static model:TicketPriority.High}" /> -->
+            <!--     <ComboBoxItem Content="Highest" Tag="{x:Static model:TicketPriority.VeryHigh}" /> -->
+            <!-- </ComboBox> -->
+            <TextBlock Grid.Row="3" Grid.Column="0"
+                       VerticalAlignment="Center">
+                Ticket Type:
+            </TextBlock>
+            <!-- <ComboBox Grid.Row="3" Grid.Column="1" -->
+            <!--           Name="Type" -->
+            <!--           Width="200" -->
+            <!--           HorizontalContentAlignment="Left" -->
+            <!--           Margin="5" PlaceholderText="Ticket Type..." -->
+            <!--           SelectedValue="{Binding Type}"> -->
+            <!--     > -->
+            <!--     <ComboBoxItem> -->
+            <!--         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="5"> -->
+            <!--             <ticket:TicketTypeBadge Type="{x:Static model:TicketType.Bug}" /> -->
+            <!--             <Label>Bug</Label> -->
+            <!--         </StackPanel> -->
+            <!--     </ComboBoxItem> -->
+            <!--     <ComboBoxItem> -->
+            <!--         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="5"> -->
+            <!--             <ticket:TicketTypeBadge Type="{x:Static model:TicketType.Story}" /> -->
+            <!--             <Label>Story</Label> -->
+            <!--         </StackPanel> -->
+            <!--     </ComboBoxItem> -->
+            <!--     <ComboBoxItem> -->
+            <!--         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="5"> -->
+            <!--             <ticket:TicketTypeBadge Type="{x:Static model:TicketType.Epic}" /> -->
+            <!--             <Label>Epic</Label> -->
+            <!--         </StackPanel> -->
+            <!--     </ComboBoxItem> -->
+            <!--     <ComboBoxItem> -->
+            <!--         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="5"> -->
+            <!--             <ticket:TicketTypeBadge Type="{x:Static model:TicketType.Task}" /> -->
+            <!--             <Label>Task</Label> -->
+            <!--         </StackPanel> -->
+            <!--     </ComboBoxItem> -->
+            <!--     <ComboBoxItem> -->
+            <!--         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="5"> -->
+            <!--             <ticket:TicketTypeBadge Type="{x:Static model:TicketType.TechnicalDebt}" /> -->
+            <!--             <Label>Technical Debt</Label> -->
+            <!--         </StackPanel> -->
+            <!--     </ComboBoxItem> -->
+            <!-- </ComboBox> -->
+            <CheckBox Grid.Row="4" Grid.Column="0"
+                      Name="IsDone"
+                      Margin="5">
+                Attach to project
+            </CheckBox>
+            <Button Grid.Row="5" Grid.Column="0"
+                    Classes="Info"
+                    HorizontalAlignment="Left">
+                Update
+            </Button>
+            <Button Click="CloseModal" Grid.Row="5" Grid.Column="1"
+                    Classes="Danger"
+                    HorizontalAlignment="Right">
+                Cancel
+            </Button>
+        </Grid>
+    </StackPanel>
+</UserControl>

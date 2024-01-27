@@ -29,11 +29,15 @@ public class AppAuthoriseAttribute : AuthorizeAttribute, IAuthorizationFilter {
             var currentOrganisationClaim = token.Claims
                 .Where(claim => claim.Type == CustomClaimType.OrganisationId)
                 .Select(claim => Guid.Parse(claim.Value)).FirstOrDefault();
-
+            var currentProjectClaim = token.Claims
+                .Where(claim => claim.Type == CustomClaimType.ProjectId)
+                .Select(claim => Guid.Parse(claim.Value)).FirstOrDefault();
+            
             var userContext = new UserHttpContext {
                 UserId = userIdClaim.Value,
                 Organisations = organisationsClaim,
-                CurrentOrganisation = currentOrganisationClaim
+                CurrentOrganisation = currentOrganisationClaim,
+                CurrentProject = currentProjectClaim,
             };
 
             httpContext.SetUserContext(userContext);

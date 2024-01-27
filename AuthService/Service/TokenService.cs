@@ -6,7 +6,6 @@ using AuthServiceApi.Repository;
 using Common.Apis.Auth.Login;
 using Common.Model;
 using Core;
-using Core.Entity;
 using Core.Entity.Identity;
 using Microsoft.IdentityModel.Tokens;
 
@@ -54,23 +53,23 @@ public class TokenService(AuthServiceRepository _authServiceRepository, IConfigu
             new Claim(CustomClaimType.UserId, user.Id.ToString())
         });
 
-        var unitClaims = user.Organisations.Length == 0
+        var organisationClaims = user.Organisations.Length == 0
             ? "[]"
             : JsonSerializer.Serialize(user.Organisations.Select(u => new OrganisationDto
                 { Id = u.Id, Name = u.Name, Role = u.Role, Projects = u.Projects }).ToArray());
 
-        claims.AddClaim(new Claim(CustomClaimType.Organisations, unitClaims));
+        claims.AddClaim(new Claim(CustomClaimType.Organisations, organisationClaims));
 
 
         if(organisationId != null) {
-            var unit = user.Organisations.FirstOrDefault(u => u.Id == organisationId);
-            if(unit != null) {
+            var organisation = user.Organisations.FirstOrDefault(u => u.Id == organisationId);
+            if(organisation != null) {
                 claims.AddClaim(new Claim(CustomClaimType.OrganisationId, organisationId.ToString()));
                 if(projectId != null) {
-                    var project = unit.Projects.FirstOrDefault(p => p.Id == projectId);
+                    var project = organisation.Projects.FirstOrDefault(p => p.Id == projectId);
                     if(project != null) claims.AddClaim(new Claim(CustomClaimType.ProjectId, projectId.ToString()));
-                } else if(unit.Projects.Count > 0) {
-                    claims.AddClaim(new Claim(CustomClaimType.ProjectId, unit.Projects[0].Id.ToString()));
+                } else if(organisation.Projects.Count > 0) {
+                    claims.AddClaim(new Claim(CustomClaimType.ProjectId, organisation.Projects[0].Id.ToString()));
                 }
             }
         } else if(user.Organisations.Length > 0) {

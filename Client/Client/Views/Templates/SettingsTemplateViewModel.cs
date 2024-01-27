@@ -18,7 +18,7 @@ public partial class SettingsTemplateViewModel : TemplateViewModelBase, INavigat
     private ObservableCollection<NavigationItem> NavItems { get; } = [
         new NavigationItem("Back To App", "Icon.ChevronLeft", typeof(ApplicationView)),
         new NavigationItem("User Settings", "Icon.UserRegular", typeof(UserSettingsView)),
-        new NavigationItem("Unit Settings", "Icon.OrganizationRegular", typeof(UnitSettingsView))
+        new NavigationItem("Organisation Settings", "Icon.OrganizationRegular", typeof(OrganisationSettingsView))
     ];
 
     public ToggleMenuModel ToggleMenuContext { get; init; }

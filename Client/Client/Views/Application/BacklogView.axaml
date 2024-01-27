@@ -5,6 +5,7 @@
              xmlns:componentLibrary="clr-namespace:ComponentLibrary;assembly=ComponentLibrary"
              xmlns:controls="clr-namespace:Client.Controls"
              xmlns:application="clr-namespace:Client.Views.Application"
+             xmlns:model="clr-namespace:Common.Model;assembly=Common"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.Application.BacklogView"
              x:DataType="application:BacklogViewModel">
@@ -18,14 +19,16 @@
                           HorizontalAlignment="Left"
                           Foreground="{DynamicResource Colour.Primary}" />
             </Button>
-            <controls:BacklogItem />
-            <controls:BacklogItem />
-            <controls:BacklogItem />
-            <controls:BacklogItem />
-            <controls:BacklogItem />
-            <controls:BacklogItem />
-            <controls:BacklogItem />
-            <controls:BacklogItem />
+            <ItemsRepeater ItemsSource="{Binding Tickets}">
+                <ItemsRepeater.ItemTemplate>
+                    <DataTemplate>
+                        <controls:BacklogItem />
+                        <DataTemplate.DataType>
+                            <x:Type TypeName="model:TicketDto"/>
+                        </DataTemplate.DataType>
+                    </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+            </ItemsRepeater>
         </StackPanel>
     </StackPanel>
 </UserControl>

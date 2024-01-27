@@ -8,20 +8,16 @@ using ReactiveUI;
 namespace Client.Views.Application;
 
 public partial class DashboardViewModel : ViewModelBase {
+    public Interaction<ModalWindow, object?> ShowModal { get; }
+
     public DashboardViewModel() {
         ShowModal = new Interaction<ModalWindow, object?>();
     }
 
-    public Interaction<ModalWindow, object?> ShowModal { get; }
 
     [RelayCommand]
     private async Task OpenNewProjectForm() {
         var content = App.GetViewOrThrow<ProjectCreateForm>();
-        var viewModel = new ModalWindowModel {
-            ModalContent = content
-        };
-
-        var view = new ModalWindow(viewModel, content);
-        await ShowModal.Handle(view);
+        await ShowModal.Handle(ModalWindow.WithContent(content));
     }
 }

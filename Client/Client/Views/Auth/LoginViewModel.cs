@@ -40,7 +40,7 @@ public partial class LoginViewModel(Router _router, NotificationManager _notific
 
             if(result?.Succeeded == ResultType.Success) {
                 _router.NavigateTo<ApplicationView>();
-                await _socket.Connect();
+                await _socket.OrganisationConnection.Connect();
                 _notification.Success("Logged in successfully");
             } else {
                 _notification.Error("Failed to login");

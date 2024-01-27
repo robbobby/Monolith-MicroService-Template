@@ -34,6 +34,19 @@ public partial class HeaderNavViewModel : ViewModelBase {
         if(SelectedProject != AppState.User.SelectedProject)
             SelectedProject = AppState.User.SelectedProject;
     }
+    
+    partial void OnSelectedProjectChanged(Project? value) {
+        if(value?.Id != AppState.User.SelectedProject?.Id && value != null)
+            Api.Auth.UpdateToken(new UpdateTokenRequest {
+                OrganisationId = SelectedOrganisation?.Id,
+                ProjectId = value?.Id
+            });
+
+        if(!SelectedProject?.Equals(value) ?? value != null)
+            SelectedProject = value;
+        if(SelectedOrganisation != AppState.User.SelectedOrganisation)
+            SelectedOrganisation = AppState.User.SelectedOrganisation;
+    }
 
     private void SubscribeToStateChanges() {
         AppState.User.PropertyChanged += (_, _) => {

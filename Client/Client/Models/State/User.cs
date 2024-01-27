@@ -26,12 +26,10 @@ public partial class User : ObservableObject {
             var organisations = JsonSerializer.Deserialize<UserOrganisation[]>(organisationClaims) ?? [];
             Organisations.Clear();
 
-            foreach (var unit in organisations)
-                if(Organisations.All(u => u.Id != unit.Id))
-                    Organisations.Add(unit);
+            foreach (var organisation in organisations)
+                if(Organisations.All(u => u.Id != organisation.Id))
+                    Organisations.Add(organisation);
         }
-
-        Console.WriteLine(token);
 
         var organisationId = decodedToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimType.OrganisationId)
             ?.Value;
@@ -39,14 +37,19 @@ public partial class User : ObservableObject {
             SelectedOrganisation = Organisations.FirstOrDefault(u => u.Id == Guid.Parse(organisationId));
             SetProjects(SelectedOrganisation);
             var projectId = decodedToken.Claims.FirstOrDefault(claim => claim.Type == CustomClaimType.ProjectId)?.Value;
-            if(projectId != null)
+            if(projectId != null) {
                 SelectedProject = SelectedOrganisation.Projects.FirstOrDefault(p => p.Id == Guid.Parse(projectId));
-            else
+            }
+            else {
                 SelectedProject = SelectedOrganisation.Projects.FirstOrDefault();
+                
+            }
         } else {
             SelectedOrganisation = Organisations.FirstOrDefault();
             SetProjects(SelectedOrganisation);
         }
+        
+        AppState.ProjectState.Refresh();
     }
 
     private void SetProjects(UserOrganisation? organisation) {

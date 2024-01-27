@@ -8,5 +8,4 @@
     x:CompileBindings="True"
     Icon="/Assets/avalonia-logo.ico"
     Title="Project Manager">
-    <!-- <ContentPresenter Content="{Binding Content, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" /> -->
 </Window>

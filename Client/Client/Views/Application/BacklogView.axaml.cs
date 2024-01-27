@@ -9,7 +9,7 @@ public partial class BacklogView : ApplicationViewBase<BacklogViewModel> {
         modalService.View = this;
         viewModel!.ShowModal.RegisterHandler(modalService.ShowModal);
     }
-
+    
     public BacklogView() : base(new BacklogViewModel()) {
         InitializeComponent();
     }

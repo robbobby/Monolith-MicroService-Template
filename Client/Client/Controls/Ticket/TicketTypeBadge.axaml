@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Client.Models.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Controls.Ticket.TicketTypeBadge">
+    <UserControl.Resources>
+        <converters:TypeToIcon x:Key="TicketTypeToIconConverter" />
+    </UserControl.Resources>
+    <Border Grid.Column="1" Padding="0" Classes="Info" Margin="0">
+        <ToolTip.Tip>
+            <TextBlock x:Name="ToolTipText" />
+        </ToolTip.Tip>
+        <PathIcon x:Name="TypeIcon"
+                  Margin="5 0"
+                  Width="15" Height="15"
+                  Foreground="White"
+                  HorizontalAlignment="Center" />
+    </Border>
+</UserControl>

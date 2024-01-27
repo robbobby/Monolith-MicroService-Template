@@ -1,6 +1,8 @@
+using Client.Views.Application.Ticket;
+
 namespace Client.Views.Application.Project;
 
-public partial class ProjectCreateForm : ViewBase, IModalContentControl {
+public partial class ProjectCreateForm : ModalViewBase, IModalContentControl {
     public ProjectCreateForm(ProjectCreateFormModel viewModel) : base(viewModel) {
         InitializeComponent();
         DataContext = viewModel;

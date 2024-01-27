@@ -3,8 +3,10 @@
 
     <Color x:Key="Colour.Background.Contrast">#2C2F33</Color>
     <Color x:Key="Colour.Background.Primary">#23272B</Color>
-    <Color x:Key="Colour.Text.Primary">#0F0F0F</Color>
-    <Color x:Key="Colour.Text.Inverse">#FFFFFF</Color>
+    <Color x:Key="Colour.Text.Primary">#FFFFFF</Color>
+    <Color x:Key="Colour.Text.PrimaryContrast">#CCCCCC</Color>
+    <Color x:Key="Colour.Text.Inverse">#0F0F0F</Color>
+    <Color x:Key="Colour.Text.InverseContrast">#1A1A1A</Color>
 
     <Color x:Key="Colour.Default">#BDC3C7</Color>
     <Color x:Key="Colour.DefaultHover">#95A5A6</Color>

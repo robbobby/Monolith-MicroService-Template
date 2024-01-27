@@ -1,6 +1,7 @@
 namespace Common.Apis.Auth;
 
 public class HttpResult<T> {
+    public bool DidSucceed => Succeeded == ResultType.Success;
     public ResultType Succeeded { get; set; }
     public string[] Errors { get; set; } = [];
     public T? Data { get; set; }
@@ -17,5 +18,6 @@ public enum ResultType {
     Conflict,
     Error,
     NotFound,
-    Failure
+    Failure,
+    Forbidden
 }

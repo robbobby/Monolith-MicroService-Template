@@ -17,6 +17,8 @@
 
     <Panel>
         <controls:NotificationMessageContainer Manager="{Binding Notification.Notification}" ZIndex="100"
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               Width="300"
                                                Margin="35, 0 0 0" />
         <TransitioningContentControl Content="{Binding TemplateView}" />
     </Panel>

@@ -58,7 +58,7 @@
             <DependentUpon>RegisterView.axaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Update="Views\Application\UnitCreateView.axaml.cs">
+        <Compile Update="Views\Application\OrganisationCreateView.axaml.cs">
             <DependentUpon>UnitCreateView.axaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
@@ -72,8 +72,8 @@
         <Compile Update="Views\Application\DashboardViewModel.cs">
             <DependentUpon>DashboardView.axaml</DependentUpon>
         </Compile>
-        <Compile Update="Views\Application\UnitCreateViewModel.cs">
-            <DependentUpon>UnitCreateView.axaml</DependentUpon>
+        <Compile Update="Views\Application\OrganisationCreateViewModel.cs">
+            <DependentUpon>OrganisationCreateView.axaml</DependentUpon>
         </Compile>
         <Compile Update="Views\Auth\LoginViewModel.cs">
             <DependentUpon>LoginView.axaml</DependentUpon>
@@ -112,8 +112,8 @@
         <Compile Update="Views\Settings\UserSettingsViewModel.cs">
             <DependentUpon>UserSettingsView.axaml</DependentUpon>
         </Compile>
-        <Compile Update="Views\Settings\UnitSettingsViewModel.cs">
-            <DependentUpon>UnitSettingsView.axaml</DependentUpon>
+        <Compile Update="Views\Settings\OrganisationSettingsViewModel.cs">
+            <DependentUpon>OrganisationSettingsView.axaml</DependentUpon>
         </Compile>
         <Compile Update="Views\Application\BacklogViewModel.cs">
             <DependentUpon>BacklogView.axaml</DependentUpon>
@@ -121,15 +121,22 @@
         <Compile Update="Views\ModalWindowModel.cs">
             <DependentUpon>ModalWindow.axaml</DependentUpon>
         </Compile>
-        <Compile Update="Views\Application\TicketCreateFormModel.cs">
-            <DependentUpon>TicketCreateForm.axaml</DependentUpon>
-        </Compile>
         <Compile Update="Views\Application\Project\ProjectCreateForm.axaml.cs">
             <DependentUpon>ProjectCreateForm.axaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
         <Compile Update="Views\Application\Project\ProjectCreateFormModel.cs">
             <DependentUpon>ProjectCreateForm.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Application\Ticket\TicketCreateForm.axaml.cs">
+          <DependentUpon>TicketCreateForm.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Application\Ticket\TicketCreateFormModel.cs">
+          <DependentUpon>TicketCreateForm.axaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Application\Ticket\TicketUpdateFormModel.cs">
+          <DependentUpon>TicketUpdateForm.axaml</DependentUpon>
         </Compile>
     </ItemGroup>
 

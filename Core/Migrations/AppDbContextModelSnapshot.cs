@@ -22,6 +22,43 @@ namespace Core.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Core.Entity.Identity.OrganisationEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Organisations");
+                });
+
+            modelBuilder.Entity("Core.Entity.Identity.TokenEntity", b =>
+                {
+                    b.Property<string>("AccessToken")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExpiresAt")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("AccessToken", "RefreshToken");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tokens");
+                });
+
             modelBuilder.Entity("Core.Entity.Identity.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -80,67 +117,10 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Core.Entity.OrganisationEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Organisations", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Entity.ProjectEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("OrganisationId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrganisationId");
-
-                    b.ToTable("Projects", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Entity.TokenEntity", b =>
-                {
-                    b.Property<string>("AccessToken")
-                        .HasColumnType("text");
-
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ExpiresAt")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("AccessToken", "RefreshToken");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Tokens", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Entity.UserOrganisationEntity", b =>
+            modelBuilder.Entity("Core.Entity.Identity.UserOrganisationEntity", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -155,21 +135,74 @@ namespace Core.Migrations
 
                     b.HasIndex("OrganisationId");
 
-                    b.ToTable("UserOrganisation", (string)null);
+                    b.ToTable("UserOrganisation");
                 });
 
-            modelBuilder.Entity("Core.Entity.ProjectEntity", b =>
+            modelBuilder.Entity("Core.Entity.Project.ProjectEntity", b =>
                 {
-                    b.HasOne("Core.Entity.OrganisationEntity", "Organisation")
-                        .WithMany()
-                        .HasForeignKey("OrganisationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
-                    b.Navigation("Organisation");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("OrganisationId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrganisationId");
+
+                    b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("Core.Entity.TokenEntity", b =>
+            modelBuilder.Entity("Core.Entity.Project.TicketEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("AssignedToId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("OrganisationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid?>("ProjectId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssignedToId");
+
+                    b.HasIndex("OrganisationId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("Core.Entity.Identity.TokenEntity", b =>
                 {
                     b.HasOne("Core.Entity.Identity.UserEntity", "User")
                         .WithMany()
@@ -180,9 +213,9 @@ namespace Core.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Core.Entity.UserOrganisationEntity", b =>
+            modelBuilder.Entity("Core.Entity.Identity.UserOrganisationEntity", b =>
                 {
-                    b.HasOne("Core.Entity.OrganisationEntity", "Organisation")
+                    b.HasOne("Core.Entity.Identity.OrganisationEntity", "Organisation")
                         .WithMany("Users")
                         .HasForeignKey("OrganisationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -199,14 +232,50 @@ namespace Core.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Core.Entity.Project.ProjectEntity", b =>
+                {
+                    b.HasOne("Core.Entity.Identity.OrganisationEntity", "Organisation")
+                        .WithMany("Projects")
+                        .HasForeignKey("OrganisationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organisation");
+                });
+
+            modelBuilder.Entity("Core.Entity.Project.TicketEntity", b =>
+                {
+                    b.HasOne("Core.Entity.Identity.UserEntity", "AssignedTo")
+                        .WithMany()
+                        .HasForeignKey("AssignedToId");
+
+                    b.HasOne("Core.Entity.Identity.OrganisationEntity", "Organisation")
+                        .WithMany()
+                        .HasForeignKey("OrganisationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entity.Project.ProjectEntity", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId");
+
+                    b.Navigation("AssignedTo");
+
+                    b.Navigation("Organisation");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Core.Entity.Identity.OrganisationEntity", b =>
+                {
+                    b.Navigation("Projects");
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("Core.Entity.Identity.UserEntity", b =>
                 {
                     b.Navigation("Organisations");
-                });
-
-            modelBuilder.Entity("Core.Entity.OrganisationEntity", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

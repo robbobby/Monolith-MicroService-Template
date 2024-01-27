@@ -2,23 +2,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:model="clr-namespace:Common.Model;assembly=Common"
+             xmlns:converters="clr-namespace:Client.Models.Converters"
+             xmlns:ticket="clr-namespace:Client.Controls.Ticket"
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="50"
-             x:Class="Client.Controls.BacklogItem">
+             x:Class="Client.Controls.BacklogItem"
+             x:DataType="model:TicketDto">
+    <UserControl.Resources>
+        <converters:TypeToIcon x:Key="TicketTypeToIconConverter" />
+    </UserControl.Resources>
     <Grid ColumnDefinitions="Auto Auto Auto * Auto Auto Auto Auto Auto" Height="20">
-        <CheckBox />
-        <Badge Grid.Column="1" Classes="Info" Padding="0" Margin="0">
-            <PathIcon Data="{DynamicResource Icon.WrenchRegular}"
-                      Margin="5 0"
-                      Width="15" Height="15"
-                      Foreground="{DynamicResource Colour.Primary}"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center" />
+        <CheckBox Name="Selected" />
+        <ticket:TicketTypeBadge Grid.Column="1" Type="{Binding Type}" />
+        <Button Classes="Label"
+                Click="ShowTicketUpdateForm"
+                x:Name="TicketId"
+                Grid.Column="2"
+                Content="{Binding Id}" />
+        <Button Classes="Label"
+                Click="ShowTicketUpdateForm"
+                x:Name="TicketTitle"
+                Grid.Column="3"
+                Content="{Binding Title}" />
+        <Badge Name="TicketStatus" Grid.Column="4">
+            <Label Name="TicketStatusText" Content="{Binding Status}" />
         </Badge>
-        <Label Grid.Column="2">T-1234</Label>
-        <Label Grid.Column="3">Ticket name</Label>
-        <Badge Grid.Column="4">Hello</Badge>
-        <Badge Grid.Column="5">5</Badge>
-        <Badge Grid.Column="6" Classes="Info" Padding="0" Margin="0">
+        <Badge Name="TicketPriority" Grid.Column="6" Classes="Info" Padding="0" Margin="0">
             <PathIcon Data="{DynamicResource Icon.ChevronUp}"
                       Margin="5 0"
                       Width="15" Height="15"
@@ -26,8 +35,8 @@
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center" />
         </Badge>
-        <ComboBox Grid.Column="7" />
-        <Badge Grid.Column="8">
+        <ComboBox Name="TicketStatusSelect" Grid.Column="7" />
+        <Badge Name="TicketAssignedTo" Grid.Column="8">
             <PathIcon Data="{DynamicResource Icon.UserRegular}"
                       Margin="5 0"
                       Width="15" Height="15"

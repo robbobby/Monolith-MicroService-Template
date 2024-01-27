@@ -1,7 +1,6 @@
 using AuthServiceApi.Repository;
 using AuthServiceApi.Service;
 using Core.Attributes;
-using Core.Entity;
 using Core.Entity.Identity;
 using Core.RepositoryBase;
 

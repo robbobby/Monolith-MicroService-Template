@@ -57,6 +57,12 @@
                     <Button Grid.Column="2" Content="Link" Classes="Link Large" />
                     <Button Grid.Column="3" Content="Link" Classes="Link XLarge" />
                 </Grid>
+                <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" Grid.Row="9">
+                    <Button Content="Label" Classes="Label Small" />
+                    <Button Grid.Column="1" Content="Label" Classes="Label Medium" />
+                    <Button Grid.Column="2" Content="Label" Classes="Label Large" />
+                    <Button Grid.Column="3" Content="Label" Classes="Label XLarge" />
+                </Grid>
             </Grid>
         </Border>
     </Design.PreviewWith>
@@ -142,6 +148,29 @@
     <Style Selector="Button.Link:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Colour.LinkHover}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    
+    <Style Selector="Button.Label">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.Primary}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.Label:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Colour.Text.PrimaryContrast}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0" />

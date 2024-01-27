@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -35,8 +36,14 @@ public class ApiClient {
     public static string AccessToken { get; private set; } = null!;
 
 
-    public static async Task<T?> GetAsync<T>(string uri) where T : class {
+    public static async Task<T?> GetAsync<T>(string uri, object query = null) where T : class {
         try {
+            if(query != null) {
+                var queryString = query.GetType().GetProperties()
+                    .Select(p => $"{p.Name}={p.GetValue(query)}")
+                    .Aggregate((a, b) => $"{a}&{b}");
+                uri += $"?{queryString}";
+            }
             var response = await Client.GetAsync(uri);
             Console.WriteLine(response.StatusCode);
             return await HandleResponse<T>(response);
@@ -126,9 +133,9 @@ public class ApiClient {
     }
 
     public static void SetTokens(TokenResult resultData) {
-        AppState.User.FromToken(resultData.AccessToken);
         Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", resultData.AccessToken);
+        AppState.User.FromToken(resultData.AccessToken);
         RefreshToken = resultData.RefreshToken;
         AccessToken = resultData.AccessToken;
     }

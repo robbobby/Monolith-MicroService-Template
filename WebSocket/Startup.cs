@@ -6,5 +6,6 @@ namespace WebSocket;
 public class ServiceStartup : IServiceStartup {
     public void Configure(WebApplication app) {
         app.MapHub<OrganisationHub>("/organisationHub");
+        app.MapHub<TicketHub>("/ticketHub");
     }
 }

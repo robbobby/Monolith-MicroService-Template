@@ -14,7 +14,7 @@
                     Command="{Binding CreateCommand}">
                 Create
             </Button>
-            <Button Classes="Danger" HorizontalAlignment="Right">Cancel</Button>
+            <Button Click="CloseModal" Classes="Danger" HorizontalAlignment="Right">Cancel</Button>
         </Panel>
     </StackPanel>
 
